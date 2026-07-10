@@ -5,55 +5,40 @@ weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
 ### Mục tiêu tuần 4:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Nghiên cứu hệ sinh thái lưu trữ đám mây nâng cao, mô hình tích hợp lai và chiến lược phục hồi dữ liệu sau thảm họa trên AWS.
+* Nghiên cứu cơ chế phân phối nội dung tĩnh trên Amazon S3 và giải pháp tối ưu độ trễ bằng Amazon CloudFront.
+* Nghiên cứu cơ chế đồng bộ hóa dữ liệu lai giữa hệ thống On-premises và Amazon S3 qua AWS Storage Gateway.
+* Nghiên cứu mô hình tự động hóa kế hoạch sao lưu tài nguyên đám mây và cơ chế giám sát sự kiện qua AWS SNS.
+* Nghiên cứu hệ thống lưu trữ tệp tin dùng chung hiệu năng cao và giải pháp quản trị dữ liệu nâng cao trên AWS.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| 2   | - Nghiên cứu kiến trúc lưu trữ đối tượng và giải pháp quản trị dữ liệu nâng cao qua Amazon S3<br>&emsp; + Phân tích cơ chế phân tầng lưu trữ, vòng đời tệp tin và các tính năng bảo mật bảo vệ toàn vẹn dữ liệu hệ thống<br>&emsp; + Khảo sát các phương thức chuyển đổi dữ liệu vật lý quy mô lớn thông qua dòng sản phẩm AWS Snow Family<br>&emsp; + Tìm hiểu mô hình lưu trữ lai Hybrid Cloud và cơ chế đồng bộ dữ liệu giữa On-premises với đám mây qua AWS Storage Gateway<br>- Nghiên cứu chiến lược bảo vệ an toàn thông tin và kiến trúc phục hồi hệ thống sau thảm họa<br>&emsp; + Phân tích hai chỉ số cốt lõi định lượng thời gian phục hồi RTO và hạn mức mất mát dữ liệu cho phép RPO<br>&emsp; + Khảo sát các mô hình kiến trúc khắc phục sự cố Disaster Recovery từ mức dự phòng cơ bản đến cấu hình hoạt động song song chủ động<br>&emsp; + Tìm hiểu phương pháp luận quản lý, thiết lập chính sách và tự động hóa quy trình sao lưu tập trung với AWS Backup | 11/05/2026   | 11/05/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | - Nghiên cứu cơ chế lưu trữ website tĩnh và các giải pháp bảo mật, quản trị dữ liệu trên Amazon S3<br>&emsp; + Phân tích chính sách kiểm soát truy cập thông qua các tính năng Block Public Access, Bucket Policy và cơ chế phân quyền đối tượng Bucket ACL<br>&emsp; + Tìm hiểu nguyên lý quản lý đa phiên bản dữ liệu Bucket Versioning nhằm ngăn ngừa rủi ro ghi đè hoặc phá hủy thông tin ngoài ý muốn<br>&emsp; + Khảo sát mô hình đồng bộ dữ liệu tự động xuyên vùng địa lý thông qua cơ chế Cross-Region Replication (CRR)<br>- Khảo sát giải pháp tăng tốc độ truyền tải nội dung toàn cầu và phương pháp luận khắc phục sự cố hệ thống<br>&emsp; + Nghiên cứu kiến trúc phân phối mạng diện rộng của mạng lưới lưu trữ đệm đầu cuối Amazon CloudFront nhằm giảm thiểu độ trễ<br>&emsp; + Khảo sát các nguyên tắc thiết kế tối ưu hiệu suất, quản lý ngân sách lưu trữ và các kịch bản xử lý lỗi kết nối S3 phổ biến | 12/05/2026   | 12/05/2026      | <https://000057.awsstudygroup.com/> |
+| 4   | - Nghiên cứu kiến trúc tích hợp hệ thống lưu trữ lai thông qua AWS File Storage Gateway<br>&emsp; + Phân tích cơ chế hoạt động của máy chủ ảo hóa chuyên dụng, bộ nhớ đệm cục bộ (Cache Volume) và hệ thống tường lửa bảo vệ cổng dịch vụ<br>&emsp; + Tìm hiểu mô hình liên kết, thiết lập ánh xạ luồng truyền tải dữ liệu trực tiếp vào không gian lưu trữ Amazon S3 Bucket<br>- Khảo sát nguyên lý vận hành và đồng bộ của hệ thống chia sẻ tệp tin nội bộ<br>&emsp; + Nghiên cứu bản chất kỹ thuật của giao thức chia sẻ tệp SMB kết hợp các cơ chế xác thực quyền hạn trên nền tảng Windows Server<br>&emsp; + Phân tích nguyên lý ánh xạ ổ đĩa mạng (Mapping Network Drive) và mô hình tự động hóa đồng bộ hóa tệp tin từ cục bộ lên đám mây | 13/05/2026   | 13/05/2026      | <https://000024.awsstudygroup.com/> |
+| 5   | - Nghiên cứu phương pháp luận tự động hóa quy trình bảo vệ dữ liệu thông qua hệ thống AWS Backup<br>&emsp; + Phân tích kiến trúc thiết lập kế hoạch sao lưu chiến lược (Backup Plan) và cơ chế cô lập an toàn trong kho lưu trữ dữ liệu chuyên biệt (Backup Vault)<br>&emsp; + Tìm hiểu mô hình tự động nhận diện và gán mục tiêu tài nguyên cần bảo vệ dựa trên giải pháp phân loại thẻ định danh Tags<br>- Khảo sát giải pháp giám sát sự kiện trạng thái hệ thống và cơ chế phân phối thông báo tập trung<br>&emsp; + Nghiên cứu phương thức liên kết luồng sự kiện của kho lưu trữ với hệ thống thông báo diện rộng Amazon SNS<br>&emsp; + Phân tích nguyên lý truyền tải thông tin tự động theo thời gian thực khi các tiến trình sao lưu hoặc khôi phục dữ liệu hoàn tất | 14/05/2026   | 14/05/2026      | <https://000013.awsstudygroup.com/> |
+| 6   | - Nghiên cứu kiến trúc phân phối tệp tin dùng chung quy mô doanh nghiệp qua Amazon FSx for Windows File Server<br>&emsp; + Phân tích bản chất kỹ thuật của mô hình lưu trữ Multi-AZ dựa trên hai cấu hình ổ đĩa cứng hiệu năng (SSD/HDD) và cơ chế chia sẻ tệp tin qua giao thức SMB liên tục<br>&emsp; + Tìm hiểu mô hình kiểm soát, đánh giá và giám sát hiệu suất thông lượng đường truyền thông qua các chỉ số CloudWatch Metrics<br>- Khảo sát các giải pháp quản trị, tối ưu không gian đĩa và cơ chế phân bổ tài nguyên nâng cao<br>&emsp; + Nghiên cứu nguyên lý hoạt động của thuật toán chống trùng lặp dữ liệu (Data Deduplication) nhằm tiết kiệm dung lượng lưu trữ thực tế<br>&emsp; + Phân tích cơ chế tự sao lưu bóng hệ thống (Shadow Copies) phục vụ mục tiêu khôi phục các phiên bản tệp tin lịch sử từ người dùng cuối<br>&emsp; + Khảo sát phương pháp luận quản lý phiên làm việc của người dùng (User Sessions), kỹ thuật cấu hình hạn ngạch lưu trữ (User Quotas) và mô hình mở rộng dung lượng đĩa/thông lượng không gây gián đoạn hệ thống | 15/05/2026   | 15/05/2026      | <https://000025.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 4:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Thấu hiểu hệ sinh thái lưu trữ đối tượng và giải pháp tối ưu mạng diện rộng (Amazon S3 & CloudFront):
+  * Nắm vững nguyên lý vận hành của Amazon S3, cơ chế tối ưu hóa chi phí dựa trên vòng đời dữ liệu (Lifecycle Policies), kỹ thuật kiểm soát truy cập đa tầng (Block Public Access, Bucket Policy, ACL) và quản trị đa phiên bản (Versioning) để phòng ngừa rủi ro mất mát dữ liệu.
+  * Phân tích giải pháp nhân bản dữ liệu tự động liên vùng địa lý (Cross-Region Replication - CRR) phục vụ khả năng dự phòng và nâng cao tính sẵn sàng cao của hệ thống.
+  * Phân tích sâu kiến trúc tăng tốc truyền tải của Amazon CloudFront dựa trên hệ thống máy chủ đệm đầu cuối (Edge Locations) nhằm giảm thiểu độ trễ; khảo sát phương pháp luận bóc tách sự cố lỗi kết nối hoặc phân quyền S3 phổ biến.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Nghiên cứu chiến lược quản trị rủi ro hạ tầng lai và phương pháp luận phục hồi (Hybrid Storage & Disaster Recovery):
+  * Định hình tư duy thiết kế hệ thống dựa trên việc đối chiếu hai thông số cốt lõi là thời gian khôi phục (RTO) và điểm khôi phục dữ liệu (RPO); nắm trọn bản chất kỹ thuật cùng sự đánh đổi của 4 mô hình Disaster Recovery từ mức cơ bản đến cấu hình Multi-Site Active-Active.
+  * Phân tích giải pháp lưu trữ lai qua AWS Storage Gateway (File, Volume, Tape) kết hợp dòng thiết bị vật lý AWS Snow Family nhằm giải quyết bài toán di trú dữ liệu quy mô lớn tại các vùng giới hạn băng thông.
+  * Thấu hiểu sâu sắc cấu trúc của AWS File Storage Gateway thông qua giao thức SMB, bộ nhớ đệm cục bộ (EBS Cache Volume) và cơ chế ánh xạ ổ đĩa mạng mạng ảo để tự động đồng bộ hóa tệp tin từ On-premises lên Amazon S3.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Nghiên cứu cơ chế tự động hóa bảo mật và giám sát sự kiện sao lưu (AWS Backup & SNS):
+  * Nắm vững phương pháp luận thiết lập các quy tắc sao lưu hệ thống định kỳ thông qua Backup Plan và lưu trữ cô lập an toàn trong Backup Vault; ứng dụng nhãn định danh (Tags) để tự động gom cụm và quét mục tiêu cần bảo vệ trên quy mô lớn.
+  * Thấu hiểu giải pháp liên thông dữ liệu, cơ chế bóc tách trạng thái vận hành của kho lưu trữ để thiết lập điểm neo sự kiện tích hợp đồng bộ cùng dịch vụ Amazon SNS nhằm tự động hóa thông báo trạng thái sao lưu/khôi phục theo thời gian thực.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Thấu hiểu kiến trúc tệp tin dùng chung hiệu năng cao và giải pháp quản trị nâng cao (Amazon FSx):
+  * Nắm vững nguyên lý thiết kế hạ tầng lưu trữ chuẩn doanh nghiệp hỗ trợ đa phân vùng sẵn sàng (Multi-AZ), cơ chế cân đối chi phí giữa ổ đĩa SSD/HDD và giải pháp chia sẻ tài nguyên có tính sẵn sàng liên tục (Continuously Available Share).
+  * Phân tích sâu phương pháp luận giám sát thông lượng đường truyền (Read/Write Performance) qua CloudWatch Metrics và nguyên lý hoạt động của thuật toán chống trùng lặp dữ liệu (Data Deduplication) giúp tối ưu hóa không gian lưu trữ thực tế.
+  * Thấu hiểu giải pháp Shadow Copies giúp khôi phục các phiên bản dữ liệu cũ (Restore Previous Versions); nắm trọn tư duy điều phối kết nối người dùng (User Sessions/Open Files), áp đặt hạn ngạch (User Quotas) và mô hình nâng cấp dung lượng/thông lượng trực tuyến không gây gián đoạn hệ thống.

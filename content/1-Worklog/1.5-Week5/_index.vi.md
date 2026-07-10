@@ -5,55 +5,36 @@ weight: 1
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
 ### Mục tiêu tuần 5:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Nghiên cứu kiến trúc an toàn thông tin, giải pháp quản trị định danh và cơ chế mã hóa dữ liệu tập trung trên AWS.
+* Nghiên cứu giải pháp phân quyền ứng dụng an toàn và cơ chế bảo mật danh tính động bằng AWS IAM Role.
+* Nghiên cứu mô hình quản lý phân quyền nâng cao và cơ chế kiểm soát điều kiện truy cập hệ thống qua AWS IAM.
+* Nghiên cứu phương pháp luận kiểm soát truy cập dựa trên thuộc tính thẻ tài nguyên và mô hình quản trị phi tập trung qua AWS IAM.
+* Nghiên cứu mô hình giám sát an ninh hợp nhất và phương pháp luận đánh giá tiêu chuẩn tuân thủ tự động trên AWS.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| 2   | - Nghiên cứu mô hình trách nhiệm và giải pháp quản trị định danh toàn diện<br>&emsp; + Phân tích ranh giới bảo mật dựa trên Mô hình Trách nhiệm Chia sẻ (Shared Responsibility Model) giữa nhà cung cấp và khách hàng<br>&emsp; + Tìm hiểu cơ chế phân quyền, quản lý chính sách đặc quyền tối thiểu thông qua dịch vụ AWS IAM<br>&emsp; + Khảo sát kiến trúc xác thực, phân quyền và quản lý danh tính người dùng cuối cho ứng dụng web/mobile qua Amazon Cognito<br>- Khảo sát giải pháp quản trị nhiều tài khoản và hệ thống mã hóa bảo vệ dữ liệu<br>&emsp; + Nghiên cứu cơ chế gom cụm tài nguyên doanh nghiệp và áp đặt chính sách kiểm soát tập trung thông qua AWS Organizations<br>&emsp; + Phân tích bản chất kỹ thuật của việc tạo, quản lý và kiểm toán vòng đời khóa mã hóa bảo mật với Amazon KMS<br>&emsp; + Tìm hiểu mô hình hợp nhất dữ liệu, tự động hóa đánh giá tiêu chuẩn an ninh hạ tầng thông qua AWS Security Hub | 18/05/2026   | 18/05/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | - Nghiên cứu rủi ro an ninh mạng của phương thức xác thực tĩnh trên hệ sinh thái điện toán đám mây<br>&emsp; + Phân tích bản chất và cơ chế vận hành của cặp khóa định danh cố định Access Key và Secret Access Key khi gán quyền truy cập dịch vụ lưu trữ S3<br>&emsp; + Nhận diện các mối đe dọa an ninh và lỗ hổng rò rỉ dữ liệu nghiêm trọng từ hành vi nhúng cứng thông tin xác thực vào mã nguồn ứng dụng<br>- Khảo sát phương pháp luận bảo mật tối ưu thông qua việc ứng dụng danh tính tạm thời nâng cao<br>&emsp; + Nghiên cứu kiến trúc thiết lập chính sách ủy quyền tin cậy (Trust Policy) và cơ chế gán quyền hạn động thông qua IAM Role cho các máy chủ ảo EC2<br>&emsp; + Phân tích nguyên lý tự động cấp phát và xoay vòng mã xác thực bảo mật tạm thời phục vụ mục tiêu loại bỏ hoàn toàn việc lưu trữ khóa tĩnh | 19/05/2026   | 19/05/2026      | <https://000048.awsstudygroup.com>        |
+| 4   | - Nghiên cứu phương pháp luận phân tầng và quản lý đặc quyền tập trung qua các thực thể IAM<br>&emsp; + Phân tích kiến trúc nhóm người dùng (IAM Group) trong việc đồng bộ hóa và áp đặt chính sách đặc quyền tối thiểu lên các phân vùng dịch vụ cốt lõi như EC2 và RDS<br>&emsp; + Tìm hiểu mô hình phân định quyền hạn, quy trình ủy quyền quản trị tạm thời dựa trên cơ chế chuyển đổi vai trò (Switch Role)<br>- Khảo sát giải pháp bảo mật ngữ cảnh thông qua hệ thống logic ràng buộc chính sách<br>&emsp; + Nghiên cứu cấu trúc các khối điều kiện (IAM Policy Conditions) nhằm thiết lập hàng rào bảo mật động cho tài nguyên đám mây<br>&emsp; + Phân tích nguyên lý ràng buộc đặc quyền dựa trên các tham số môi trường như địa chỉ IP nguồn doanh nghiệp và khung thời gian thực thi quy định | 20/05/2026   | 20/05/2026      | <https://000044.awsstudygroup.com/>       |
+| 5   | - Nghiên cứu cơ chế phân quyền dựa trên thuộc tính thẻ trong hệ sinh thái điện toán đám mây<br>&emsp; + Phân tích bản chất kỹ thuật của mô hình kiểm soát truy cập dựa trên thuộc tính (ABAC) và cấu trúc chính sách IAM Policy liên kết với thẻ tài nguyên (Resource Tags)<br>&emsp; + Tìm hiểu quy trình thiết lập các điều kiện ràng buộc khắt khe nhằm giới hạn đặc quyền khởi tạo, chỉnh sửa hoặc xóa bỏ máy chủ ảo EC2<br>- Khảo sát giải pháp quản trị phân tầng và ủy quyền danh tính phi tập trung<br>&emsp; + Nghiên cứu cấu trúc phân phối chính sách an toàn thông qua việc gán quyền hạn gián tiếp cho các thực thể chức năng IAM Role<br>&emsp; + Phân tích nguyên lý kiểm thử, bóc tách và nghiệm thu tính đúng đắn của các mệnh đề logic trong chính sách bảo mật khi áp dụng cơ chế chuyển đổi vai trò | 21/05/2026   | 21/05/2026      | <https://000028.awsstudygroup.com/>       |
+| 6   | - Nghiên cứu cơ chế vận hành của trung tâm quản lý an ninh đám mây và giải pháp ghi vết cấu hình<br>&emsp; + Phân tích bản chất kỹ thuật, luồng liên thông dữ liệu và nguyên lý thu thập tài nguyên liên tục giữa AWS Security Hub và AWS Config<br>&emsp; + Tìm hiểu mô hình tự động hóa rà quét, phát hiện lỗ hổng hạ tầng và thuật toán định lượng chỉ số an toàn hệ thống theo thời gian thực<br>- Khảo sát phương pháp luận đối chiếu và quản trị rủi ro theo các khung tiêu chuẩn bảo mật quốc tế<br>&emsp; + Nghiên cứu cấu trúc và các tiêu chí đánh giá cốt lõi của các bộ tiêu chuẩn an ninh: AWS Foundational Security Best Practices, CIS AWS Foundations Benchmark và PCI DSS<br>&emsp; + Phân tích cơ chế phân loại mức độ nghiêm trọng của các cảnh báo rủi ro và phương pháp luận tùy chỉnh, tinh lọc bộ quy tắc kiểm toán để phù hợp với ngữ cảnh vận hành thực tế của doanh nghiệp | 22/05/2026   | 22/05/2026      | <https://000018.awsstudygroup.com/>       |
 
 ### Kết quả đạt được tuần 5:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Thấu hiểu tư duy bảo mật đám mây và cơ chế quản trị danh tính nâng cao (IAM & Amazon Cognito):
+  * Nắm vững nguyên lý phân định ranh giới an ninh của Mô hình Trách nhiệm Chia sẻ, xác định rõ nghĩa vụ cấu hình bảo mật tầng ứng dụng và dữ liệu thuộc phạm vi người dùng.
+  * Phân tích sâu phương pháp luận quản lý truy cập Zero-Trust thông qua việc tổ chức mô hình nhóm (IAM Groups), áp đặt các chính sách kiểm soát và tối ưu hóa tính nhất quán đặc quyền tối thiểu lên các dịch vụ cốt lõi (EC2, RDS).
+  * Khảo sát giải pháp quản lý danh tính tập trung của Amazon Cognito (User Pools và Identity Pools), thấu hiểu quy trình thiết lập luồng xác thực nâng cao và phân quyền truy cập an toàn cho người dùng cuối.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Nghiên cứu cơ chế phân quyền dựa trên danh tính động và kiểm soát điều kiện chính sách chuyên sâu:
+  * Nhận diện lỗ hổng bảo mật nghiêm trọng của việc sử dụng thông tin xác thực tĩnh (Access Key) trong mã nguồn; thấu hiểu cơ chế xoay vòng mã bảo mật tạm thời của AWS Security Token Service (STS) thông qua kiến trúc ủy quyền tin cậy của IAM Role.
+  * Nắm vững phương pháp luận quản lý ủy quyền linh hoạt nhờ cơ chế chuyển đổi vai trò (Switch Role), kết hợp ứng dụng mệnh đề logic ngữ cảnh (IAM Conditions) để thiết lập bộ lọc chặn truy cập theo dải IP nguồn (aws:SourceIp) và khung thời gian (aws:CurrentTime).
+  * Thấu hiểu tư duy kiểm soát truy cập dựa trên thuộc tính (ABAC), áp dụng nhãn siêu dữ liệu (Resource Tags) để phân định ranh giới đặc quyền, bắt buộc kiểm tra thẻ định danh tại thời điểm khởi tạo và ngăn chặn hành vi can thiệp trái phép vào cấu trúc hạ tầng.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Nghiên cứu kiến trúc kiểm soát đa tài khoản, mã hóa và giám sát an ninh tập trung:
+  * Thấu hiểu phương pháp luận quản trị hạ tầng quy mô lớn qua AWS Organizations, áp đặt chính sách kiểm soát dịch vụ (SCP) nhằm thiết lập hành lang an toàn cho toàn bộ tài khoản thành viên.
+  * Phân tích sâu nguyên lý mã hóa dữ liệu ở trạng thái lưu trữ thông qua giải pháp mã hóa phía máy chủ (SSE-KMS) của Amazon S3 và cơ chế vận hành khóa KMS (AWS-managed và Customer Managed Key) để tối ưu quy trình bảo vệ thông tin.
+  * Nắm trọn tư duy tích hợp dữ liệu an ninh từ AWS Config vào giao diện tập trung AWS Security Hub; thấu hiểu thuật toán rà quét lỗ hổng, tính toán điểm số an toàn (Security Score) và đối chiếu tự động theo các bộ tiêu chuẩn quốc tế (AWS Foundational, CIS Benchmark, PCI DSS) kết hợp tinh chỉnh loại trừ các tiêu chí ngoại lệ (Controls Customization).
