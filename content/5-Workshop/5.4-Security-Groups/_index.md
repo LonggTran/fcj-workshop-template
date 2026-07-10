@@ -23,7 +23,7 @@ The ALB will receive public requests from the Internet:
    - **Source**: **Anywhere-IPv4** (`0.0.0.0/0`).
 5. Click **Create security group** at the bottom.
 
-![ALB Security Group configuration](/images/5-Workshop/5.4-Security-Groups/alb_sg.png)
+![Create the ALB security group](/images/h16.png)
 
 ---
 
@@ -41,4 +41,4 @@ This Security Group protects the Fargate tasks (Frontend, unified Backend) and t
    - **Rule 4 (Cross-container communication):** Type: **All traffic** | Source: Select **Custom** -> Choose this same **`pg-ecs-sg`** security group. (Allows the Java container and Redis sidecar container to communicate on localhost).
 4. Click **Create security group** at the bottom.
 
-![ECS and RDS Security Group configuration](/images/5-Workshop/5.4-Security-Groups/ecs_sg.png)
+![Configure the ECS and RDS security group](/images/h17.png)

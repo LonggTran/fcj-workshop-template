@@ -17,15 +17,21 @@ We will use the "VPC and more" wizard to spin up our public and private subnets.
    - **Resources to create**: Select **VPC and more**.
    - **Name tag auto-generation**: Enter `pg`.
    - **IPv4 CIDR block**: Keep the default `10.0.0.0/16`.
+
+![Configure the VPC name and IPv4 CIDR](/images/h11.png)
+
    - **Number of Availability Zones (AZs)**: Choose **2**.
    - **Number of Public Subnets**: Choose **2** (Ranges: `10.0.1.0/24` and `10.0.2.0/24`).
    - **Number of Private Subnets**: Choose **2** (Ranges: `10.0.128.0/24` and `10.0.129.0/24`).
    - **NAT Gateways**: Choose **1 in 1 AZ**.
    - **VPC Endpoints**: Choose **None**.
    - **DNS options**: Ensure both **Enable DNS resolution** and **Enable DNS hostnames** are checked.
+
+![Configure subnets, NAT gateway, and DNS options](/images/h12.png)
+
 4. Click **Create VPC** at the bottom -> Wait 1 minute and click **View VPC**.
 
-![Create VPC Page](/images/5-Workshop/5.3-VPC-Networking/5.3.1-vpc_create.png)
+![VPC created successfully](/images/h13.png)
 
 ---
 
@@ -37,4 +43,4 @@ To ensure resources placed in public subnets receive public IPs automatically:
 4. Check **Enable auto-assign public IPv4 address**. Click **Save**.
 5. Repeat for the second public subnet: `pg-subnet-public2-ap-southeast-1b`.
 
-![Enable Auto IP](/images/5-Workshop/5.3-VPC-Networking/5.3.1-enable_ip.png)
+![Enable automatic public IPv4 assignment](/images/h14.png)

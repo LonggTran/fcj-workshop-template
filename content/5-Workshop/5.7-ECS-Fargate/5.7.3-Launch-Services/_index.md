@@ -15,6 +15,9 @@ We will create the ECS Cluster and spin up our frontend and backend container se
 2. **Cluster name**: `pg-cluster`.
 3. **Infrastructure**: Select **AWS Fargate (serverless)**. Click **Create**.
 
+![Create the ECS cluster](/images/h41.png)
+![ECS cluster created successfully](/images/h42.png)
+
 ---
 
 ### Step 2: Launch the Backend Service (`pg-backend-service`)
@@ -24,16 +27,29 @@ We will create the ECS Cluster and spin up our frontend and backend container se
    - **Family**: Select **`pg-backend`** (revision 1).
    - **Service name**: `pg-backend-service`.
    - **Desired tasks**: `1`.
+
+![Configure the backend ECS service](/images/h43.png)
+
    - **Networking**:
      - VPC: Choose **`pg-vpc`**.
      - Subnets: Check **only the two Private Subnets** (`pg-subnet-private1...` and `pg-subnet-private2...`). *Uncheck public subnets*.
      - Security group: Select **Use existing** -> Choose **`pg-ecs-sg`** (and remove the default group).
      - Public IP: Select **Disabled** (Turned off).
+
+![Configure private networking for the backend service](/images/h44.png)
+
    - **Load balancing**:
      - Load balancer type: Select **Application Load Balancer**.
      - Load balancer: Select **`pg-alb`**.
      - Container to load balance: Select `backend:8080:8080`.
+
+![Configure the backend container for load balancing](/images/h45.png)
+
+     - Listener: Select **Use an existing listener** -> Choose **`HTTP:80`**.
      - Target group: **Use an existing target group** -> Select **`tg-backend`**.
+
+![Select the backend listener and target group](/images/h46.png)
+
 3. Click **Create**.
 
 ---
@@ -51,4 +67,6 @@ We will create the ECS Cluster and spin up our frontend and backend container se
 
 *Wait 1-2 minutes. The status of both services will turn to ACTIVE. You can now access your website via the ALB DNS link!*
 
-![ECS Fargate Services Active](/images/5-Workshop/5.7-ECS-Fargate/5.7.3-ecs_services.png)
+![Backend target health](/images/h48.png)
+![Frontend target health](/images/h49.png)
+![ECS Fargate services deployed successfully](/images/h47.png)

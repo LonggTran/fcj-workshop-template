@@ -74,6 +74,9 @@ We will define how our containers run using JSON schemas:
   ]
 }
 ```
+
+![Register the backend task definition](/images/h39.png)
+
    - Click **Create**.
 
 3. **Register the Frontend Task Definition (`pg-frontend`):**
@@ -109,4 +112,4 @@ We will define how our containers run using JSON schemas:
 ```
    - Click **Create**.
 
-![Task Definitions Registered](/images/5-Workshop/5.7-ECS-Fargate/5.7.2-task_definitions.png)
+![Register the frontend task definition](/images/h40.png)

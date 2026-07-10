@@ -17,7 +17,7 @@ Fargate uses the `awslogs` driver to stream output logs, requiring the Log Group
 3. **Log group name**: Enter **`/ecs/pg-logs`**.
 4. **Retention setting**: Select **1 day** (or 1 week). Click **Create**.
 
-![Create Log Group](/images/5-Workshop/5.7-ECS-Fargate/5.7.1-log_group.png)
+![Create the CloudWatch log group](/images/h36.png)
 
 ---
 
@@ -27,7 +27,10 @@ This role allows the ECS agent to pull images from ECR and publish log streams t
 2. **Trusted entity type**: Select **AWS service**.
 3. **Service or use case**: Select **Elastic Container Service** -> Select **Elastic Container Service Task**. Click **Next**.
 4. **Permissions policies**: Search for and check **`AmazonECSTaskExecutionRolePolicy`**. Click **Next**.
+
+![Select the ECS task execution role policy](/images/h37.png)
+
 5. **Role name**: Enter **`ecsTaskExecutionRole`**.
 6. Click **Create role**.
 
-![Create IAM Role](/images/5-Workshop/5.7-ECS-Fargate/5.7.1-iam_role.png)
+![Create the ECS task execution role](/images/h38.png)

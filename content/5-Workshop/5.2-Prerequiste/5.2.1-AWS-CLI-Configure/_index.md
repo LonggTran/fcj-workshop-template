@@ -21,7 +21,7 @@ Input your credentials:
 - **Default region name**: e.g., `ap-southeast-1`
 - **Default output format**: `json`
 
-![AWS CLI Configure](/images/5-Workshop/5.2-Prerequiste/5.2.1-aws_configure.png)
+![AWS CLI Configure](/images/h1.png)
 
 ---
 
@@ -37,4 +37,4 @@ git clone https://github.com/your-username/high-concurrency-payment-gateway.git
 git clone https://github.com/your-username/high-concurrency-payment-gateway-fe.git
 ```
 
-![Git Clone Projects](/images/5-Workshop/5.2-Prerequiste/5.2.1-git_clone.png)
+![Git Clone Projects](/images/h2.png)

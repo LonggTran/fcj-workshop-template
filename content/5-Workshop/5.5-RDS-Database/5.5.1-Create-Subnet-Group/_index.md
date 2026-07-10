@@ -23,4 +23,4 @@ A DB Subnet Group defines the subnets where RDS instances can be allocated. We w
      - **Subnets**: Check the 2 Private Subnets: **`10.0.128.0/24`** and **`10.0.129.0/24`**.
 4. Click **Create**.
 
-![DB Subnet Group Created](/images/5-Workshop/5.5-RDS-Database/5.5.1-subnet_group.png)
+![Create the DB subnet group](/images/h18.png)

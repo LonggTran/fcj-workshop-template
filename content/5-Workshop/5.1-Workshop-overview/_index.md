@@ -19,7 +19,7 @@ The Payment Gateway application deployed in this workshop consists of multiple m
 
 The AWS deployment follows a secure multi-tier networking model:
 
-![Architecture Diagram](/images/5-Workshop/5.1-Workshop-overview/architecture_diagram.png)
+![Architecture Diagram](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
 
 #### Key Architectural Highlights:
 1. **Network Isolation:** The ALB sits in **Public Subnets** to face external web traffic, whereas the ECS container services and the RDS PostgreSQL database are hosted strictly in **Private Subnets** with no public IP access.

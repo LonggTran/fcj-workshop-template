@@ -19,8 +19,11 @@ To route API traffic from client browsers to the backend gateway instead of Ngin
 5. Configure the routing rule parameters:
    - **Rule name**: `api-rule`.
    - **Conditions**: Click **Add condition** -> Select **Path** -> Enter **`/api/*`** -> Click **Confirm**.
+
+![Configure the listener rule condition](/images/h34.png)
+
    - **Actions**: Click **Forward to target groups** -> Select **`tg-backend`** -> Click **Confirm**.
    - **Priority**: Enter **`10`**.
 6. Click **Save** to apply.
 
-![ALB Rules Configured](/images/5-Workshop/5.6-Load-Balancer/5.6.3-listener_rules.png)
+![Configure the listener rule action and priority](/images/h35.png)

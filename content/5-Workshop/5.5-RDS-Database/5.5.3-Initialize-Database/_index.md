@@ -17,11 +17,17 @@ Because the RDS database is locked inside a Private Subnet, your personal comput
    - **OS**: **Amazon Linux 2023** (Free Tier eligible).
    - **Instance type**: `t2.micro` (or `t3.micro`).
    - **Key pair**: Select **Proceed without a key pair** (we will connect directly via the web browser).
+
+![Configure the EC2 bastion host](/images/h22.png)
+
    - **Network settings**: Click **Edit**:
      - **VPC**: Select **`pg-vpc`**.
      - **Subnet**: Select the first public subnet (e.g., `pg-subnet-public1-ap-southeast-1a`).
      - **Auto-assign public IP**: Select **Enable**.
      - **Security group**: Select **Create security group** -> Name: `pg-bastion-sg` -> Inbound rules: **Remove** all rules.
+
+![Configure networking for the bastion host](/images/h23.png)
+
 3. Click **Launch instance**.
 
 ---
@@ -34,7 +40,12 @@ Because the RDS database is locked inside a Private Subnet, your personal comput
 ---
 
 ### Step 3: Connect and Execute SQL via Browser
+
+![Allow the bastion security group to access RDS](/images/h24.png)
+
 1. In the EC2 Instances page, select `pg-bastion` -> Click **Connect**.
+
+![Connect to the EC2 bastion host](/images/h25.png)
 2. Select the **EC2 Instance Connect** tab -> Click **Connect**. A web-based Linux shell will appear in your browser.
 3. Run the following commands to install the PostgreSQL client and initialize the database schema:
    ```bash
@@ -52,8 +63,10 @@ Because the RDS database is locked inside a Private Subnet, your personal comput
    # When prompted for password, enter: yourpassword
    psql -h <rds-endpoint> -U postgres -d postgres -f init.sql
    ```
+
+![Install the PostgreSQL client](/images/h26.png)
+![Create and initialize the databases on RDS](/images/h27.png)
+
    *Successful execution will print `CREATE DATABASE` for all three databases.*
 4. **Terminate the Bastion Host:**
    - Go back to the EC2 Instances page -> Select `pg-bastion` -> Click **Instance state** -> Click **Terminate instance** to delete the server and prevent additional costs.
-
-![Database initialization completed](/images/5-RDS-Database/5.5.3-psql_connect.png)

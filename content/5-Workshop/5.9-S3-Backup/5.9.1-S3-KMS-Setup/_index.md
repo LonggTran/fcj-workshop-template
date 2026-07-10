@@ -17,6 +17,8 @@ We will set up the S3 Bucket to hold our backups and provision a customer-manage
    - **AWS Region**: Select **ap-southeast-1** (Singapore).
    - Leave other settings as default. Click **Create bucket**.
 
+![Create the S3 backup bucket](/images/h61.png)
+
 ---
 
 ### Step 2: Create a Custom KMS Key (Customer Managed Key)
@@ -29,4 +31,4 @@ AWS does not allow using default system-managed KMS keys (like `aws/s3` or `aws/
    - **Key administrators**: Check your current IAM User. Click **Next**.
    - **Key users**: Check your current IAM User. Click **Next** -> Click **Finish**.
 
-![Create KMS Key](/images/5-Workshop/5.9-S3-Backup/5.9.1-kms_creation.png)
+![Create the customer-managed KMS key](/images/h62.png)

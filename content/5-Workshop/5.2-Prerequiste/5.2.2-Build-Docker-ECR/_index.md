@@ -21,7 +21,7 @@ cd high-concurrency-payment-gateway
 ```
 *Verify that the build is successful and output JARs exist in the build directories.*
 
-![Gradle build succeed](/images/5-Workshop/5.2-Prerequiste/5.2.2-build_success.png)
+![Gradle build succeeded](/images/h3.png)
 
 ---
 
@@ -30,9 +30,12 @@ cd high-concurrency-payment-gateway
 2. Click **Create repository**:
    - Visibility: **Private**.
    - Name: `pg-combined-backend`. Click **Create**.
+
+![Create the backend ECR repository](/images/h4.png)
+
 3. Repeat to create another repository named `pg-frontend`.
 
-![ECR created](/images/5-Workshop/5.2-Prerequiste/5.2.2-ecr_creation.png)
+![ECR repositories created successfully](/images/h5.png)
 
 ---
 
@@ -43,6 +46,8 @@ Run these commands locally to push your images (Replace `<aws-region>` and `<aws
 ```bash
 aws ecr get-login-password --region <aws-region> | docker login --username AWS --password-stdin <aws-account-id>.dkr.ecr.<aws-region>.amazonaws.com
 ```
+
+![Docker authenticated with ECR](/images/h6.png)
 
 2. **Build and Push the Backend image:** (From the `high-concurrency-payment-gateway` directory)
 ```bash
@@ -55,6 +60,9 @@ docker tag pg-combined-backend:latest <aws-account-id>.dkr.ecr.<aws-region>.amaz
 # Push to ECR
 docker push <aws-account-id>.dkr.ecr.<aws-region>.amazonaws.com/pg-combined-backend:latest
 ```
+
+![Backend image built and tagged](/images/h7.png)
+![Backend image pushed to ECR](/images/h8.png)
 
 3. **Build and Push the Frontend image:** (Navigate to `high-concurrency-payment-gateway-fe`)
 ```bash
@@ -70,4 +78,5 @@ docker tag pg-frontend:latest <aws-account-id>.dkr.ecr.<aws-region>.amazonaws.co
 docker push <aws-account-id>.dkr.ecr.<aws-region>.amazonaws.com/pg-frontend:latest
 ```
 
-![ECR images pushed](/images/5-Workshop/5.2-Prerequiste/5.2.2-ecr_images.png)
+![Frontend image pushed to ECR](/images/h9.png)
+![Images available in ECR](/images/h10.png)

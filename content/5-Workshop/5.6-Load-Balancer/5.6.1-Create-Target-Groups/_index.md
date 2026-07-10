@@ -27,8 +27,14 @@ We must define target groups indicating where the ALB should route incoming traf
    - **Choose a target type**: Select **IP addresses**.
    - **Target group name**: `tg-backend`.
    - **Protocol & Port**: Select **HTTP** and port **`8080`**.
+
+![Configure the backend target group](/images/h28.png)
+
    - **VPC**: Select **`pg-vpc`**.
    - **Health check path**: `/actuator/health`.
+
+![Configure the backend target group health check](/images/h29.png)
+
    - Click **Next** -> Click **Create target group**.
 
-![Target Groups Created](/images/5-Workshop/5.6-Load-Balancer/5.6.1-target_groups.png)
+![Target groups created successfully](/images/h30.png)

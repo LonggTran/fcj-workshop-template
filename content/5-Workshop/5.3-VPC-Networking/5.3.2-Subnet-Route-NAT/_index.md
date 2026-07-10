@@ -24,4 +24,4 @@ To ensure that Fargate container tasks running in Private Subnets can make outbo
    - Select your NAT Gateway ID from the dropdown.
 6. Click **Save changes**.
 
-![Confirm NAT route](/images/5-Workshop/5.3-VPC-Networking/5.3.2-private_route.png)
+![Confirm the private subnet route through the NAT gateway](/images/h15.png)

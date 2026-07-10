@@ -35,6 +35,9 @@ We will define the security IAM policies and roles allowing RDS to securely writ
     ]
 }
 ```
+
+![Create the custom IAM policy](/images/h63.png)
+
 3. Click **Next** -> Name the policy **`rds-s3-export-policy`** -> Click **Create policy**.
 
 ---
@@ -61,4 +64,4 @@ We must allow the RDS export service (`export.rds.amazonaws.com`) to assume the 
 4. Click **Next** -> Search for and select the **`rds-s3-export-policy`** policy created in Step 1. Click **Next**.
 5. Name the role **`rds-s3-export-role`** -> Click **Create role**.
 
-![IAM Role Created](/images/5-Workshop/5.9-S3-Backup/5.9.2-role_created.png)
+![Create the RDS S3 export IAM role](/images/h64.png)

@@ -24,11 +24,16 @@ Choose one of the following methods:
 $url = 'http://pg-alb-504838152.ap-southeast-1.elb.amazonaws.com/'; Write-Host "Sending 200 requests to $url..."; for ($i = 1; $i -le 200; $i++) { try { $r = Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 2; Write-Host "Request $i - OK" } catch { Write-Host "Request $i - Fail" } }
 ```
 
+![Send load-test requests from local PowerShell](/images/h58.png)
+
 ---
 
 ### Step 2: Verify Alerts
 1. Wait 1-2 minutes.
 2. Check the CloudWatch Alarms page: the status of **`pg-alb-high-request-alarm`** will become red (**`In alarm`**).
+
+![CloudWatch alarm in the In alarm state](/images/h59.png)
+
 3. Check your email inbox: You should find an alert message from AWS SNS.
 
-![Alarm In Alarm state](/images/5-Workshop/5.8-CloudWatch-Alarm/5.8.3-alarm_red.png)
+![SNS alarm notification received by email](/images/h60.png)
