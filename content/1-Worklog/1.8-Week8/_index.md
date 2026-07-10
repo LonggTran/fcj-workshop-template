@@ -9,49 +9,35 @@ pre: " <b> 1.8. </b> "
 ⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
 {{% /notice %}}
 
-
 ### Week 8 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Analyze the requirements and define the scope of the High Concurrency Payment Gateway project for load testing a high-throughput payment system.
+* Design a microservices architecture consisting of API Gateway, Payment Service, Account Service, and Transaction Service.
+* Initialize a Java 21, Spring Boot, and Gradle multi-module project with reusable shared libraries.
+* Set up a local development environment with PostgreSQL, Redis, and Docker Compose for the implementation phase.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Analyze the high-concurrency payment gateway problem<br>&emsp; + Identify data consistency, duplicate-processing prevention, and fault-tolerance requirements<br>&emsp; + Define the main flows: account creation, debit, credit, payment creation, and transaction lookup | 06/08/2026 | 06/08/2026 | Project description and system source code |
+| 3 | - Design the microservices architecture and source-code structure<br>&emsp; + Separate API Gateway, Account Service, Payment Service, and Transaction Service<br>&emsp; + Define the responsibility, runtime port, and dedicated database of each service | 06/09/2026 | 06/09/2026 | <https://spring.io/projects/spring-boot> |
+| 4 | - Initialize the Java 21 Gradle multi-module project<br>&emsp; + Create service modules and the shared `common-dto` and `common-exception` libraries<br>&emsp; + Configure Spring Web, Validation, JPA, Actuator, and PostgreSQL dependencies | 06/10/2026 | 06/10/2026 | <https://docs.gradle.org/> |
+| 5 | - Set up the local data environment<br>&emsp; + Configure Docker Compose for PostgreSQL and Redis<br>&emsp; + Create separate `paymentservice`, `accountservice`, and `transactionservice` databases<br>&emsp; + Standardize database connection environment variables | 06/11/2026 | 06/11/2026 | <https://docs.docker.com/compose/> |
+| 6 | - Build the initial service skeletons<br>&emsp; + Create basic entities, repositories, services, controllers, and DTOs<br>&emsp; + Standardize API responses, error codes, and shared exception handling<br>&emsp; + Configure health checks through Spring Boot Actuator | 06/12/2026 | 06/12/2026 | High Concurrency Payment Gateway source code |
 
 ### Week 8 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Completed the scope analysis and identified the main technical requirements of a high-throughput payment system:
+  * Established idempotency as a mandatory mechanism to prevent a payment or debit request from being executed more than once.
+  * Selected Redis for rate limiting, caching, and distributed locking, while PostgreSQL provides durable transaction storage.
+  * Clearly separated the responsibilities of each microservice and avoided direct cross-service database access.
 
-* Successfully created and configured an AWS Free Tier account.
+* Successfully initialized the Gradle multi-module structure:
+  * Created four service modules: API Gateway, Account Service, Payment Service, and Transaction Service.
+  * Created `common-dto` and `common-exception` libraries to reuse response formats and error definitions.
+  * Standardized package organization into controller, service, repository, entity, DTO, mapper, and exception layers.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Completed the local development environment:
+  * Started PostgreSQL and Redis with Docker Compose.
+  * Created separate databases for the business services.
+  * Configured development profiles, environment variables, service ports, and health-check endpoints.

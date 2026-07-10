@@ -9,51 +9,35 @@ pre: " <b> 1.8. </b> "
 ⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
 {{% /notice %}}
 
-
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Phân tích yêu cầu và xác định phạm vi của dự án High Concurrency Payment Gateway phục vụ kiểm thử hệ thống thanh toán chịu tải cao.
+* Thiết kế kiến trúc microservices gồm API Gateway, Payment Service, Account Service và Transaction Service.
+* Khởi tạo dự án Java 21, Spring Boot và Gradle theo mô hình multi-module, đồng thời xây dựng các thư viện dùng chung.
+* Thiết lập môi trường phát triển cục bộ với PostgreSQL, Redis và Docker Compose để chuẩn bị cho giai đoạn triển khai chức năng.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Phân tích bài toán cổng thanh toán chịu tải cao<br>&emsp; + Xác định các yêu cầu về tính nhất quán dữ liệu, chống xử lý trùng lặp và khả năng chịu lỗi<br>&emsp; + Xác định các luồng chính: tạo tài khoản, ghi nợ, ghi có, tạo thanh toán và tra cứu giao dịch | 08/06/2026 | 08/06/2026 | Mô tả dự án và mã nguồn hệ thống |
+| 3 | - Thiết kế kiến trúc microservices và cấu trúc mã nguồn<br>&emsp; + Phân tách API Gateway, Account Service, Payment Service và Transaction Service<br>&emsp; + Xác định trách nhiệm, cổng chạy và cơ sở dữ liệu riêng của từng dịch vụ | 09/06/2026 | 09/06/2026 | <https://spring.io/projects/spring-boot> |
+| 4 | - Khởi tạo Gradle multi-module với Java 21<br>&emsp; + Tạo các module dịch vụ và hai thư viện dùng chung `common-dto`, `common-exception`<br>&emsp; + Cấu hình các dependency Spring Web, Validation, JPA, Actuator và PostgreSQL | 10/06/2026 | 10/06/2026 | <https://docs.gradle.org/> |
+| 5 | - Thiết lập môi trường dữ liệu cục bộ<br>&emsp; + Cấu hình Docker Compose cho PostgreSQL và Redis<br>&emsp; + Tạo riêng các database `paymentservice`, `accountservice`, `transactionservice`<br>&emsp; + Chuẩn hóa biến môi trường kết nối cơ sở dữ liệu | 11/06/2026 | 11/06/2026 | <https://docs.docker.com/compose/> |
+| 6 | - Xây dựng bộ khung cho các dịch vụ<br>&emsp; + Tạo entity, repository, service, controller và DTO cơ bản<br>&emsp; + Chuẩn hóa cấu trúc phản hồi API, mã lỗi và xử lý ngoại lệ dùng chung<br>&emsp; + Cấu hình health check qua Spring Boot Actuator | 12/06/2026 | 12/06/2026 | Mã nguồn dự án High Concurrency Payment Gateway |
 
 ### Kết quả đạt được tuần 8:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Hoàn thành phân tích phạm vi và các yêu cầu kỹ thuật quan trọng của hệ thống thanh toán chịu tải cao:
+  * Xác định idempotency là cơ chế bắt buộc để ngăn một yêu cầu thanh toán hoặc ghi nợ bị thực thi nhiều lần.
+  * Xác định Redis được sử dụng cho rate limiting, cache và distributed lock; PostgreSQL đảm nhiệm lưu trữ dữ liệu giao dịch bền vững.
+  * Phân tách rõ trách nhiệm của từng microservice, hạn chế phụ thuộc trực tiếp giữa các cơ sở dữ liệu.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Khởi tạo thành công cấu trúc Gradle multi-module:
+  * Tạo bốn module dịch vụ gồm API Gateway, Account Service, Payment Service và Transaction Service.
+  * Tạo thư viện `common-dto` và `common-exception` để tái sử dụng định dạng phản hồi và mã lỗi giữa các dịch vụ.
+  * Chuẩn hóa cấu trúc package theo các tầng controller, service, repository, entity, DTO, mapper và exception.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Hoàn thành môi trường phát triển cục bộ:
+  * Khởi chạy PostgreSQL và Redis bằng Docker Compose.
+  * Tạo các cơ sở dữ liệu riêng cho từng dịch vụ nghiệp vụ.
+  * Cấu hình profile phát triển, biến môi trường, cổng dịch vụ và endpoint kiểm tra trạng thái hệ thống.
