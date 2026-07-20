@@ -1,48 +1,32 @@
 ---
 title: "Worklog Tuần 12"
-date: 2024-01-01
-weight: 2
+date: 2026-07-06
+weight: 12
 chapter: false
-pre: " <b> 1.12 </b> "
+pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 ### Mục tiêu tuần 12:
 
-* Kiểm tra tích hợp end-to-end của hệ thống sau khi triển khai lên AWS.
-* Xây dựng và thực thi các kịch bản kiểm thử chức năng, đồng thời, idempotency, rate limiting và khả năng chịu lỗi.
-* Thực hiện kiểm thử tải để quan sát độ trễ, tỷ lệ lỗi, mức sử dụng tài nguyên và phản ứng của cơ chế tự động mở rộng.
-* Tối ưu cấu hình, khắc phục lỗi, hoàn thiện tài liệu dự án và dọn dẹp tài nguyên AWS không còn sử dụng.
+* Hoàn thiện triển khai và kiểm tra end-to-end hệ thống High-Concurrency Payment Gateway trên AWS.
+* Theo dõi trạng thái ALB Target Groups, ECS Tasks, RDS, Redis sidecar và CloudWatch Logs.
+* Thực hiện kiểm thử tải bằng k6, quan sát RequestCount, độ trễ, tỷ lệ lỗi và phản ứng của ECS Service Auto Scaling.
+* Cấu hình CloudWatch Alarm, Amazon SNS và sao lưu RDS Snapshot sang Amazon S3 với AWS KMS.
+* Khắc phục lỗi, hoàn thiện tài liệu triển khai và dọn dẹp tài nguyên AWS không còn sử dụng.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Kiểm tra tích hợp sau triển khai<br>&emsp; + Kiểm tra health của API Gateway, ALB target group, ECS task, RDS và ElastiCache<br>&emsp; + Thực hiện luồng tạo tài khoản, truy vấn số dư, tạo thanh toán và tra cứu giao dịch qua endpoint chung<br>&emsp; + Kiểm tra log và traceId giữa các dịch vụ khi xảy ra lỗi | 06/07/2026 | 06/07/2026 | Hệ thống đã triển khai và CloudWatch Logs |
-| 3 | - Kiểm thử idempotency và tính nhất quán<br>&emsp; + Gửi lặp lại cùng `idempotencyKey` cho Payment Service<br>&emsp; + Gửi đồng thời cùng `transactionId` đến Account Service<br>&emsp; + Kiểm tra yêu cầu trùng khớp không debit lần hai và payload khác bị trả về conflict | 07/07/2026 | 07/07/2026 | Kịch bản kiểm thử API của dự án |
-| 4 | - Kiểm thử đồng thời, rate limiting và khả năng chịu lỗi<br>&emsp; + Gửi nhiều request song song đến API tạo thanh toán<br>&emsp; + Kiểm tra giới hạn theo userId và phản hồi HTTP 429 khi vượt ngưỡng<br>&emsp; + Mô phỏng Account Service chậm hoặc tạm thời không khả dụng để quan sát Retry, Circuit Breaker và trạng thái PROCESSING | 08/07/2026 | 08/07/2026 | Mã nguồn Payment Service và API Gateway |
-| 5 | - Thực hiện kiểm thử tải và theo dõi hệ thống<br>&emsp; + Tăng dần số lượng người dùng ảo và request trong từng giai đoạn kiểm thử<br>&emsp; + Theo dõi latency, throughput, error rate, CPU, memory, số ECS task, connection database và Redis<br>&emsp; + Quan sát ECS Service Auto Scaling và xác định các điểm nghẽn của ứng dụng hoặc hạ tầng | 09/07/2026 | 09/07/2026 | Amazon CloudWatch và công cụ kiểm thử tải |
-| 6 | - Tối ưu, kiểm thử lại và hoàn thiện dự án<br>&emsp; + Điều chỉnh timeout, Retry, rate-limit threshold, CPU/memory và scaling policy phù hợp<br>&emsp; + Kiểm thử hồi quy các luồng chính sau khi sửa lỗi<br>&emsp; + Hoàn thiện sơ đồ kiến trúc, worklog, báo cáo kết quả và xóa/tắt tài nguyên AWS không còn cần thiết để tránh phát sinh chi phí | 10/07/2026 | 10/07/2026 | Tài liệu và kết quả kiểm thử của dự án |
+| Thứ 2 | - Kiểm tra và nghiệm thu các thành phần sau triển khai<br>&emsp; + Kiểm tra trạng thái Healthy của target group frontend và backend<br>&emsp; + Truy cập ứng dụng qua DNS của ALB và kiểm thử các luồng tài khoản, thanh toán, số dư và giao dịch<br>&emsp; + Kiểm tra CloudWatch Log Streams của backend, Redis và frontend | 06/07/2026 | 06/07/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.10-verification/> |
+| Thứ 3 | - Thực hiện kiểm thử tải và theo dõi hiệu năng<br>&emsp; + Chạy k6 với nhiều Virtual Users và số lượng request tăng dần<br>&emsp; + Theo dõi latency, throughput, error rate và HTTP 429 từ rate limiter<br>&emsp; + Quan sát ALB RequestCount, CPU/Memory của ECS và số lượng task trong quá trình tăng tải | 07/07/2026 | 07/07/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.8-cloudwatch-alarm/><br><https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.10-verification/> |
+| Thứ 4 | - Cấu hình cảnh báo và điều chỉnh hệ thống<br>&emsp; + Tạo Amazon SNS Topic và đăng ký email nhận cảnh báo<br>&emsp; + Tạo CloudWatch Alarm theo ALB RequestCount hoặc mức sử dụng CPU<br>&emsp; + Điều chỉnh timeout, rate-limit threshold, CPU/Memory và scaling policy dựa trên kết quả kiểm thử<br>&emsp; + Sửa các lỗi cấu hình ứng dụng hoặc kết nối phát sinh khi chạy trên AWS | 08/07/2026 | 08/07/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway><br><https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.8-cloudwatch-alarm/> |
+| Thứ 5 | - Thực hiện sao lưu dữ liệu trên AWS<br>&emsp; + Tạo S3 Bucket dùng lưu trữ dữ liệu backup<br>&emsp; + Tạo AWS KMS Key và IAM Role phục vụ xuất snapshot<br>&emsp; + Tạo RDS Snapshot và export dữ liệu sang Amazon S3 với mã hóa | 09/07/2026 | 09/07/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.9-s3-backup/> |
+| Thứ 6 | - Hoàn thiện báo cáo và dọn dẹp tài nguyên<br>&emsp; + Kiểm thử hồi quy các luồng chính sau khi sửa lỗi<br>&emsp; + Hoàn thiện sơ đồ kiến trúc, tài liệu Workshop, worklog song ngữ và báo cáo kết quả<br>&emsp; + Rà soát, tắt hoặc xóa ECS Services, ALB, NAT Gateway, RDS, S3 và các tài nguyên không còn sử dụng để tránh phát sinh chi phí | 10/07/2026 | 10/07/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.10-verification/><br><https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.11-cleanup/> |
 
 ### Kết quả đạt được tuần 12:
 
-* Hoàn thành kiểm tra tích hợp end-to-end:
-  * Xác nhận luồng request đi qua API Gateway, VPC Link, Internal ALB và đến đúng ECS Service.
-  * Kiểm tra các dịch vụ kết nối thành công với RDS PostgreSQL và ElastiCache Redis.
-  * Sử dụng CloudWatch Logs và traceId để đối chiếu request giữa các microservice và hỗ trợ tìm lỗi.
-
-* Xác nhận các cơ chế bảo vệ dữ liệu hoạt động đúng trong các kịch bản kiểm thử:
-  * Nhiều request có cùng `idempotencyKey` không tạo thêm payment và không debit tài khoản nhiều lần.
-  * Account Service trả kết quả idempotent cho `transactionId` trùng khớp và từ chối khi dữ liệu giao dịch không giống yêu cầu đầu tiên.
-  * State machine và thao tác claim có điều kiện ngăn nhiều tiến trình cùng xử lý một payment.
-
-* Đánh giá được hành vi của hệ thống dưới tải:
-  * Theo dõi được throughput, latency, error rate và mức sử dụng CPU/memory trong từng giai đoạn tăng tải.
-  * Kiểm tra rate limiter trả HTTP 429 khi một user vượt giới hạn, giúp bảo vệ các dịch vụ phía sau.
-  * Quan sát Retry, Circuit Breaker, Redis lock và ECS Service Auto Scaling khi lưu lượng hoặc lỗi kết nối tăng cao.
-
-* Hoàn thiện và tổng kết dự án:
-  * Điều chỉnh các tham số timeout, retry, rate limit và tài nguyên container dựa trên kết quả kiểm thử.
-  * Hoàn thiện sơ đồ kiến trúc AWS, tài liệu triển khai, worklog song ngữ và nội dung báo cáo dự án.
-  * Rà soát, tắt hoặc xóa tài nguyên AWS không cần thiết nhằm hạn chế chi phí sau khi kết thúc kiểm thử.
+* Kiểm tra được luồng truy cập từ Internet qua ALB đến frontend và API Gateway backend chạy trên ECS Fargate.
+* Xác nhận các ECS Task kết nối được với RDS PostgreSQL, Redis sidecar và ghi log tập trung lên CloudWatch.
+* Thực hiện kiểm thử tải bằng k6 và theo dõi được các chỉ số RequestCount, latency, throughput, error rate, CPU/Memory và phản hồi HTTP 429.
+* Thiết lập CloudWatch Alarm và Amazon SNS để gửi cảnh báo khi hệ thống vượt ngưỡng theo dõi.
+* Thực hiện quy trình tạo RDS Snapshot và chuẩn bị xuất dữ liệu backup sang S3 với mã hóa KMS.
+* Hoàn thiện tài liệu triển khai, worklog tiếng Việt/tiếng Anh, sơ đồ kiến trúc và quy trình dọn dẹp tài nguyên AWS sau kiểm thử.

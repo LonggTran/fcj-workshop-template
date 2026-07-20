@@ -1,48 +1,31 @@
 ---
 title: "Worklog Tuần 11"
-date: 2024-01-01
-weight: 2
+date: 2026-06-29
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 ### Mục tiêu tuần 11:
 
-* Tích hợp toàn bộ microservices trong môi trường cục bộ và chuẩn hóa cấu hình để triển khai lên AWS.
-* Hoàn thiện sơ đồ kiến trúc AWS cho hệ thống thanh toán chịu tải cao theo mô hình dịch vụ quản lý và tự động mở rộng.
-* Tạo, cấu hình các dịch vụ mạng, compute, database, cache, bảo mật và giám sát cần thiết trên AWS.
-* Đóng gói ứng dụng thành Docker image và triển khai các dịch vụ bằng Amazon ECS Fargate.
+* Đóng gói ứng dụng bằng Docker và lưu trữ image trên Amazon ECR.
+* Thiết lập hạ tầng mạng VPC trên hai Availability Zone với Public/Private Subnets, Internet Gateway, NAT Gateway và Security Groups.
+* Khởi tạo Amazon RDS PostgreSQL trong Private Subnets và chuẩn bị dữ liệu qua EC2 Bastion Host.
+* Triển khai Application Load Balancer và các container trên Amazon ECS Fargate.
+* Thiết lập IAM Role, CloudWatch Logs và ECS Service Auto Scaling cho môi trường triển khai.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Tích hợp và kiểm tra luồng cục bộ<br>&emsp; + Khởi chạy PostgreSQL, Redis và các microservice với cấu hình môi trường thống nhất<br>&emsp; + Kiểm tra định tuyến qua API Gateway, health endpoint và kết nối Payment Service → Account Service<br>&emsp; + Sửa lỗi cấu hình database, biến môi trường và schema khi chạy đồng thời | 29/06/2026 | 29/06/2026 | Mã nguồn và Docker Compose của dự án |
-| 3 | - Hoàn thiện kiến trúc triển khai AWS<br>&emsp; + Thiết kế một VPC trên hai Availability Zone với các subnet dành cho tầng ứng dụng và dữ liệu<br>&emsp; + Xác định luồng Amazon API Gateway → VPC Link → Internal ALB → ECS Fargate<br>&emsp; + Thiết kế Security Group và IAM Role theo nguyên tắc đặc quyền tối thiểu | 30/06/2026 | 30/06/2026 | <https://docs.aws.amazon.com/vpc/> |
-| 4 | - Tạo tầng lưu trữ image và compute<br>&emsp; + Tạo Amazon ECR repository, build và push Docker image của các dịch vụ<br>&emsp; + Tạo ECS Cluster, Task Definition và ECS Service trên Fargate<br>&emsp; + Cấu hình health check và ECS Service Auto Scaling cho từng dịch vụ | 01/07/2026 | 01/07/2026 | <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/> |
-| 5 | - Tạo tầng dữ liệu và cấu hình bảo mật<br>&emsp; + Tạo Amazon RDS for PostgreSQL cho dữ liệu account, payment và transaction<br>&emsp; + Tạo Amazon ElastiCache for Redis cho cache, lock và rate limit<br>&emsp; + Lưu thông tin kết nối trong AWS Secrets Manager và gán quyền truy cập cho ECS Task Role | 02/07/2026 | 02/07/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/> |
-| 6 | - Hoàn thiện tầng truy cập và giám sát<br>&emsp; + Tạo Internal Application Load Balancer, target group và listener rule cho các dịch vụ<br>&emsp; + Kết nối API Gateway với ALB thông qua VPC Link<br>&emsp; + Cấu hình CloudWatch Logs, metrics, alarms và theo dõi health của ECS, RDS, Redis | 03/07/2026 | 03/07/2026 | <https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vpc-links.html> |
+| Thứ 2 | - Đóng gói ứng dụng và quản lý Amazon ECR<br>&emsp; + Biên dịch các service Spring Boot thành file JAR<br>&emsp; + Build Docker image backend và chuẩn bị image frontend theo cấu trúc triển khai<br>&emsp; + Tạo ECR Repository, tag và push image lên AWS | 29/06/2026 | 29/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway><br><https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.2-prerequiste/> |
+| Thứ 3 | - Thiết lập VPC Networking và Security Groups<br>&emsp; + Tạo VPC trên hai Availability Zone với hai Public Subnets và hai Private Subnets<br>&emsp; + Cấu hình Internet Gateway, NAT Gateway và Route Tables<br>&emsp; + Phân tách Security Group cho ALB, ECS Fargate, RDS và Bastion Host | 30/06/2026 | 30/06/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.3-vpc-networking/><br><https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.4-security-groups/> |
+| Thứ 4 | - Khởi tạo Amazon RDS PostgreSQL trong mạng riêng<br>&emsp; + Tạo DB Subnet Group từ hai Private Subnets<br>&emsp; + Khởi tạo RDS PostgreSQL với Public Access tắt<br>&emsp; + Tạo EC2 Bastion Host và chạy script tạo các database nghiệp vụ | 01/07/2026 | 01/07/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.5-rds-database/> |
+| Thứ 5 | - Cấu hình Application Load Balancer<br>&emsp; + Tạo target group cho frontend và backend API Gateway<br>&emsp; + Khởi tạo Internet-facing ALB tại Public Subnets<br>&emsp; + Cấu hình listener rule để `/api/*` chuyển đến backend và request mặc định chuyển đến frontend | 02/07/2026 | 02/07/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.6-load-balancer/> |
+| Thứ 6 | - Triển khai Amazon ECS Fargate<br>&emsp; + Tạo ECS Cluster, CloudWatch Log Group, Task Execution Role và Task Role<br>&emsp; + Đăng ký Task Definitions cho backend, Redis sidecar và frontend<br>&emsp; + Tạo ECS Services trong Private Subnets, gắn target group và cấu hình Service Auto Scaling | 03/07/2026 | 03/07/2026 | <https://xduc695.github.io/fcj-workshop-template/vi/5-workshop/5.7-ecs-fargate/> |
 
 ### Kết quả đạt được tuần 11:
 
-* Hoàn thành tích hợp các thành phần của hệ thống:
-  * API Gateway định tuyến đúng đến Account Service, Payment Service và Transaction Service.
-  * Payment Service kết nối được với Account Service; các dịch vụ truy cập đúng PostgreSQL và Redis theo cấu hình môi trường.
-  * Các endpoint Actuator hỗ trợ kiểm tra nhanh tình trạng của từng dịch vụ trước và sau triển khai.
-
-* Hoàn thiện kiến trúc AWS phù hợp với hệ thống chịu tải cao:
-  * Amazon API Gateway được đặt ngoài VPC và kết nối vào mạng riêng qua VPC Link.
-  * Internal ALB phân phối request đến các ECS Service chạy trên AWS Fargate.
-  * RDS PostgreSQL và ElastiCache Redis được đặt trong tầng dữ liệu riêng, chỉ cho phép truy cập từ các Security Group cần thiết.
-
-* Đóng gói và triển khai được ứng dụng theo mô hình container:
-  * Docker image được lưu trữ tập trung trên Amazon ECR.
-  * ECS Task Definition quản lý image, port, CPU, memory, biến môi trường và secrets của mỗi dịch vụ.
-  * ECS Service Auto Scaling tạo nền tảng tăng hoặc giảm số lượng task theo mức sử dụng tài nguyên.
-
-* Thiết lập được các thành phần vận hành và bảo mật cơ bản:
-  * IAM Role và Security Group được giới hạn theo trách nhiệm của từng tầng.
-  * Thông tin nhạy cảm được tách khỏi source code và quản lý bằng AWS Secrets Manager.
-  * Log ứng dụng và chỉ số hạ tầng được tập trung trên Amazon CloudWatch để phục vụ giai đoạn kiểm thử tải.
+* Hoàn thành build, tag và push các Docker image phục vụ triển khai lên Amazon ECR.
+* Thiết lập được VPC đa Availability Zone với Public/Private Subnets, Internet Gateway, NAT Gateway, Route Tables và Security Groups phân lớp.
+* Khởi tạo RDS PostgreSQL trong mạng riêng và tạo các database cho Account, Payment và Transaction Service qua Bastion Host.
+* Cấu hình ALB, target groups và listener rules để phân phối traffic đến frontend và API Gateway backend.
+* Triển khai các task và service trên ECS Fargate, tập trung log về CloudWatch và cấu hình nền tảng tự động mở rộng theo tải.

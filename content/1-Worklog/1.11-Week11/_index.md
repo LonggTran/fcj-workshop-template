@@ -1,48 +1,31 @@
 ---
 title: "Week 11 Worklog"
-date: 2024-01-01
-weight: 2
+date: 2026-06-29
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 ### Week 11 Objectives:
 
-* Integrate all microservices locally and standardize configuration for AWS deployment.
-* Finalize the AWS architecture for a high-throughput payment system using managed services and automatic scaling.
-* Create and configure the required AWS networking, compute, database, cache, security, and monitoring services.
-* Package the applications as Docker images and deploy the services with Amazon ECS Fargate.
+* Package the application with Docker and store images in Amazon ECR.
+* Build a two-Availability-Zone VPC with public/private subnets, an Internet Gateway, a NAT Gateway, and Security Groups.
+* Create Amazon RDS PostgreSQL in private subnets and initialize data through an EC2 Bastion Host.
+* Deploy an Application Load Balancer and containers on Amazon ECS Fargate.
+* Configure IAM roles, CloudWatch Logs, and ECS Service Auto Scaling for the deployment environment.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Integrate and verify the local system flow<br>&emsp; + Start PostgreSQL, Redis, and all microservices with consistent environment configuration<br>&emsp; + Verify API Gateway routing, health endpoints, and the Payment Service → Account Service connection<br>&emsp; + Fix database configuration, environment-variable, and schema issues found during concurrent startup | 06/29/2026 | 06/29/2026 | Project source code and Docker Compose |
-| 3 | - Finalize the AWS deployment architecture<br>&emsp; + Design one VPC across two Availability Zones with subnets for application and data tiers<br>&emsp; + Define the Amazon API Gateway → VPC Link → Internal ALB → ECS Fargate request flow<br>&emsp; + Design Security Groups and IAM Roles according to least privilege | 06/30/2026 | 06/30/2026 | <https://docs.aws.amazon.com/vpc/> |
-| 4 | - Create the image-storage and compute layers<br>&emsp; + Create Amazon ECR repositories, then build and push the service Docker images<br>&emsp; + Create the ECS Cluster, Task Definitions, and Fargate ECS Services<br>&emsp; + Configure health checks and ECS Service Auto Scaling for each service | 07/01/2026 | 07/01/2026 | <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/> |
-| 5 | - Create the data layer and security configuration<br>&emsp; + Create Amazon RDS for PostgreSQL for account, payment, and transaction data<br>&emsp; + Create Amazon ElastiCache for Redis for cache, lock, and rate limiting<br>&emsp; + Store connection details in AWS Secrets Manager and grant access through ECS Task Roles | 07/02/2026 | 07/02/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/> |
-| 6 | - Complete the access and monitoring layers<br>&emsp; + Create an Internal Application Load Balancer, target groups, and listener rules for the services<br>&emsp; + Connect API Gateway to the ALB through VPC Link<br>&emsp; + Configure CloudWatch Logs, metrics, alarms, and health monitoring for ECS, RDS, and Redis | 07/03/2026 | 07/03/2026 | <https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vpc-links.html> |
+| Monday | - Package the application and manage Amazon ECR<br>&emsp; + Compile the Spring Boot services into JAR files<br>&emsp; + Build the backend Docker image and prepare the frontend image for deployment<br>&emsp; + Create ECR repositories, tag the images, and push them to AWS | 29/06/2026 | 29/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway><br><https://xduc695.github.io/fcj-workshop-template/5-workshop/5.2-prerequiste/> |
+| Tuesday | - Set up VPC Networking and Security Groups<br>&emsp; + Create a VPC across two Availability Zones with two public and two private subnets<br>&emsp; + Configure the Internet Gateway, NAT Gateway, and route tables<br>&emsp; + Separate Security Groups for ALB, ECS Fargate, RDS, and the Bastion Host | 30/06/2026 | 30/06/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.3-vpc-networking/><br><https://xduc695.github.io/fcj-workshop-template/5-workshop/5.4-security-groups/> |
+| Wednesday | - Create Amazon RDS PostgreSQL in the private network<br>&emsp; + Create a DB Subnet Group from the two private subnets<br>&emsp; + Launch RDS PostgreSQL with public access disabled<br>&emsp; + Create an EC2 Bastion Host and run scripts to create the business databases | 01/07/2026 | 01/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.5-rds-database/> |
+| Thursday | - Configure the Application Load Balancer<br>&emsp; + Create target groups for the frontend and backend API Gateway<br>&emsp; + Launch an internet-facing ALB in the public subnets<br>&emsp; + Configure listener rules so `/api/*` goes to the backend and default requests go to the frontend | 02/07/2026 | 02/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.6-load-balancer/> |
+| Friday | - Deploy Amazon ECS Fargate<br>&emsp; + Create the ECS Cluster, CloudWatch Log Group, Task Execution Role, and Task Role<br>&emsp; + Register Task Definitions for the backend, Redis sidecar, and frontend<br>&emsp; + Create ECS Services in private subnets, attach target groups, and configure Service Auto Scaling | 03/07/2026 | 03/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.7-ecs-fargate/> |
 
 ### Week 11 Achievements:
 
-* Completed system-component integration:
-  * API Gateway routes requests correctly to Account Service, Payment Service, and Transaction Service.
-  * Payment Service communicates with Account Service, and the services use the correct PostgreSQL and Redis connections.
-  * Actuator endpoints provide a fast way to verify each service before and after deployment.
-
-* Finalized an AWS architecture suitable for a high-concurrency system:
-  * Amazon API Gateway remains outside the VPC and connects to the private network through VPC Link.
-  * An Internal ALB distributes requests to ECS Services running on AWS Fargate.
-  * RDS PostgreSQL and ElastiCache Redis are isolated in the data tier and accept traffic only from required Security Groups.
-
-* Packaged and deployed the application with containers:
-  * Docker images are stored centrally in Amazon ECR.
-  * ECS Task Definitions manage the image, port, CPU, memory, environment variables, and secrets for each service.
-  * ECS Service Auto Scaling provides a foundation for increasing or decreasing task counts according to resource usage.
-
-* Established the basic operations and security components:
-  * IAM Roles and Security Groups are restricted according to the responsibility of each layer.
-  * Sensitive information is removed from source code and managed through AWS Secrets Manager.
-  * Application logs and infrastructure metrics are centralized in Amazon CloudWatch for the load-testing phase.
+* Completed Docker image build, tagging, and upload to Amazon ECR.
+* Built a multi-Availability-Zone VPC with public/private subnets, an Internet Gateway, a NAT Gateway, route tables, and layered Security Groups.
+* Created RDS PostgreSQL in the private network and initialized Account, Payment, and Transaction Service databases through the Bastion Host.
+* Configured the ALB, target groups, and listener rules to distribute traffic to the frontend and backend API Gateway.
+* Deployed tasks and services on ECS Fargate, centralized logs in CloudWatch, and prepared automatic service scaling based on load.

@@ -1,48 +1,32 @@
 ---
 title: "Week 12 Worklog"
-date: 2024-01-01
-weight: 2
+date: 2026-07-06
+weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 ### Week 12 Objectives:
 
-* Verify end-to-end integration after deploying the system to AWS.
-* Design and execute functional, concurrency, idempotency, rate-limiting, and fault-tolerance test scenarios.
-* Perform load testing to observe latency, error rate, resource utilization, and automatic-scaling behavior.
-* Optimize configuration, fix defects, complete project documentation, and remove unused AWS resources.
+* Complete deployment and end-to-end verification of the High-Concurrency Payment Gateway on AWS.
+* Monitor ALB target groups, ECS tasks, RDS, the Redis sidecar, and CloudWatch Logs.
+* Run k6 load tests and observe RequestCount, latency, error rate, and ECS Service Auto Scaling behavior.
+* Configure CloudWatch Alarms, Amazon SNS, and RDS Snapshot export to Amazon S3 with AWS KMS.
+* Fix deployment issues, complete documentation, and clean up unused AWS resources.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Verify post-deployment integration<br>&emsp; + Check the health of API Gateway, ALB target groups, ECS tasks, RDS, and ElastiCache<br>&emsp; + Execute account creation, balance lookup, payment creation, and transaction lookup through the common endpoint<br>&emsp; + Inspect logs and traceId propagation across services when errors occur | 07/06/2026 | 07/06/2026 | Deployed system and CloudWatch Logs |
-| 3 | - Test idempotency and consistency<br>&emsp; + Repeat requests with the same Payment Service `idempotencyKey`<br>&emsp; + Send concurrent requests with the same Account Service `transactionId`<br>&emsp; + Verify that matching duplicates do not debit again and different payloads return a conflict | 07/07/2026 | 07/07/2026 | Project API test scenarios |
-| 4 | - Test concurrency, rate limiting, and fault tolerance<br>&emsp; + Send parallel requests to the payment-creation API<br>&emsp; + Verify user-based limits and HTTP 429 responses when the threshold is exceeded<br>&emsp; + Simulate a slow or temporarily unavailable Account Service to observe Retry, Circuit Breaker, and PROCESSING status behavior | 07/08/2026 | 07/08/2026 | Payment Service and API Gateway source code |
-| 5 | - Run load tests and monitor the system<br>&emsp; + Gradually increase virtual users and request volume in each test stage<br>&emsp; + Monitor latency, throughput, error rate, CPU, memory, ECS task count, database connections, and Redis<br>&emsp; + Observe ECS Service Auto Scaling and identify application or infrastructure bottlenecks | 07/09/2026 | 07/09/2026 | Amazon CloudWatch and load-testing tool |
-| 6 | - Optimize, retest, and finalize the project<br>&emsp; + Adjust timeout, Retry, rate-limit thresholds, CPU/memory, and scaling policies<br>&emsp; + Run regression tests for the main flows after defect fixes<br>&emsp; + Finalize the architecture diagram, worklog, test report, and remove or stop unnecessary AWS resources to avoid additional cost | 07/10/2026 | 07/10/2026 | Project documentation and test results |
+| Monday | - Verify the deployed components<br>&emsp; + Check the Healthy status of the frontend and backend target groups<br>&emsp; + Access the application through the ALB DNS and test account, payment, balance, and transaction flows<br>&emsp; + Inspect CloudWatch Log Streams for the backend, Redis, and frontend | 06/07/2026 | 06/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.10-verification/> |
+| Tuesday | - Run load tests and monitor performance<br>&emsp; + Execute k6 with increasing virtual-user and request levels<br>&emsp; + Monitor latency, throughput, error rate, and HTTP 429 responses from the rate limiter<br>&emsp; + Observe ALB RequestCount, ECS CPU/Memory, and task count during load growth | 07/07/2026 | 07/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.8-cloudwatch-alarm/><br><https://xduc695.github.io/fcj-workshop-template/5-workshop/5.10-verification/> |
+| Wednesday | - Configure alerts and tune the system<br>&emsp; + Create an Amazon SNS Topic and subscribe an alert email address<br>&emsp; + Create CloudWatch Alarms based on ALB RequestCount or CPU utilization<br>&emsp; + Adjust timeouts, rate-limit thresholds, CPU/Memory, and scaling policies based on the test results<br>&emsp; + Fix application-configuration or connectivity issues found on AWS | 08/07/2026 | 08/07/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway><br><https://xduc695.github.io/fcj-workshop-template/5-workshop/5.8-cloudwatch-alarm/> |
+| Thursday | - Back up data on AWS<br>&emsp; + Create an S3 bucket for backup data<br>&emsp; + Create an AWS KMS key and IAM role for snapshot export<br>&emsp; + Create an RDS Snapshot and export data to Amazon S3 with encryption | 09/07/2026 | 09/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.9-s3-backup/> |
+| Friday | - Complete the report and clean up resources<br>&emsp; + Run regression tests for the main flows after fixes<br>&emsp; + Finalize the architecture diagram, Workshop documentation, bilingual worklog, and result report<br>&emsp; + Review, stop, or delete unused ECS Services, ALB, NAT Gateway, RDS, S3, and related resources to avoid additional cost | 10/07/2026 | 10/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.10-verification/><br><https://xduc695.github.io/fcj-workshop-template/5-workshop/5.11-cleanup/> |
 
 ### Week 12 Achievements:
 
-* Completed end-to-end integration verification:
-  * Confirmed that requests pass through API Gateway, VPC Link, the Internal ALB, and the correct ECS Service.
-  * Verified that the services connect successfully to RDS PostgreSQL and ElastiCache Redis.
-  * Used CloudWatch Logs and traceId values to correlate requests across microservices and diagnose failures.
-
-* Confirmed that data-protection mechanisms work correctly in the test scenarios:
-  * Multiple requests with the same `idempotencyKey` do not create additional payments or debit the account more than once.
-  * Account Service returns an idempotent result for a matching `transactionId` and rejects a reused ID when transaction data differs.
-  * The state machine and conditional claim prevent multiple workers from processing the same payment.
-
-* Evaluated system behavior under load:
-  * Observed throughput, latency, error rate, and CPU/memory utilization across increasing load stages.
-  * Verified that the rate limiter returns HTTP 429 when one user exceeds the configured threshold, protecting downstream services.
-  * Observed Retry, Circuit Breaker, Redis locking, and ECS Service Auto Scaling behavior as traffic or connection failures increased.
-
-* Completed and summarized the project:
-  * Tuned timeout, retry, rate-limit, and container-resource parameters based on test observations.
-  * Finalized the AWS architecture diagram, deployment documentation, bilingual worklog, and project report content.
-  * Reviewed, stopped, or deleted unnecessary AWS resources to limit costs after testing.
+* Verified the request flow from the Internet through the ALB to the frontend and backend API Gateway on ECS Fargate.
+* Confirmed that ECS tasks connect to RDS PostgreSQL and the Redis sidecar and send centralized logs to CloudWatch.
+* Ran k6 load tests and monitored RequestCount, latency, throughput, error rate, CPU/Memory, and HTTP 429 responses.
+* Configured CloudWatch Alarms and Amazon SNS for threshold-based system notifications.
+* Performed the RDS Snapshot workflow and prepared encrypted backup export to S3 with KMS.
+* Completed deployment documentation, Vietnamese/English worklogs, the architecture diagram, and the AWS resource-cleanup procedure.
