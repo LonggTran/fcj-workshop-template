@@ -11,21 +11,21 @@ Chúng ta sẽ tạo các **Task Definitions** dưới dạng JSON:
 
 2. **Đăng ký Task Definition cho Backend (`pg-backend`):**
    - Xóa code mẫu và dán đoạn JSON dưới đây vào. 
-   - *Lưu ý: Thay thế `<aws-account-id>` bằng ID tài khoản AWS của bạn và `<rds-endpoint>` bằng Endpoint RDS PostgreSQL của bạn*:
+   - *Lưu ý: Thay thế `<aws-account-id>` bằng ID tài khoản AWS của bạn và `<rds-endpoint>` , `<yourpassword>` bằng Endpoint RDS PostgreSQL và mật khẩu PostgreSQL của bạn*:
 ```json
 {
   "family": "pg-backend",
-  "cpu": "512",
-  "memory": "1024",
+  "cpu": "1024",
+  "memory": "2048",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
   "executionRoleArn": "arn:aws:iam::<aws-account-id>:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "backend",
-      "image": "<aws-account-id>.dkr.ecr.ap-southeast-1.amazonaws.com/pg-combined-backend:latest",
-      "cpu": 256,
-      "memory": 512,
+      "image": "<aws-account-id>.dkr.ecr.<aws-region>.amazonaws.com/pg-combined-backend:latest",
+      "cpu": 768,
+      "memory": 1536,
       "portMappings": [
         {"containerPort": 8080},
         {"containerPort": 8082},
@@ -35,7 +35,7 @@ Chúng ta sẽ tạo các **Task Definitions** dưới dạng JSON:
       "environment": [
         {"name": "SPRING_PROFILES_ACTIVE", "value": "dev"},
         {"name": "DB_USERNAME", "value": "postgres"},
-        {"name": "DB_PASSWORD", "value": "yourpassword"},
+        {"name": "DB_PASSWORD", "value": "<yourpassword>"},
         {"name": "DB_ACCOUNT_NAME_URL", "value": "jdbc:postgresql://<rds-endpoint>:5432/accountservice"},
         {"name": "DB_PAYMENT_NAME_URL", "value": "jdbc:postgresql://<rds-endpoint>:5432/paymentservice"},
         {"name": "DB_TRANSACTION_NAME_URL", "value": "jdbc:postgresql://<rds-endpoint>:5432/transactionservice"},
@@ -49,7 +49,7 @@ Chúng ta sẽ tạo các **Task Definitions** dưới dạng JSON:
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "/ecs/pg-logs",
-          "awslogs-region": "ap-southeast-1",
+          "awslogs-region": "<aws-region>",
           "awslogs-stream-prefix": "backend"
         }
       }
@@ -66,7 +66,7 @@ Chúng ta sẽ tạo các **Task Definitions** dưới dạng JSON:
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "/ecs/pg-logs",
-          "awslogs-region": "ap-southeast-1",
+          "awslogs-region": "<aws-region>",
           "awslogs-stream-prefix": "redis"
         }
       }
@@ -75,7 +75,7 @@ Chúng ta sẽ tạo các **Task Definitions** dưới dạng JSON:
 }
 ```
 
-![Cấu hình Task Definitions backend ](/images/h39.png)
+![Cấu hình Task Definitions backend ](/images/h77.png)
    - Nhấn **Create** để lưu lại.
 
 3. **Đăng ký Task Definition cho Frontend (`pg-frontend`):**
@@ -109,6 +109,6 @@ Chúng ta sẽ tạo các **Task Definitions** dưới dạng JSON:
   ]
 }
 ```
-![Cấu hình Task Definitions frontend ](/images/h40.png)
+![Cấu hình Task Definitions frontend ](/images/h78.png)
    - Nhấn **Create** để hoàn tất.
 

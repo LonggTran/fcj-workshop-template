@@ -6,23 +6,23 @@ chapter : false
 pre : " <b> 5.1. </b> "
 ---
 
-#### Microservices Payment Gateway Overview
+#### Introduction to High-Concurrency Payment Gateway System
 
-The Payment Gateway application deployed in this workshop consists of multiple microservices built on **Spring Boot** (Backend) and **React Vite** (Frontend):
-- **API Gateway (Port 8080):** Serves as the single entry point, routing client traffic to specific internal microservices.
-- **Account Service (Port 8082):** Manages customer profiles, account registration, and account balances.
-- **Payment Service (Port 8083):** Handles transaction processing, incorporating idempotency keys with Redis distributed locks.
-- **Transaction Service (Port 8084):** Manages ledger histories and double-entry auditing.
-- **Redis Cache/Lock:** Manages locking mechanisms for payment request protection.
+The High-Concurrency Payment Gateway system deployed in this workshop is a microservices application built with **Spring Boot** (for Backend) and **React Vite** (for Frontend). The project includes the following component services:
+- **API Gateway (Port 8080):** Receives all external requests and routes them to the corresponding internal services.
+- **Account Service (Port 8082):** Manages customer accounts, registrations, and balances (Balance).
+- **Payment Service (Port 8083):** Processes payment transactions and deposits/withdrawals, integrating an Idempotency mechanism using **Redis Distributed Lock**.
+- **Transaction Service (Port 8084):** Manages transaction history and account reconciliation (Ledger).
+- **Redis Cache/Lock:** Stores distributed locks to prevent duplicate transactions.
 
-#### Network Architecture Diagram
+#### Secure Network Architecture Diagram (Private Subnet)
 
-The AWS deployment follows a secure multi-tier networking model:
+The deployment model on AWS applies an isolated security mechanism:
 
-![Architecture Diagram](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+![diagram](/images/diagram.jpg)
 
-#### Key Architectural Highlights:
-1. **Network Isolation:** The ALB sits in **Public Subnets** to face external web traffic, whereas the ECS container services and the RDS PostgreSQL database are hosted strictly in **Private Subnets** with no public IP access.
-2. **NAT Gateway Routing:** Allows tasks in Private Subnets to make outbound connections to retrieve ECR images and upload logs to CloudWatch.
-3. **Monolithic Task Packaging:** The 4 Spring Boot microservices are run concurrently within a single unified Docker container alongside a Redis container (sidecar) to minimize Fargate costs.
-4. **S3 Backup:** Seamless RDS snapshot export encrypted with custom KMS keys to S3.
+#### Architectural highlights:
+1. **Network Isolation:** Application Load Balancer (ALB) receives public traffic at the **Public Subnet** layer, while ECS Tasks and RDS PostgreSQL Database run entirely within the **Private Subnet** network to prevent the risk of port scanning or direct attacks.
+2. **NAT Gateway:** ECS Tasks located in the Private Subnet do not have Public IPs but still connect Outbound to the Internet through the NAT Gateway to pull Docker images and push CloudWatch Logs.
+3. **Monolithic Task:** 4 backend microservices are combined in a single Docker Image running simultaneously with a Redis container (sidecar) within the same ECS Task, helping to optimize Fargate operational costs.
+4. **S3 Backup:** Securely backs up RDS PostgreSQL through the RDS Snapshot Export feature encrypted with a KMS Key to Amazon S3.

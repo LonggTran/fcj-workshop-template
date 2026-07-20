@@ -22,7 +22,7 @@ Chúng ta tiến hành chụp **RDS Snapshot** của `pg-db` và thực hiện e
    - Click chọn **Actions** -> Chọn **Export to Amazon S3**.
 3. **Cấu hình thông số:**
    - **Export identifier**: Nhập `pg-db-export-to-s3`.
-   - **S3 bucket**: Chọn đúng bucket của bạn: `pg-db-backups-795938553282-ap-southeast-1-an`.
+   - **S3 bucket**: Chọn đúng bucket của bạn: `pg-db-backups-<account-id>-ap-southeast-1-an`.
 ![Export to Amazon S3](/images/h66.png)
    - **IAM role**: Tích chọn **Choose an existing role** -> chọn đúng vai trò **`rds-s3-export-role`** đã tạo ở bước trước.
    - **Encryption (KMS key)**: Chọn đúng khóa **`pg-s3-export-key`** đã tạo ở bước trước.

@@ -6,31 +6,27 @@ chapter : false
 pre : " <b> 5.8.1. </b> "
 ---
 
-We will set up an AWS SNS Topic to send out email alerts when our threshold is breached.
+We will create an **SNS Topic** so AWS has a channel to send automated email notifications.
 
 ---
 
-### Steps:
+### Steps to configure:
 
-1. Search for and open the **Simple Notification Service (SNS)** service on the AWS Console.
-2. Select **Topics** in the left menu -> Click **Create topic**.
-3. Configure the Topic:
+1. Search and open the **Simple Notification Service (SNS)** service on the AWS Console.
+2. Click on **Topics** in the left menu -> click the **Create topic** button.
+3. Topic Configuration:
    - **Type**: Select **Standard**.
-   - **Name**: `pg-alerts`.
-
-![Configure the SNS topic](/images/h50.png)
-
-   - Click **Create topic** at the bottom.
-4. **Subscribe your Email:**
-   - In the detail view of `pg-alerts`, click **Create subscription** in the pane below.
+   - **Name**: Enter `pg-alerts`.
+![sns](/images/h50.png)
+   - Click the **Create topic** button at the bottom.
+4. **Create Subscription to subscribe Email:**
+   - On the details page of the newly created `pg-alerts` topic, click the **Create subscription** button in the bottom table.
    - **Protocol**: Select **Email**.
-   - **Endpoint**: Enter your **real personal email address**.
+   - **Endpoint**: Enter your **actual email address**.
+   - Click the **Create subscription** button.
+![sns](/images/h51.png)
+5. **Confirm Subscription:**
+   - Open your email inbox, find the email sent from AWS Notifications with the subject *"AWS Notification - Subscription Confirmation"*.
+   - Open the email and click the **Confirm Subscription** link to activate.
 
-![Create the email subscription](/images/h51.png)
-
-   - Click **Create subscription**.
-5. **Confirm Email Subscription:**
-   - Open your email inbox, look for a mail sent by AWS Notifications with the subject *"AWS Notification - Subscription Confirmation"*.
-   - Open the email and click the **Confirm Subscription** link.
-
-![Confirm the SNS email subscription](/images/h52.png)
+![Confirm SNS email](/images/h52.png)

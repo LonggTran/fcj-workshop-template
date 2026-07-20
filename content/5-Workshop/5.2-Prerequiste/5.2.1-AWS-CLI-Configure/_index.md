@@ -6,35 +6,35 @@ chapter : false
 pre : " <b> 5.2.1. </b> "
 ---
 
-In this step, we will configure our local AWS credentials using the AWS CLI and retrieve the microservices source code from Git.
+In this step, we will configure **AWS CLI Credentials** on your personal computer and download the Backend and Frontend project source code from Git to your machine.
 
 ---
 
 ### Step 1: Configure AWS CLI Credentials
-Open your Terminal or PowerShell window and run the configure command:
+Open the Terminal (MacOS/Linux) or PowerShell (Windows) on your computer and run the following command:
 ```bash
 aws configure
 ```
-Input your credentials:
-- **AWS Access Key ID**: Enter your Access Key ID
-- **AWS Secret Access Key**: Enter your Secret Access Key
-- **Default region name**: e.g., `ap-southeast-1`
-- **Default output format**: `json`
+Proceed to enter your **IAM User** information:
+- **AWS Access Key ID**: Enter the provided Access Key ID
+- **AWS Secret Access Key**: Enter the corresponding Secret Access Key
+- **Default region name**: Enter your Region (For example: `ap-southeast-1`)
+- **Default output format**: Enter `json`
 
-![AWS CLI Configure](/images/h1.png)
+![Cấu hình AWS CLI](/images/h1.png)
 
 ---
 
-### Step 2: Clone Repositories
-Run the Git command to clone both projects:
+### Step 2: Clone Source Code
+Use Git to download the project source code to your computer:
 
-1. **Clone the Backend repository:**
+1. **Clone the Backend project:**
 ```bash
-git clone https://github.com/your-username/high-concurrency-payment-gateway.git
+git clone https://github.com/LonggTran/high-concurrency-payment-gateway.git
 ```
-2. **Clone the Frontend repository:**
+2. **Clone the Frontend project:**
 ```bash
-git clone https://github.com/your-username/high-concurrency-payment-gateway-fe.git
+git clone https://github.com/xduc695/high-concurrency-payment-gateway-fe.git
 ```
 
-![Git Clone Projects](/images/h2.png)
+![Clone mã nguồn thành công](/images/h2.png)

@@ -22,7 +22,7 @@ Chúng ta sẽ khởi chạy một **RDS PostgreSQL DB Instance** trong **Privat
      - **DB instance identifier**: Nhập `pg-db`.
      - **Master username**: Nhập `postgres`.
      - **Credentials management**: Chọn **Self managed** và bỏ tích **Auto generate password**.
-     - **Master password**: Nhập `yourpassword` (và xác nhận lại mật khẩu).
+     - **Master password**: Nhập `12345678` (và xác nhận lại mật khẩu).
 ![Database RDS 1](/images/h19.png)
    - **Instance configuration**:
      - **DB instance class**: Chọn **Burstable classes** (bao gồm dòng t).

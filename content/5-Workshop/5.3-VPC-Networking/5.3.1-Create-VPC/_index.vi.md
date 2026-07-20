@@ -20,12 +20,12 @@ Chúng ta sử dụng trình cấu hình tự động "VPC and more" để dựn
 ![cấu hình vpc 1](/images/h11.png)
 
    - **Number of Availability Zones (AZs)**: Chọn **2**.
-   - **Number of Public Subnets**: Chọn **2** (Gồm `10.0.1.0/24` và `10.0.2.0/24`).
-   - **Number of Private Subnets**: Chọn **2** (Gồm `10.0.128.0/24` và `10.0.129.0/24`).
+   - **Number of Public Subnets**: Chọn **2**.
+   - **Number of Private Subnets**: Chọn **2**.
    - **NAT Gateways**: Chọn **1 in 1 AZ**.
    - **VPC Endpoints**: Chọn **None**.
    - **DNS options**: Đảm bảo đã tích chọn cả hai ô **Enable DNS resolution** và **Enable DNS hostnames**.
-![cấu hình vpc 2](/images/h12.png)
+![cấu hình vpc 2](/images/h75.png)
 4. Click **Create VPC** ở dưới cùng để khởi tạo VPC.
 
 ![Tạo VPC thành công](/images/h13.png)

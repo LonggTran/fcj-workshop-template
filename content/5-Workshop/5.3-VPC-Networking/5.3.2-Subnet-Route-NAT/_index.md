@@ -1,27 +1,26 @@
 ---
-title : "Configure NAT Gateway Routing"
+title : "Configure Routing for NAT Gateway"
 date : 2024-01-01 
 weight : 2
 chapter : false
 pre : " <b> 5.3.2. </b> "
 ---
 
-To ensure that Fargate container tasks running in Private Subnets can make outbound connections to retrieve Docker images and send logs to CloudWatch, verify the Private Route Table.
+To ensure that Fargate Tasks running in Private Subnets can connect Outbound to the Internet to pull Docker Images from ECR and push logs to CloudWatch, we need to configure the NAT Gateway into the Route Table of the Private Subnets.
 
 ---
 
-### Step-by-step Private Route Table Configuration:
+### Steps to configure Private Route Table:
 
-1. In the **VPC** service, click **Route tables** in the left menu.
-2. Select the Private Route Table (the one associated with your 2 private subnets).
-3. Select the **Routes** tab at the bottom -> Click **Edit routes**.
-4. Check if the following route is present:
+1. At the **VPC** service, click on **Route Tables** in the left menu.
+2. Find and click on the **Private Route Table** (which is the Route Table associated with your 2 Private Subnets).
+3. Look down to the configuration area below, select the **Routes** tab -> click the **Edit routes** button.
+4. Check if this route exists:
    - **Destination**: `0.0.0.0/0`
-   - **Target**: **NAT Gateway** -> Choose your NAT Gateway (`pg-nat...`).
-5. If it is missing, click **Add route**:
-   - Enter `0.0.0.0/0` in the destination box.
-   - Choose `NAT Gateway` as target.
-   - Select your NAT Gateway ID from the dropdown.
-6. Click **Save changes**.
+   - **Target**: Select **NAT Gateway** -> choose the exact NAT Gateway ID just generated automatically like `pg-nat...`.
+5. If it doesn't exist, click on **Add route** to add it manually:
+   - **Destination**: Enter `0.0.0.0/0`.
+   - **Target**: Select **NAT Gateway** and choose the corresponding NAT Gateway ID.
+6. Click the **Save changes** button to save.
 
-![Confirm the private subnet route through the NAT gateway](/images/h15.png)
+![Xác nhận NAT route](/images/h15.png)

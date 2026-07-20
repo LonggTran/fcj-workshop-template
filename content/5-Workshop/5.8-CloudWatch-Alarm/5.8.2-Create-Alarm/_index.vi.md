@@ -18,13 +18,13 @@ Chúng ta sẽ thiết lập **CloudWatch Alarm** để giám sát tổng số r
    - Chọn mục **ApplicationELB** -> chọn tiếp **Per AppELB Metrics**.
    - Nhập tìm kiếm và tích chọn dòng metric có tên **`RequestCount`** tương ứng với Load Balancer **`pg-alb`** của bạn.
    - Nhấp nút **Select metric** ở dưới cùng.
-![Alarms](/images/h53.png)
+![Alarms](/images/h72.png)
 4. **Cấu hình Metric và Alarm Threshold (QUAN TRỌNG):**
    - **Statistic**: Chọn **`Sum`** (Tổng số) - *Tuyệt đối không chọn Average*.
    - **Period**: Chọn **`1 minute`** (Để hệ thống cập nhật nhanh chóng sau mỗi phút).
    - **Threshold type**: Chọn **Static**.
-   - **Whenever RequestCount is...**: Chọn **Greater than threshold** | **than...**: Điền **`100`** (Báo động khi có trên 100 requests/phút).
-![Alarms](/images/h55.png)
+   - **Whenever RequestCount is...**: Chọn **Greater than threshold** | **than...**: Điền **`1000`** (Báo động khi có trên 1000 requests/phút).
+![Alarms](/images/h73.png)
    - Nhấp **Next**.
 5. **Cấu hình Actions:**
    - **Alarm state trigger**: Chọn **In alarm**.
@@ -34,4 +34,4 @@ Chúng ta sẽ thiết lập **CloudWatch Alarm** để giám sát tổng số r
 6. **Đặt tên cho Alarm:** Nhập `pg-alb-high-request-alarm`. 
 Nhấp **Next** -> Nhấp **Create alarm** ở dưới cùng.
 
-![Tạo CloudWatch Alarm](/images/h57.png)
+![Tạo CloudWatch Alarm](/images/h74.png)

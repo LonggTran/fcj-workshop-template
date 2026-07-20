@@ -22,7 +22,7 @@ Vì RDS database bị khóa trong Private Subnets, máy tính cá nhân ở nhà
      - **VPC**: Chọn **`pg-vpc`**.
      - **Subnet**: Chọn public subnet đầu tiên (Ví dụ `pg-subnet-public1-ap-southeast-1a`).
      - **Auto-assign public IP**: Chọn **Enable**.
-     - **Security group**: Chọn **Create security group** -> Đặt tên: `pg-bastion-sg` -> Phần Inbound rule: **Xóa bỏ** (không mở cổng nào).
+     - **Security group**: Chọn **Create security group** -> Đặt tên: `pg-bastion-sg` -> Phần Inbound rule: Bắt buộc chọn Source là **`0.0.0.0/0`** (Anywhere IPv4) cho cổng 22 SSH để có thể dùng tính năng EC2 Instance Connect trên trình duyệt.
 ![Cấu hình ec2 2](/images/h23.png)
 3. Click nút **Launch instance**.
 

@@ -26,6 +26,8 @@ Trong phần này, chúng ta sẽ tiến hành tạo **ECS Cluster** và khởi 
    - **Service name**: Nhập `pg-backend-service`.
    - **Task definition revision**: Nhập `1`.
 ![`pg-backend-service](/images/h43.png)
+   - **Deployment configuration**: 
+     - **Health check grace period**: Nhập `300`.
    - **Networking**:
      - **VPC**: Chọn **`pg-vpc`**.
      - **Subnets**: Tích chọn **chỉ 2 Private Subnets** của bạn (Ví dụ: `pg-subnet-private1...` và `pg-subnet-private2...`). *Hãy bỏ chọn các Public Subnets*.
@@ -39,7 +41,18 @@ Trong phần này, chúng ta sẽ tiến hành tạo **ECS Cluster** và khởi 
 ![`pg-backend-service](/images/h45.png)
      - **Listener**: Chọn **Use an existing listener** -> chọn **`HTTP:80`**.
      - **Target group**: Chọn **Use an existing target group** -> chọn **`tg-backend`**.
-![`pg-backend-service](/images/h46.png)    
+![`pg-backend-service](/images/h46.png)  
+   - **Service auto scaling**:
+     - **Minimum number of tasks**: **`1`**.
+     - **Maximum number of tasks**: **`5`**.
+     - **Scaling policy type**: Chọn **Target tracking**.
+     - **Policy name** : Nhập **`cpu-auto-scaling`**.
+     - **ECS service metric**: Chọn **ECSServiceAverageCPUUtilization**.
+     - **Target value**: Nhập **`70`**.
+     - **Scale-out cooldown period**: Nhập **`60`**.
+     - **Scale-in cooldown period**: Nhập **`300`**.
+     - **Turn off scale-in**: Bỏ chọn 
+![`pg-backend-service](/images/h71.png) 
 3. Nhấn **Create**.
 
 ---

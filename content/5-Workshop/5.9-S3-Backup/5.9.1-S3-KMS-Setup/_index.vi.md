@@ -13,7 +13,7 @@ Chúng ta sẽ tạo S3 Bucket làm nơi lưu trữ các backup files và KMS Ke
 ### Bước 1: Tạo S3 Bucket
 1. Truy cập dịch vụ **S3** trên AWS Console -> nhấp chọn **Create bucket**.
 2. Thiết lập thông tin:
-   - **Bucket name**: Nhập tên duy nhất toàn cầu (Ví dụ: **`pg-db-backups-795938553282-ap-southeast-1-an`**).
+   - **Bucket name**: Nhập tên duy nhất toàn cầu (Ví dụ: **`pg-db-backups-<account-id>-ap-southeast-1-an`**).
    - **AWS Region**: Chọn **ap-southeast-1** (Singapore).
    - Các tùy chọn khác giữ nguyên mặc định. Nhấn **Create bucket**.
 

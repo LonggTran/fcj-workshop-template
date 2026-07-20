@@ -20,7 +20,7 @@ pre : " <b> 5.5.1. </b> "
    - **VPC**: Nhấp chọn **`pg-vpc`**.
    - **Add subnets**:
      - **Availability Zones**: Chọn 2 AZs (ví dụ `ap-southeast-1a` và `ap-southeast-1b`).
-     - **Subnets**: Tích chọn 2 **Private Subnets** có dải IP **`10.0.128.0/24`** và **`10.0.144.0/24`** (được tạo tự động từ bước VPC).
+     - **Subnets**: Tích chọn 2 **Private Subnets** có dải IP **`10.0.128.0/20`** và **`10.0.144.0/20`** (được tạo tự động từ bước VPC).
 
 ![Tạo DB Subnet Group](/images/h18.png)
 4. Nhấp nút **Create** ở dưới cùng.

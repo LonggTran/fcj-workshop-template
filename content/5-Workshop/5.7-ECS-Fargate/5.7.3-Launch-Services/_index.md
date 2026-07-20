@@ -6,67 +6,70 @@ chapter : false
 pre : " <b> 5.7.3. </b> "
 ---
 
-We will create the ECS Cluster and spin up our frontend and backend container services inside our secure Private Subnets.
+In this section, we will create an **ECS Cluster** and launch **ECS Services** in the **Private Subnets**.
 
 ---
 
-### Step 1: Create the ECS Cluster
-1. In the ECS Console, click **Clusters** -> Click **Create cluster**.
-2. **Cluster name**: `pg-cluster`.
-3. **Infrastructure**: Select **AWS Fargate (serverless)**. Click **Create**.
-
-![Create the ECS cluster](/images/h41.png)
-![ECS cluster created successfully](/images/h42.png)
+### Step 1: Create ECS Cluster
+1. Select **Clusters** in the left menu -> click **Create cluster**.
+2. **Cluster name**: Enter `pg-cluster`.
+3. **Infrastructure**: Select **Fargate only (serverless)**. Click **Create**.
 
 ---
 
-### Step 2: Launch the Backend Service (`pg-backend-service`)
-1. Open cluster `pg-cluster` -> Go to the **Services** tab -> Click **Create**.
-2. Configure the service:
-   - **Compute configuration**: Select **Launch type** -> **FARGATE**.
-   - **Family**: Select **`pg-backend`** (revision 1).
-   - **Service name**: `pg-backend-service`.
-   - **Desired tasks**: `1`.
-
-![Configure the backend ECS service](/images/h43.png)
-
+![Create ECS Cluster](/images/h41.png)
+![Successfully created ECS Cluster](/images/h42.png)
+### Step 2: Launch Backend Service (`pg-backend-service`)
+1. Go to Cluster `pg-cluster` -> **Services** tab -> select **Create**.
+2. Configuration:
+   - **Task definition family**: Select **`pg-backend`** (latest revision).
+   - **Service name**: Enter `pg-backend-service`.
+   - **Task definition revision**: Enter `1`.
+![`pg-backend-service](/images/h43.png)
+   - **Deployment configuration**: 
+     - **Health check grace period**: Enter `300`.
    - **Networking**:
-     - VPC: Choose **`pg-vpc`**.
-     - Subnets: Check **only the two Private Subnets** (`pg-subnet-private1...` and `pg-subnet-private2...`). *Uncheck public subnets*.
-     - Security group: Select **Use existing** -> Choose **`pg-ecs-sg`** (and remove the default group).
-     - Public IP: Select **Disabled** (Turned off).
-
-![Configure private networking for the backend service](/images/h44.png)
-
+     - **VPC**: Select **`pg-vpc`**.
+     - **Subnets**: Check **only your 2 Private Subnets** (Example: `pg-subnet-private1...` and `pg-subnet-private2...`). *Please uncheck the Public Subnets*.
+     - **Security group**: Select **Use existing Security group** -> select **`pg-ecs-sg`** (remove the default group `default`).
+     - **Public IP**: Ensure **Turned off** is selected.
+![`pg-backend-service](/images/h44.png)
    - **Load balancing**:
-     - Load balancer type: Select **Application Load Balancer**.
-     - Load balancer: Select **`pg-alb`**.
-     - Container to load balance: Select `backend:8080:8080`.
-
-![Configure the backend container for load balancing](/images/h45.png)
-
-     - Listener: Select **Use an existing listener** -> Choose **`HTTP:80`**.
-     - Target group: **Use an existing target group** -> Select **`tg-backend`**.
-
-![Select the backend listener and target group](/images/h46.png)
-
+     - **Load balancer type**: Select **Application Load Balancer**.
+     - **Load balancer**: Select **`pg-alb`**.
+     - **Container to load balance**: Select the container `backend:8080:8080`.
+![`pg-backend-service](/images/h45.png)
+     - **Listener**: Select **Use an existing listener** -> select **`HTTP:80`**.
+     - **Target group**: Select **Use an existing target group** -> select **`tg-backend`**.
+![`pg-backend-service](/images/h46.png)  
+   - **Service auto scaling**:
+     - **Minimum number of tasks**: **`1`**.
+     - **Maximum number of tasks**: **`5`**.
+     - **Scaling policy type**: Select **Target tracking**.
+     - **Policy name** : Enter **`cpu-auto-scaling`**.
+     - **ECS service metric**: Select **ECSServiceAverageCPUUtilization**.
+     - **Target value**: Enter **`70`**.
+     - **Scale-out cooldown period**: Enter **`60`**.
+     - **Scale-in cooldown period**: Enter **`300`**.
+     - **Turn off scale-in**: Uncheck 
+![`pg-backend-service](/images/h71.png) 
 3. Click **Create**.
 
 ---
 
-### Step 3: Launch the Frontend Service (`pg-frontend-service`)
-1. Navigate back to the Cluster Services tab -> Click **Create**.
-2. Configure the service:
-   - Compute: **FARGATE** | Family: **`pg-frontend`** | Service name: `pg-frontend-service` | Desired tasks: `1`.
-   - **Networking**: VPC `pg-vpc`, select the 2 Private Subnets, Security group `pg-ecs-sg`, Public IP: **Disabled**.
+### Step 3: Launch Frontend Service (`pg-frontend-service`)
+1. Return to the Cluster -> click **Create** for the second service.
+2. Configuration:
+   - **Task definition family**: **`pg-frontend`** | **Service name**: `pg-frontend-service` | **Task definition revision**: `1`.
+   - **Networking**: VPC `pg-vpc`, select only 2 **Private Subnets**, Security Group `pg-ecs-sg`, Public IP: **Turned off**.
    - **Load balancing**:
-     - Load balancer: Select `pg-alb`.
-     - Container: Select `frontend:80:80`.
-     - Target group: **Use an existing target group** -> Select **`tg-frontend`**.
+     - **Load balancer**: Select `pg-alb`.
+     - **Container**: Select the container `frontend:80:80`.
+     - **Listener**: Select **Use an existing listener** -> select **`HTTP:80`**.
+     - **Target group**: Select **Use an existing target group** -> select **`tg-frontend`**.
 3. Click **Create**.
 
-*Wait 1-2 minutes. The status of both services will turn to ACTIVE. You can now access your website via the ALB DNS link!*
-
-![Backend target health](/images/h48.png)
-![Frontend target health](/images/h49.png)
-![ECS Fargate services deployed successfully](/images/h47.png)
+*Wait for about 1-2 minutes, the status of both Services will change to Running (green color). Now you can use the ALB's DNS to access the web interface!*
+![pg-backend-service](/images/h48.png)
+![pg-backend-service](/images/h49.png)
+![Successfully run and deploy Fargate service](/images/h47.png)

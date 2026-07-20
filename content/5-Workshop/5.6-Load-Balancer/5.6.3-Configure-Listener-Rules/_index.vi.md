@@ -18,10 +18,10 @@ pre : " <b> 5.6.3. </b> "
 4. Chọn tab **Rules** -> nhấp vào nút **Add rules**.
 5. Thiết lập thông số cho Rule mới:
    - **Rule name**: Nhập `api-rule`.
-   - **Conditions**: Click **Add condition** -> chọn loại là **Path** -> nhập đường dẫn là **`/api/*`** -> nhấn **Confirm**.
-   - **Actions**: Click **Forward to target groups** -> nhấp chọn Target Group **`tg-backend`** -> nhấn **Confirm**.
+   - **Conditions**: Click **Add condition** -> chọn loại là **Path** -> nhập đường dẫn là **`/api/*`** -> nhấn **Next**.
+   - **Actions**: Click **Forward to target groups** -> nhấp chọn Target Group **`tg-backend`** -> nhấn **Next**.
 ![Cấu hình Listener Rule](/images/h34.png)
    - **Priority**: Nhập số **`10`**.
 ![Cấu hình Listener Rule](/images/h35.png)
-6. Nhấp nút **Save** để lưu lại.
+6. Nhấp nút **Add rule** để lưu lại.
 

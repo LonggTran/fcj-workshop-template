@@ -6,21 +6,21 @@ chapter : false
 pre : " <b> 5.5.1. </b> "
 ---
 
-A DB Subnet Group defines the subnets where RDS instances can be allocated. We will restrict the RDS database to exist only inside our secure Private Subnets.
+The **DB Subnet Group** specifies the subnets that the RDS instance is allowed to use. We will restrict RDS to run only in **Private Subnets**.
 
 ---
 
-### Steps:
+### Steps to implement:
 
-1. Search for and select **RDS** on the AWS Console.
-2. In the left menu, select **Subnet groups** -> Click **Create DB subnet group**.
-3. Configure the details:
-   - **Name**: `pg-db-subnet-group`.
-   - **Description**: `DB Subnet Group for payment gateway`.
-   - **VPC**: Select **`pg-vpc`**.
+1. Search for and select the **RDS** service on the AWS Console search bar.
+2. In the left menu column, click on **Subnet groups** -> click the **Create DB subnet group** button.
+3. Setup parameters:
+   - **Name**: Enter `pg-db-subnet-group`.
+   - **Description**: Enter `DB Subnet Group for payment gateway`.
+   - **VPC**: Click select **`pg-vpc`**.
    - **Add subnets**:
-     - **Availability Zones**: Choose your 2 AZs (e.g., `ap-southeast-1a` and `ap-southeast-1b`).
-     - **Subnets**: Check the 2 Private Subnets: **`10.0.128.0/24`** and **`10.0.129.0/24`**.
-4. Click **Create**.
+     - **Availability Zones**: Select 2 AZs (e.g., `ap-southeast-1a` and `ap-southeast-1b`).
+     - **Subnets**: Check the 2 **Private Subnets** with IP ranges **`10.0.128.0/20`** and **`10.0.144.0/20`** (automatically created from the VPC step).
 
-![Create the DB subnet group](/images/h18.png)
+![Tạo DB Subnet Group](/images/h18.png)
+4. Click the **Create** button at the bottom.

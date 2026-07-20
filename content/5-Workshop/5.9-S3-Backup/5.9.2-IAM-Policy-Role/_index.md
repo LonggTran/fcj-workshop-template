@@ -6,13 +6,13 @@ chapter : false
 pre : " <b> 5.9.2. </b> "
 ---
 
-We will define the security IAM policies and roles allowing RDS to securely write data to our S3 bucket.
+We will create security permissions that allow RDS to **assume role** to export data backups to S3.
 
 ---
 
 ### Step 1: Create a Custom IAM Policy (`rds-s3-export-policy`)
-1. Open the **IAM** service -> Select **Policies** -> Click **Create policy**.
-2. Select the **JSON** tab, clear the default template, and paste the JSON block below (ensure the bucket name matches your actual S3 bucket):
+1. Open the **IAM** service -> click **Policies** in the left menu -> click **Create policy**.
+2. Select the **JSON** tab, delete the sample code, and paste the JSON snippet below (replace the bucket name with the exact S3 Bucket name you created):
 ```json
 {
     "Version": "2012-10-17",
@@ -28,25 +28,23 @@ We will define the security IAM policies and roles allowing RDS to securely writ
                 "s3:GetBucketLocation"
             ],
             "Resource": [
-                "arn:aws:s3:::pg-db-backups-795938553282-ap-southeast-1-an",
-                "arn:aws:s3:::pg-db-backups-795938553282-ap-southeast-1-an/*"
+                "arn:aws:s3:::pg-db-backups-<account-id>-ap-southeast-1-an",
+                "arn:aws:s3:::pg-db-backups-<account-id>-ap-southeast-1-an/*"
             ]
         }
     ]
 }
 ```
-
-![Create the custom IAM policy](/images/h63.png)
-
-3. Click **Next** -> Name the policy **`rds-s3-export-policy`** -> Click **Create policy**.
+![police](/images/h63.png)
+3. Click **Next** -> name the Policy **`rds-s3-export-policy`** -> click **Create policy**.
 
 ---
 
 ### Step 2: Create an IAM Role with Custom Trust Policy (`rds-s3-export-role`)
-We must allow the RDS export service (`export.rds.amazonaws.com`) to assume the role:
-1. In the **IAM** console, select **Roles** -> Click **Create role**.
-2. Select the **Custom trust policy** option at the bottom.
-3. Paste the following trust policy JSON:
+We need to configure an **IAM Role** to allow the RDS export service (`export.rds.amazonaws.com`) to perform assume role:
+1. In the **IAM** service, select **Roles** in the left menu -> click **Create role**.
+2. Select the **Custom trust policy** radio button (located at the bottom).
+3. Replace the JSON code with the following snippet to allow RDS to assume role:
 ```json
 {
   "Version": "2012-10-17",
@@ -61,7 +59,7 @@ We must allow the RDS export service (`export.rds.amazonaws.com`) to assume the 
   ]
 }
 ```
-4. Click **Next** -> Search for and select the **`rds-s3-export-policy`** policy created in Step 1. Click **Next**.
-5. Name the role **`rds-s3-export-role`** -> Click **Create role**.
+4. Click **Next** -> In the permissions assignment table, find and check the **`rds-s3-export-policy`** policy you created in Step 1. Click **Next**.
+5. Name the Role: **`rds-s3-export-role`** -> Click **Create role** at the bottom.
 
-![Create the RDS S3 export IAM role](/images/h64.png)
+![Tạo IAM Role thành công](/images/h64.png)

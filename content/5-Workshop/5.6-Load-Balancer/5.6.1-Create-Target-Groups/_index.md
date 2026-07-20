@@ -6,35 +6,29 @@ chapter : false
 pre : " <b> 5.6.1. </b> "
 ---
 
-We must define target groups indicating where the ALB should route incoming traffic:
+We need to create 2 **Target Groups** corresponding to the Frontend (port 80) and Backend (port 8080).
 
 ---
 
-### Steps:
+### Steps to configure:
 
-1. **Create Target Group for Frontend (`tg-frontend`):**
-   - Open the **EC2** service -> Select **Target Groups** under the Load Balancing section in the left menu.
-   - Click **Create target group**.
-   - **Choose a target type**: Select **IP addresses** (Required for AWS Fargate ECS tasks).
-   - **Target group name**: `tg-frontend`.
-   - **Protocol & Port**: Select **HTTP** and port **`80`** (Do not select *TCP*).
+1. **Create Target Group for Backend (`tg-backend`):**
+   - Go to the **EC2** service -> scroll down the left menu to the **Load Balancing** section -> click on **Target Groups** -> click **Create target group**.
+   - **Choose a target type**: Select **IP addresses** (Required for ECS Fargate).
+   - **Target group name**: Enter `tg-backend`.
+   - **Protocol & Port**: Select **HTTP** and enter port **`8080`** (Port of API Gateway).
+![tg-backend configuration 1](/images/h28.png)
    - **VPC**: Select **`pg-vpc`**.
-   - **Health check path**: `/`.
-   - Click **Next** -> Click **Create target group** (Omit target registration; ECS will handle this automatically).
+   - **Health check path**: Enter **`/actuator/health`** (To check the status of Spring Boot).
+![tg-backend configuration 1](/images/h29.png)
+   - Click **Next** -> Click the **Create target group** button.
 
-2. **Create Target Group for Backend (`tg-backend`):**
-   - Navigate back to the Target Groups page -> Click **Create target group**.
-   - **Choose a target type**: Select **IP addresses**.
-   - **Target group name**: `tg-backend`.
-   - **Protocol & Port**: Select **HTTP** and port **`8080`**.
-
-![Configure the backend target group](/images/h28.png)
-
-   - **VPC**: Select **`pg-vpc`**.
-   - **Health check path**: `/actuator/health`.
-
-![Configure the backend target group health check](/images/h29.png)
-
-   - Click **Next** -> Click **Create target group**.
-
-![Target groups created successfully](/images/h30.png)
+2. **Create Target Group for Frontend (`tg-frontend`):**
+   - Go back to the **Target Groups** page -> click **Create target group**.
+   - **Choose a target type**: Check **IP addresses**.
+   - **Target group name**: Enter `tg-frontend`.
+   - **Protocol & Port**: Select **HTTP** and enter port **`80`**.
+   - **VPC**: Click to select **`pg-vpc`**.
+   - **Health check path**: Enter **`/`**.
+   - Click **Next** -> Click the **Create target group** button (Skip the IP registration step on the next page, the ECS Service will automatically register the Task's IP when launched).
+![Target Groups list](/images/h30.png)
