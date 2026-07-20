@@ -7,24 +7,24 @@ pre: " <b> 1.8. </b> "
 ---
 ### Mục tiêu tuần 8:
 
-* Bắt đầu giai đoạn phát triển dự án High-Concurrency Payment Gateway theo kiến trúc microservices.
-* Khởi tạo cấu trúc Java 21, Spring Boot và Gradle multi-module cho API Gateway, Account Service, Payment Service và Transaction Service.
-* Thiết lập môi trường phát triển cục bộ với PostgreSQL, Redis và Docker Compose.
-* Xây dựng bộ khung Account Service, thư viện dùng chung, cơ chế validation và xử lý ngoại lệ thống nhất.
+* Bắt đầu xây dựng dự án High-Concurrency Payment Gateway theo kiến trúc microservices.
+* Thiết lập môi trường phát triển với JDK 21, Gradle multi-module, Docker, PostgreSQL và Redis.
+* Xây dựng Account Service cùng các API quản lý tài khoản và số dư.
+* Áp dụng Flyway Migration, validation, xử lý ngoại lệ tập trung, Redis Cache và cơ chế idempotency cho thao tác cộng/trừ tiền.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| Thứ 2 | - Phân tích yêu cầu hệ thống thanh toán chịu tải cao<br>&emsp; + Xác định các luồng tạo tài khoản, ghi nợ, ghi có, tạo thanh toán và tra cứu giao dịch<br>&emsp; + Xác định yêu cầu về tính nhất quán dữ liệu, idempotency, rate limiting và khả năng chịu lỗi<br>&emsp; + Phân chia trách nhiệm giữa API Gateway, Account Service, Payment Service và Transaction Service | 08/06/2026 | 08/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 3 | - Khởi tạo cấu trúc Gradle multi-module<br>&emsp; + Tạo bốn module dịch vụ và hai thư viện `common-dto`, `common-exception`<br>&emsp; + Cấu hình Java 21, Spring Boot, Spring Web, Validation, JPA và Actuator<br>&emsp; + Chuẩn hóa package controller, service, repository, entity, DTO, mapper và exception | 09/06/2026 | 09/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 4 | - Thiết lập môi trường dữ liệu cục bộ<br>&emsp; + Cấu hình Docker Compose cho PostgreSQL và Redis<br>&emsp; + Tạo các database `accountservice`, `paymentservice` và `transactionservice` bằng script khởi tạo<br>&emsp; + Chuẩn hóa biến môi trường kết nối database và Redis cho từng service | 10/06/2026 | 10/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 5 | - Xây dựng bộ khung Account Service<br>&emsp; + Tạo Account entity, trạng thái tài khoản, repository và mapper<br>&emsp; + Xây dựng API tạo tài khoản, lấy thông tin tài khoản và truy vấn số dư<br>&emsp; + Tạo bộ sinh số tài khoản và kiểm tra dữ liệu đầu vào | 11/06/2026 | 11/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 6 | - Chuẩn hóa phản hồi và kiểm thử chức năng ban đầu<br>&emsp; + Xây dựng API Response, Error Response và Global Exception Handler dùng chung<br>&emsp; + Cấu hình health, info, metrics và Prometheus endpoint qua Spring Boot Actuator<br>&emsp; + Chạy thử các service, kiểm tra kết nối PostgreSQL/Redis và kiểm thử API cơ bản | 12/06/2026 | 12/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 2 | - Khởi tạo cấu trúc dự án High-Concurrency Payment Gateway<br>&emsp; + Cấu hình JDK 21 và Gradle Wrapper<br>&emsp; + Thiết lập Gradle multi-module cho Account Service, Payment Service, Transaction Service và API Gateway<br>&emsp; + Tạo shared libraries dùng chung cho DTO và exception | 08/06/2026 | 08/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 3 | - Thiết lập môi trường chạy cục bộ<br>&emsp; + Cấu hình PostgreSQL và Redis bằng Docker Compose<br>&emsp; + Tạo các database accountservice, paymentservice và transactionservice<br>&emsp; + Cấu hình Spring Boot kết nối PostgreSQL và Redis<br>&emsp; + Khởi tạo các script Flyway Migration | 09/06/2026 | 09/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 4 | - Xây dựng Account Service<br>&emsp; + Thiết kế Account Entity, DTO, Repository, Service, Mapper và Controller<br>&emsp; + Xây dựng API tạo tài khoản, tra cứu tài khoản và kiểm tra số dư<br>&emsp; + Bổ sung validation và chuẩn hóa API Response | 10/06/2026 | 10/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 5 | - Xây dựng chức năng cập nhật số dư an toàn<br>&emsp; + Triển khai API debit và credit<br>&emsp; + Sử dụng atomic update để hạn chế race condition khi có nhiều request đồng thời<br>&emsp; + Lưu Transaction History theo transactionId<br>&emsp; + Kiểm tra dữ liệu trùng theo idempotency key và phát hiện xung đột payload | 11/06/2026 | 11/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 6 | - Hoàn thiện và kiểm thử Account Service<br>&emsp; + Tích hợp Redis Cache cho dữ liệu tài khoản và số dư<br>&emsp; + Xây dựng Global Exception Handler và mã lỗi nghiệp vụ<br>&emsp; + Kiểm thử các API bằng Postman<br>&emsp; + Sửa lỗi kết nối database, Redis và Flyway Migration | 12/06/2026 | 12/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
 
 ### Kết quả đạt được tuần 8:
 
-* Hoàn thành phân tích phạm vi và kiến trúc mã nguồn cho hệ thống thanh toán chịu tải cao.
-* Khởi tạo thành công dự án Gradle multi-module gồm bốn microservice và hai thư viện dùng chung.
-* Thiết lập được PostgreSQL, Redis và các database nghiệp vụ bằng Docker Compose.
-* Hoàn thành bộ khung Account Service với API tạo tài khoản, truy vấn thông tin và kiểm tra số dư.
-* Chuẩn hóa cấu trúc phản hồi, mã lỗi, xử lý ngoại lệ và endpoint giám sát cơ bản cho các service.
+* Hoàn thành cấu trúc Gradle multi-module và các thư viện dùng chung của dự án.
+* Khởi chạy được PostgreSQL và Redis bằng Docker Compose, đồng thời kết nối thành công với Spring Boot.
+* Hoàn thành Account Service với các API tạo tài khoản, tra cứu thông tin, kiểm tra số dư, cộng tiền và trừ tiền.
+* Áp dụng atomic update, transaction history và idempotency để hạn chế giao dịch trùng lặp trong điều kiện nhiều request đồng thời.
+* Tích hợp Redis Cache, Flyway Migration, validation và xử lý ngoại lệ tập trung.

@@ -7,24 +7,24 @@ pre: " <b> 1.8. </b> "
 ---
 ### Week 8 Objectives:
 
-* Start the implementation phase of the High-Concurrency Payment Gateway using a microservices architecture.
-* Initialize a Java 21, Spring Boot, and Gradle multi-module structure for API Gateway, Account Service, Payment Service, and Transaction Service.
-* Set up a local development environment with PostgreSQL, Redis, and Docker Compose.
-* Build the Account Service foundation, shared libraries, validation, and consistent exception handling.
+* Begin developing the High-Concurrency Payment Gateway using a microservices architecture.
+* Set up the development environment with JDK 21, Gradle multi-module, Docker, PostgreSQL, and Redis.
+* Build the Account Service and its account and balance management APIs.
+* Apply Flyway Migration, validation, centralized exception handling, Redis Cache, and idempotency for debit and credit operations.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Analyze the high-concurrency payment-system requirements<br>&emsp; + Define account creation, debit, credit, payment creation, and transaction lookup flows<br>&emsp; + Identify data-consistency, idempotency, rate-limiting, and fault-tolerance requirements<br>&emsp; + Separate responsibilities among API Gateway, Account Service, Payment Service, and Transaction Service | 08/06/2026 | 08/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Tuesday | - Initialize the Gradle multi-module structure<br>&emsp; + Create four service modules and the shared `common-dto` and `common-exception` libraries<br>&emsp; + Configure Java 21, Spring Boot, Spring Web, Validation, JPA, and Actuator<br>&emsp; + Standardize controller, service, repository, entity, DTO, mapper, and exception packages | 09/06/2026 | 09/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Wednesday | - Set up the local data environment<br>&emsp; + Configure Docker Compose for PostgreSQL and Redis<br>&emsp; + Create the `accountservice`, `paymentservice`, and `transactionservice` databases through initialization scripts<br>&emsp; + Standardize database and Redis environment variables for each service | 10/06/2026 | 10/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thursday | - Build the Account Service foundation<br>&emsp; + Create the Account entity, account status, repository, and mapper<br>&emsp; + Implement APIs for account creation, account details, and balance lookup<br>&emsp; + Add account-number generation and input validation | 11/06/2026 | 11/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Friday | - Standardize responses and perform initial functional testing<br>&emsp; + Build shared API Response, Error Response, and Global Exception Handler components<br>&emsp; + Expose health, info, metrics, and Prometheus endpoints through Spring Boot Actuator<br>&emsp; + Start the services, verify PostgreSQL/Redis connectivity, and test basic APIs | 12/06/2026 | 12/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Monday | - Initialize the High-Concurrency Payment Gateway project structure<br>&emsp; + Configure JDK 21 and Gradle Wrapper<br>&emsp; + Set up Gradle multi-module for Account Service, Payment Service, Transaction Service, and API Gateway<br>&emsp; + Create shared libraries for common DTOs and exceptions | 08/06/2026 | 08/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Tuesday | - Set up the local runtime environment<br>&emsp; + Configure PostgreSQL and Redis with Docker Compose<br>&emsp; + Create the accountservice, paymentservice, and transactionservice databases<br>&emsp; + Configure Spring Boot connections to PostgreSQL and Redis<br>&emsp; + Initialize Flyway Migration scripts | 09/06/2026 | 09/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Wednesday | - Develop the Account Service<br>&emsp; + Design Account Entity, DTO, Repository, Service, Mapper, and Controller layers<br>&emsp; + Build APIs for account creation, account lookup, and balance retrieval<br>&emsp; + Add validation and standardized API responses | 10/06/2026 | 10/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thursday | - Implement safe balance updates<br>&emsp; + Develop debit and credit APIs<br>&emsp; + Use atomic updates to reduce race conditions under concurrent requests<br>&emsp; + Store Transaction History by transactionId<br>&emsp; + Detect duplicate idempotency requests and payload conflicts | 11/06/2026 | 11/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Friday | - Complete and test the Account Service<br>&emsp; + Integrate Redis Cache for account and balance data<br>&emsp; + Implement Global Exception Handler and business error codes<br>&emsp; + Test APIs with Postman<br>&emsp; + Fix database, Redis, and Flyway Migration issues | 12/06/2026 | 12/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
 
 ### Week 8 Achievements:
 
-* Completed the scope analysis and source-code architecture for the high-concurrency payment system.
-* Successfully initialized a Gradle multi-module project containing four microservices and two shared libraries.
-* Set up PostgreSQL, Redis, and the business databases with Docker Compose.
-* Completed the Account Service foundation with account creation, account lookup, and balance APIs.
-* Standardized response formats, error codes, exception handling, and basic monitoring endpoints across the services.
+* Completed the Gradle multi-module structure and shared project libraries.
+* Started PostgreSQL and Redis through Docker Compose and connected them successfully to Spring Boot.
+* Completed the Account Service APIs for account creation, account lookup, balance retrieval, debit, and credit operations.
+* Applied atomic updates, transaction history, and idempotency to reduce duplicate transactions under concurrent requests.
+* Integrated Redis Cache, Flyway Migration, validation, and centralized exception handling.

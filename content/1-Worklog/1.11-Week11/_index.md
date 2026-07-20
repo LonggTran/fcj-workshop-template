@@ -7,25 +7,24 @@ pre: " <b> 1.11. </b> "
 ---
 ### Week 11 Objectives:
 
-* Package the application with Docker and store images in Amazon ECR.
-* Build a two-Availability-Zone VPC with public/private subnets, an Internet Gateway, a NAT Gateway, and Security Groups.
-* Create Amazon RDS PostgreSQL in private subnets and initialize data through an EC2 Bastion Host.
-* Deploy an Application Load Balancer and containers on Amazon ECS Fargate.
-* Configure IAM roles, CloudWatch Logs, and ECS Service Auto Scaling for the deployment environment.
+* Begin deploying the High-Concurrency Payment Gateway on AWS.
+* Push Docker images to Amazon ECR and build a multi-Availability-Zone network.
+* Create Amazon RDS PostgreSQL, an Application Load Balancer, and Amazon ECS Fargate resources.
+* Configure Security Groups, IAM Roles, CloudWatch Logs, and ECS Service Auto Scaling.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Package the application and manage Amazon ECR<br>&emsp; + Compile the Spring Boot services into JAR files<br>&emsp; + Build the backend Docker image and prepare the frontend image for deployment<br>&emsp; + Create ECR repositories, tag the images, and push them to AWS | 29/06/2026 | 29/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway><br><https://xduc695.github.io/fcj-workshop-template/5-workshop/5.2-prerequiste/> |
-| Tuesday | - Set up VPC Networking and Security Groups<br>&emsp; + Create a VPC across two Availability Zones with two public and two private subnets<br>&emsp; + Configure the Internet Gateway, NAT Gateway, and route tables<br>&emsp; + Separate Security Groups for ALB, ECS Fargate, RDS, and the Bastion Host | 30/06/2026 | 30/06/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.3-vpc-networking/><br><https://xduc695.github.io/fcj-workshop-template/5-workshop/5.4-security-groups/> |
-| Wednesday | - Create Amazon RDS PostgreSQL in the private network<br>&emsp; + Create a DB Subnet Group from the two private subnets<br>&emsp; + Launch RDS PostgreSQL with public access disabled<br>&emsp; + Create an EC2 Bastion Host and run scripts to create the business databases | 01/07/2026 | 01/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.5-rds-database/> |
-| Thursday | - Configure the Application Load Balancer<br>&emsp; + Create target groups for the frontend and backend API Gateway<br>&emsp; + Launch an internet-facing ALB in the public subnets<br>&emsp; + Configure listener rules so `/api/*` goes to the backend and default requests go to the frontend | 02/07/2026 | 02/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.6-load-balancer/> |
-| Friday | - Deploy Amazon ECS Fargate<br>&emsp; + Create the ECS Cluster, CloudWatch Log Group, Task Execution Role, and Task Role<br>&emsp; + Register Task Definitions for the backend, Redis sidecar, and frontend<br>&emsp; + Create ECS Services in private subnets, attach target groups, and configure Service Auto Scaling | 03/07/2026 | 03/07/2026 | <https://xduc695.github.io/fcj-workshop-template/5-workshop/5.7-ecs-fargate/> |
+| Monday | - Package the application and manage images in Amazon ECR<br>&emsp; + Build the services into JAR files<br>&emsp; + Build Docker images for the backend and frontend<br>&emsp; + Create ECR repositories and authenticate Docker with ECR<br>&emsp; + Tag and push images to Amazon ECR | 29/06/2026 | 29/06/2026 | <https://000015.awsstudygroup.com/><br><https://000016.awsstudygroup.com/> |
+| Tuesday | - Set up AWS networking infrastructure<br>&emsp; + Create a VPC across two Availability Zones<br>&emsp; + Create public and private subnets<br>&emsp; + Configure an Internet Gateway, NAT Gateway, and route tables<br>&emsp; + Create Security Groups for the ALB, ECS, RDS, and Bastion Host | 30/06/2026 | 30/06/2026 | <https://000003.awsstudygroup.com/><br><https://000044.awsstudygroup.com/> |
+| Wednesday | - Create Amazon RDS PostgreSQL in private subnets<br>&emsp; + Create a DB Subnet Group from two private subnets<br>&emsp; + Disable public access and allow connections only from internal Security Groups<br>&emsp; + Create a Bastion Host to initialize the accountservice, paymentservice, and transactionservice databases<br>&emsp; + Verify connectivity and Flyway Migration | 01/07/2026 | 01/07/2026 | <https://000005.awsstudygroup.com/><br><https://000015.awsstudygroup.com/> |
+| Thursday | - Configure the Application Load Balancer<br>&emsp; + Create target groups for the frontend and backend API Gateway<br>&emsp; + Create an internet-facing ALB in the public subnets<br>&emsp; + Configure a listener rule that sends `/api/*` to the backend and default requests to the frontend<br>&emsp; + Configure target-group health checks | 02/07/2026 | 02/07/2026 | <https://000006.awsstudygroup.com/><br><https://000016.awsstudygroup.com/> |
+| Friday | - Deploy the application on Amazon ECS Fargate<br>&emsp; + Create an ECS Cluster, Task Definitions, and ECS Services<br>&emsp; + Run tasks in private subnets with public IP disabled<br>&emsp; + Configure a Redis sidecar container for the backend<br>&emsp; + Attach ECS Services to ALB target groups<br>&emsp; + Configure the IAM Task Execution Role, CloudWatch Log Group, and Service Auto Scaling | 03/07/2026 | 03/07/2026 | <https://000016.awsstudygroup.com/><br><https://000008.awsstudygroup.com/><br><https://000044.awsstudygroup.com/> |
 
 ### Week 11 Achievements:
 
-* Completed Docker image build, tagging, and upload to Amazon ECR.
-* Built a multi-Availability-Zone VPC with public/private subnets, an Internet Gateway, a NAT Gateway, route tables, and layered Security Groups.
-* Created RDS PostgreSQL in the private network and initialized Account, Payment, and Transaction Service databases through the Bastion Host.
-* Configured the ALB, target groups, and listener rules to distribute traffic to the frontend and backend API Gateway.
-* Deployed tasks and services on ECS Fargate, centralized logs in CloudWatch, and prepared automatic service scaling based on load.
+* Successfully built and pushed Docker images to Amazon ECR.
+* Completed a multi-Availability-Zone VPC with public/private subnets, an Internet Gateway, a NAT Gateway, route tables, and Security Groups.
+* Created RDS PostgreSQL in private subnets and prepared the application databases.
+* Configured the ALB, target groups, listener rules, and health checks for the frontend and backend.
+* Deployed the backend, frontend, and Redis sidecar on ECS Fargate and centralized logs in CloudWatch.

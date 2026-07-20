@@ -7,25 +7,24 @@ pre: " <b> 1.10. </b> "
 ---
 ### Mục tiêu tuần 10:
 
-* Hoàn thiện Payment Service với idempotency và state machine `PENDING → PROCESSING → SUCCESS/FAILED`.
-* Xây dựng cơ chế giành quyền xử lý bằng `processingToken`, lease và câu lệnh cập nhật có điều kiện tại PostgreSQL.
-* Tích hợp OpenFeign, Retry, Circuit Breaker và worker khôi phục các payment bị gián đoạn.
-* Hoàn thiện API Gateway với Redis Token Bucket rate limiter theo `userId` và tích hợp toàn bộ microservices.
+* Hoàn thiện API Gateway và tích hợp toàn bộ các microservices.
+* Xây dựng rate limiting bằng Redis để kiểm soát lưu lượng theo userId.
+* Hoàn thiện cơ chế sở hữu tiến trình thanh toán bằng processing token và lease.
+* Bổ sung recovery worker, cấu hình load-test và đóng gói các service bằng Docker.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| Thứ 2 | - Hoàn thiện idempotency và state machine của Payment Service<br>&emsp; + Kiểm tra payload khi `idempotencyKey` đã tồn tại<br>&emsp; + Khởi tạo payment ở trạng thái PENDING và chỉ cho phép chuyển sang các trạng thái hợp lệ<br>&emsp; + Trả lại payment hiện có cho request trùng khớp, từ chối trường hợp dùng lại key với dữ liệu khác | 22/06/2026 | 22/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 3 | - Xây dựng quyền sở hữu xử lý payment<br>&emsp; + Claim payment bằng câu lệnh `UPDATE ... WHERE status = 'PENDING'`<br>&emsp; + Gán `processingToken`, thời điểm bắt đầu và `leaseExpiresAt` cho tiến trình sở hữu<br>&emsp; + Chỉ tiến trình giữ đúng token mới được hoàn tất payment | 23/06/2026 | 23/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 4 | - Xây dựng cơ chế khôi phục và đối soát payment<br>&emsp; + Tạo worker định kỳ tìm payment PROCESSING hết lease hoặc PENDING quá thời gian chờ<br>&emsp; + Lập lịch retry bằng `nextRetryAt` và exponential backoff cho lỗi tạm thời<br>&emsp; + Giữ payment ở PROCESSING khi chưa xác định chắc chắn kết quả debit | 24/06/2026 | 24/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 5 | - Tích hợp Payment Service với Account Service<br>&emsp; + Gọi API debit qua OpenFeign và dùng payment ID làm `transactionId`<br>&emsp; + Cấu hình connect timeout, read timeout, Retry và Circuit Breaker bằng Resilience4j<br>&emsp; + Phân biệt lỗi nghiệp vụ, rate limit và lỗi kết nối tạm thời | 25/06/2026 | 25/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thứ 6 | - Hoàn thiện API Gateway và tích hợp hệ thống<br>&emsp; + Định tuyến `/api/accounts/**`, `/api/payments/**` và `/api/transactions/**` đến đúng service<br>&emsp; + Xây dựng Redis Lua Token Bucket bảo đảm kiểm tra và cập nhật giới hạn nguyên tử<br>&emsp; + Giới hạn theo `X-User-Id` hoặc `userId`, fallback theo IP và trả HTTP 429 khi vượt ngưỡng<br>&emsp; + Kiểm tra luồng tạo tài khoản, thanh toán, trừ tiền và tra cứu giao dịch qua gateway | 26/06/2026 | 26/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 2 | - Xây dựng API Gateway bằng Spring Cloud Gateway<br>&emsp; + Cấu hình routing đến Account Service, Payment Service và Transaction Service<br>&emsp; + Chuẩn hóa health check và cấu hình theo profile dev/loadtest<br>&emsp; + Kiểm tra luồng request qua một cổng truy cập thống nhất | 22/06/2026 | 22/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 3 | - Xây dựng cơ chế rate limiting bằng Redis<br>&emsp; + Sử dụng Token Bucket và Lua Script để xử lý nguyên tử<br>&emsp; + Giới hạn request theo userId từ header hoặc query parameter<br>&emsp; + Sử dụng IP làm khóa dự phòng<br>&emsp; + Trả về HTTP 429, Retry-After và thông tin quota còn lại | 23/06/2026 | 23/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 4 | - Hoàn thiện cơ chế xử lý thanh toán đồng thời<br>&emsp; + Chuyển trạng thái PENDING sang PROCESSING bằng atomic claim<br>&emsp; + Gắn processingToken và leaseExpiresAt để xác định quyền xử lý<br>&emsp; + Chỉ tiến trình sở hữu token mới được gọi Account Service và cập nhật kết quả<br>&emsp; + Ngăn nhiều request đồng thời trừ tiền lặp | 24/06/2026 | 24/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 5 | - Xây dựng cơ chế phục hồi thanh toán<br>&emsp; + Tạo Payment Recovery Worker quét các bản ghi PENDING hoặc PROCESSING bị treo<br>&emsp; + Cấu hình retry theo thời gian và giới hạn số lần xử lý<br>&emsp; + Bổ sung index phục vụ truy vấn recovery<br>&emsp; + Kiểm tra các trường hợp timeout và tiến trình mất quyền sở hữu | 25/06/2026 | 25/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thứ 6 | - Hoàn thiện dự án trước khi triển khai AWS<br>&emsp; + Cấu hình application-loadtest cho các service<br>&emsp; + Tối ưu logging, timeout và connection pool<br>&emsp; + Viết Dockerfile cho API Gateway, Account, Payment và Transaction Service<br>&emsp; + Build toàn bộ project và kiểm thử tích hợp trên môi trường Docker cục bộ | 26/06/2026 | 26/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
 
 ### Kết quả đạt được tuần 10:
 
-* Hoàn thiện Payment Service với khóa `idempotencyKey` duy nhất và state machine kiểm soát trạng thái thanh toán.
-* Xây dựng cơ chế sở hữu xử lý dựa trên PostgreSQL bằng `processingToken` và lease, ngăn nhiều request cùng debit cho một payment.
-* Bổ sung worker khôi phục, lịch retry và exponential backoff cho payment bị gián đoạn hoặc gặp lỗi tạm thời.
-* Tích hợp OpenFeign, Resilience4j Retry và Circuit Breaker khi Payment Service gọi Account Service.
-* Hoàn thiện API Gateway với Redis Lua Token Bucket rate limiter theo `userId`; không sử dụng JWT trong phạm vi hiện tại.
-* Tích hợp thành công các service trong môi trường cục bộ và chuẩn bị cấu hình cho giai đoạn triển khai AWS.
+* Hoàn thành API Gateway và định tuyến đến các service trong hệ thống.
+* Triển khai Redis rate limiting theo userId bằng Lua Script và phản hồi HTTP 429 khi vượt ngưỡng.
+* Hoàn thiện payment state machine với atomic claim, processing token và processing lease.
+* Bổ sung Payment Recovery Worker để xử lý các giao dịch bị treo hoặc cần retry.
+* Đóng gói các service bằng Docker và hoàn tất kiểm thử tích hợp trên môi trường cục bộ.

@@ -7,24 +7,24 @@ pre: " <b> 1.9. </b> "
 ---
 ### Week 9 Objectives:
 
-* Complete Account Service with safe balance updates under concurrent requests.
-* Build debit/credit idempotency using `transactionId` and a transaction-history table.
-* Integrate Redis Cache for account and balance data.
-* Build Transaction Service and initialize the core Payment Service features.
+* Complete the Account Service and continue developing the Payment Service and Transaction Service.
+* Implement communication between the Payment Service and Account Service using OpenFeign.
+* Apply idempotency, payment states, Circuit Breaker, and Retry to the transaction-processing flow.
+* Run integration tests across services and evaluate data consistency.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Monday | - Complete Account Service debit and credit operations<br>&emsp; + Use direct PostgreSQL balance-update statements to preserve atomicity<br>&emsp; + Validate account status, currency, and available balance<br>&emsp; + Normalize monetary amounts to two decimal places | 15/06/2026 | 15/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Tuesday | - Build Account Service idempotency<br>&emsp; + Use `transactionId` as the unique key in `transaction_histories`<br>&emsp; + Insert history with `ON CONFLICT DO NOTHING` to detect duplicate requests<br>&emsp; + Return the current result for matching duplicates and a conflict when the payload differs from the original request | 16/06/2026 | 16/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Wednesday | - Integrate Redis Cache for account data<br>&emsp; + Cache account details and balances with `@Cacheable`<br>&emsp; + Evict cache entries after debit/credit with `@CacheEvict`<br>&emsp; + Configure serialization and suitable cache retention | 17/06/2026 | 17/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Thursday | - Build Transaction Service<br>&emsp; + Create transaction entity, repository, service, controller, and mapper components<br>&emsp; + Implement transaction creation, lookup by ID, and listing by account<br>&emsp; + Validate idempotency when the client provides a `transactionId` | 18/06/2026 | 18/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
-| Friday | - Initialize Payment Service and test service APIs<br>&emsp; + Create the Payment entity, payment statuses, and a unique constraint for `idempotencyKey`<br>&emsp; + Implement payment creation, payment lookup, and user payment-history APIs<br>&emsp; + Test Account, Transaction, and Payment APIs with valid, duplicate, and invalid data | 19/06/2026 | 19/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Monday | - Complete the Account Service<br>&emsp; + Review idempotent debit and credit handling<br>&emsp; + Standardize Transaction History, currency handling, and business error codes<br>&emsp; + Verify cache invalidation after balance updates | 15/06/2026 | 15/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Tuesday | - Develop the Payment Service<br>&emsp; + Design Payment Entity, DTO, Repository, Service, Mapper, and Controller layers<br>&emsp; + Build APIs for payment creation and payment-history lookup<br>&emsp; + Use idempotencyKey to prevent duplicate payment creation | 16/06/2026 | 16/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Wednesday | - Integrate the Payment Service with the Account Service<br>&emsp; + Configure the OpenFeign Client<br>&emsp; + Build debit requests using paymentId/transactionId<br>&emsp; + Configure connect timeout, read timeout, and inter-service error handling<br>&emsp; + Integrate Resilience4j Circuit Breaker and Retry | 17/06/2026 | 17/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Thursday | - Develop the Transaction Service<br>&emsp; + Design Transaction Entity, status, and transaction type<br>&emsp; + Build APIs for transaction creation and lookup by ID or account<br>&emsp; + Apply idempotency by transactionId and validate payload conflicts | 18/06/2026 | 18/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
+| Friday | - Run microservice integration tests<br>&emsp; + Test account creation, payment creation, balance debit, and transaction storage<br>&emsp; + Test duplicate requests, insufficient balance, currency mismatch, and timeout cases<br>&emsp; + Track PENDING, PROCESSING, SUCCESS, and FAILED states<br>&emsp; + Record and fix data-consistency issues | 19/06/2026 | 19/06/2026 | <https://github.com/LonggTran/high-concurrency-payment-gateway> |
 
 ### Week 9 Achievements:
 
-* Completed Account Service with account creation, balance lookup, debit, and credit APIs.
-* Applied atomic PostgreSQL balance updates to reduce race conditions when multiple requests access the same account.
-* Completed debit/credit idempotency; matching duplicate requests do not change the balance again, while a reused `transactionId` with different data is rejected.
-* Integrated Redis Cache and cache invalidation after balance changes.
-* Completed Transaction Service and built the Payment Service foundation with a unique `idempotencyKey`.
+* Completed the Account Service and its balance-operation idempotency mechanism.
+* Completed the main components of the Payment Service and Transaction Service.
+* Established Payment Service to Account Service communication through OpenFeign.
+* Integrated Circuit Breaker, Retry, timeout, and inter-service error handling.
+* Tested the main payment flows and business-error cases with Postman.
