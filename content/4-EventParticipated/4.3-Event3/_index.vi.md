@@ -7,108 +7,84 @@ pre: " <b> 4.3. </b> "
 ---
 # Bài thu hoạch “FCJ Community Day - From Zero to Cloud Hero”
 
-### Mục Đích Của Sự Kiện
+### Tổng Quan Sự Kiện
 
-- Trang bị kiến thức kỹ thuật chuyên sâu về kiến trúc thời gian thực và đồng bộ mạng trong phát triển ứng dụng đám mây.
-- Đóng gói ứng dụng, tối ưu hóa hạ tầng DevOps và quản lý phân lớp bộ nhớ lưu trữ hiệu quả.
-- Giới thiệu giải pháp trí tuệ nhân tạo nâng cao qua kiến trúc đồ thị tri thức để vượt qua các giới hạn RAG truyền thống.
-- Thiết kế hệ thống an ninh mạng thông minh đa tầng, kết hợp tường lửa và mô hình học máy real-time trên AWS.
-- Định hướng lộ trình phát triển sự nghiệp thực chiến từ kỹ thuật viên hỗ trợ căn bản đến chuyên gia vận hành hệ thống cao cấp.
+Sự kiện cung cấp góc nhìn thực tế về nhiều mảng công nghệ đang được sử dụng trong hệ thống hiện đại: giao tiếp thời gian thực bằng WebSocket, đóng gói ứng dụng với Docker, GraphRAG trên AWS, phát hiện tấn công mạng bằng Machine Learning và lộ trình phát triển từ IT Helpdesk đến Modern DevOps.
 
-### Danh Sách Diễn Giả
+### Nội Dung Kỹ Thuật Nổi Bật
 
-- **Nguyễn Quốc Bảo** - Trình bày chủ đề **“Multiplayer in the Cloud: Connecting Godot Clients with AWS WebSockets”**, tập trung vào kiến trúc game serverless thời gian thực qua giao thức WebSocket và AWS API Gateway.
-- **Bảo Huỳnh** - Trình bày chủ đề **“Docker – A containerization technology”**, tập trung vào bản chất đóng gói container, cơ chế phân lớp dữ liệu và tối ưu hóa tài nguyên DevOps so với máy ảo (VM).
-- **Việt Phát** - Trình bày chủ đề **“GraphRAG: Build GraphRAG applications using Amazon Bedrock and Amazon Neptune”**, tập trung vào giải pháp kết hợp Đồ thị tri thức (Knowledge Graph) và cơ sở dữ liệu Vector để tối ưu hóa context cho LLM.
-- **Lê Hoàng Gia Đại** - Trình bày chủ đề **“WAF + ML for Cyber Attack Detection: Machine Learning-based Network Intrusion Detection System (NIDS) on AWS”**, tập trung vào hệ thống phát hiện xâm nhập mạng thông minh bằng mô hình LightGBM kết hợp AWS WAF.
-- **Trần Trung Vinh** - Trình bày chủ đề **“From IT Helpdesk to Senior Sysadmin”**, chia sẻ về lộ trình dịch chuyển sự nghiệp thực chiến, quản trị hạ tầng On-Premise đến tư duy hiện đại Modern DevOps.
+#### 1. Xây dựng kết nối thời gian thực bằng Serverless WebSocket
 
-### Nội Dung Nổi Bật
+**Nguyễn Quốc Bảo** trình bày chủ đề **“Multiplayer in the Cloud: Connecting Godot Clients with AWS WebSockets”**. Kiến trúc sử dụng **Amazon API Gateway WebSocket, AWS Lambda** và **Amazon DynamoDB** để quản lý kết nối, trạng thái chờ và ghép cặp người chơi.
 
-#### Kiến trúc kết nối thời gian thực cho ứng dụng và trò chơi
+Các route như `$connect`, `$disconnect` và `$default` được tách riêng để xử lý vòng đời kết nối và dữ liệu trò chơi. Giải pháp phù hợp với các ứng dụng cần giao tiếp hai chiều nhưng không muốn duy trì máy chủ liên tục. Với trò chơi yêu cầu đồng bộ tần suất cao và mô phỏng vật lý phức tạp, **AWS GameLift** được đề cập như một hướng phát triển phù hợp hơn.
 
-- **Thực trạng lựa chọn**: UDP/ENet tối ưu độ trễ thấp cho FPS/Racing nhưng phức tạp logic mạng; HTTP Polling đơn giản triển khai nhưng độ trễ cao và lãng phí overhead do gửi yêu cầu liên tục.
-- **Kiến trúc Serverless WebSocket**: Chọn WebSocket làm giải pháp cốt lõi cho ứng dụng tương tác theo lượt (turn-based) nhờ giao tiếp hai chiều (Full-duplex) và đảm bảo truyền tải tin cậy. 
-- **Luồng API Gateway & Lambda**: Định tuyến các gói tin JSON dựa trên toán tử $request.body.action thành các trạng thái tách biệt: $connect (lưu kết nối), $disconnect (thông báo đối thủ và xóa hàng chờ), và $default (xử lý logic trò chơi).
-- **Mẫu cấu hình lưu trữ**: Quản lý session và trạng thái người chơi (waiting hoặc matched) theo thời gian thực trên bảng Amazon DynamoDB qua cấu trúc PK là connectionId.
-- **Hạn chế và Định hướng**: Xử lý tình trạng treo kết nối ngầm (GoneException) và tính chất không lưu trạng thái (Stateless Lambda). Tương lai đề xuất chuyển dịch sang cụm máy chủ chuyên dụng luôn chạy **AWS GameLift** để đồng bộ liên tục tần suất cao và mô phỏng vật lý thời gian thực.
+#### 2. Tối ưu quy trình triển khai bằng Docker
 
-#### Công nghệ đóng gói ứng dụng và tối ưu hóa hạ tầng với Docker
+**Bảo Huỳnh** giải thích sự khác nhau giữa máy ảo và container. Docker đóng gói ứng dụng cùng các thư viện phụ thuộc nhưng dùng chung hệ điều hành của máy chủ, nhờ đó khởi động nhanh và tiêu thụ ít tài nguyên hơn VM.
 
-- **Tảng băng vấn đề của Máy ảo (VM)**: Mỗi VM bắt buộc chạy một OS độc lập, tiêu tốn CPU/RAM cố định, chu kỳ cập nhật OS nặng nề, không tối ưu cho kiến trúc Microservices nhỏ gọn.
-- **Bản chất Docker Container**: Công nghệ đóng gói ứng dụng cùng toàn bộ thư viện phụ thuộc (*dependencies*) vào một gói duy nhất, chia sẻ chung hệ điều hành máy chủ (Host OS) giúp khởi động tức thì trong mili-giây và đạt hiệu năng tiệm cận máy thật.
-- **Cơ chế cấu trúc phân lớp (Layers)**: Kế thừa và tái sử dụng bộ nhớ cache khi build thông qua tệp cấu hình Dockerfile (các lớp Base Image chỉ đọc xếp chồng lên nhau, trên cùng là một lớp writable container layer có quyền ghi).
-- **Hệ thống lệnh Docker CLI**: Phân loại rõ ràng thành 5 nhóm tính năng cốt lõi: quản lý Image, kiểm soát vòng đời Container, tương tác gỡ lỗi hệ thống, điều phối phối hợp nhiều container (*docker-compose*) và phân vùng tài nguyên Network/Volume.
+Nội dung quan trọng gồm:
 
-#### Khắc phục giới hạn của RAG truyền thống bằng GraphRAG
+- Cách image được tạo từ nhiều layer chỉ đọc;
+- Container bổ sung một layer có thể ghi khi chạy;
+- Tận dụng cache để giảm thời gian build;
+- Quản lý image, container, network và volume;
+- Dùng Docker Compose để chạy nhiều thành phần của ứng dụng.
 
-- **Giới hạn RAG truyền thống**: Tìm kiếm dựa trên độ tương đồng vector độc lập bị phân mảnh dữ liệu, hoàn toàn mất khả năng liên kết ngữ cảnh bắc cầu giữa các thực thể rời rạc nằm trong nhiều tài liệu khác nhau.
-- **Cơ chế vận hành GraphRAG**: Sử dụng mô hình đồ thị tri thức bao gồm các đỉnh (Nodes) và cạnh (Edges) để ánh xạ mối quan hệ ngữ cảnh sâu sắc, giúp LLM hiểu được các thực thể có tính liên kết đa tầng trước khi đưa vào prompt điều phối.
-- **Hai luồng tiếp cận triển khai**:
-  - *Luồng quản lý hoàn toàn (Fully Managed Route)*: Sử dụng **Amazon Bedrock Knowledge Bases** để tự động hóa khâu cắt đoạn (*Chunk*), trích xuất thực thể, kết hợp **Amazon Neptune Analytics** để lưu trữ và tự động khám phá quan hệ ngữ cảnh đồ thị.
-  - *Luồng tùy biến mã nguồn mở (Custom Route)*: Xây dựng pipeline xử lý dữ liệu qua framework **LlamaIndex** bằng mã Python, tự định nghĩa cấu trúc trích xuất và truy vấn dữ liệu đồ thị linh hoạt bằng ngôn ngữ *Cypher Query*.
+#### 3. Bổ sung quan hệ ngữ cảnh bằng GraphRAG
 
-#### An ninh mạng thông minh dựa trên Học máy và AWS WAF
+**Việt Phát** trình bày cách GraphRAG khắc phục hạn chế của RAG truyền thống. Thay vì chỉ tìm kiếm đoạn văn có vector tương đồng, GraphRAG tổ chức dữ liệu thành các **node** và **edge**, nhờ đó mô hình có thể nhận biết mối liên hệ giữa nhiều thực thể nằm ở các nguồn khác nhau.
 
-- **Thách thức an ninh**: Lớp bảo mật dựa trên bộ quy tắc cố định (Signature-based) của tường lửa ứng dụng web truyền thống (AWS WAF) không đủ để chống lại các biến thể tấn công hiện đại hoặc lỗ hổng zero-day.
-- **Hệ thống phát hiện xâm nhập mạng (NIDS)**: Triển khai NIDS đa chức năng đảm nhận đồng thời vai trò giám sát lưu lượng mạng, phân tích hành vi bất thường, phát hiện cảnh báo real-time và ghi log phản hồi.
-- **Huấn luyện mô hình**: Tiền xử lý dữ liệu chuẩn hóa *CSE-CIC-IDS2018* qua các bước: Khám phá $\rightarrow$ Hợp nhất $\rightarrow$ Làm sạch dữ liệu NaN/vô hạn $\rightarrow$ Cân bằng nhãn dữ liệu (*Class balance*) để loại bỏ hiện tượng thiên vị thuật toán. Sử dụng phương pháp PCA và Elbow để xác định số cụm tối ưu.
-- **Đánh giá hiệu năng thuật toán**: Thử nghiệm song song qua các mô hình (Random Forest, MLP, 1D-CNN, XGBoost). Thuật toán **LightGBM** cho kết quả tối ưu toàn diện nhất với độ chính xác đạt **95.86%** và chỉ số AUC-ROC đạt **0.9982**.
-- **Kiến trúc Cloud-native hoàn chỉnh**: Luồng traffic được ALB phân phối và lọc qua AWS WAF, bản sao lưu lượng mạng trên các thực thể EC2 được trích xuất qua **Amazon Kinesis Data Firehose** lưu vào S3. Hàm Lambda kích hoạt mô hình LightGBM phân tích thời gian thực, tự động gửi cảnh báo khẩn cấp qua **Amazon SNS** và hiển thị dashboard giám sát.
+Hai hướng triển khai được giới thiệu:
 
-#### Lộ trình dịch chuyển sự nghiệp sang Modern DevOps
+- Dùng **Amazon Bedrock Knowledge Bases** kết hợp **Amazon Neptune Analytics** cho mô hình được quản lý;
+- Xây dựng pipeline tùy chỉnh bằng **LlamaIndex**, Python và truy vấn Cypher khi cần kiểm soát chi tiết hơn.
 
-- **Bệ phóng từ vị trí cơ bản**: Tích lũy tư duy xử lý sự cố dưới áp lực cao, kỹ năng giao tiếp xử lý vấn đề trực tiếp với người dùng từ vai trò IT Helpdesk để làm nền tảng cốt lõi hướng lên kỹ sư hệ thống.
-- **Thực tế hạ tầng On-Premise**: Thấu hiểu độ phức tạp khi vận hành máy chủ vật lý, quản trị dòng lệnh chuyên sâu trên các bản phân phối Linux lớn (*RedHat, CentOS, Debian*), quản lý lưu trữ SAN/NAS và thiết lập tầng ảo hóa máy chủ với *VMware vSphere (ESXi)*.
-- **Tiến trình 4 cấp độ tư duy DevOps**: 
-  1. *On-Premise*: Quản lý thủ công phần cứng vật lý, mở rộng hạ tầng chậm và tốn kém chi phí.
-  2. *Cloud Mindset*: Dịch chuyển hạ tầng lên đám mây AWS, sử dụng tài nguyên linh hoạt theo mô hình trả phí theo lượng sử dụng thực tế.
-  3. *Infrastructure as Code (IaC)*: Tự động hóa hoàn toàn khâu thiết lập, cấu hình hạ tầng lặp lại thông qua mã nguồn sử dụng công cụ **Terraform**.
-  4. *DevOps Culture*: Phá vỡ sự cô lập giữa team Dev và Ops thông qua luồng quy trình CI/CD, đóng gói container và tự động hóa workflows toàn diện.
+#### 4. Phát hiện xâm nhập bằng AWS WAF và Machine Learning
 
-### Những Gì Học Được
+**Lê Hoàng Gia Đại** trình bày mô hình **Network Intrusion Detection System** kết hợp lớp bảo vệ theo quy tắc của **AWS WAF** với khả năng phát hiện bất thường của Machine Learning. Dữ liệu mạng được thu thập, làm sạch, cân bằng và sử dụng để so sánh nhiều thuật toán khác nhau.
 
-#### Tư Duy Hệ Thống và Phát Triển Sự Nghiệp
+Mô hình **LightGBM** được lựa chọn nhờ kết quả đánh giá tốt. Trong kiến trúc AWS, dữ liệu có thể được chuyển qua **Amazon Kinesis Data Firehose**, lưu vào **Amazon S3**, xử lý bằng **AWS Lambda** và gửi cảnh báo qua **Amazon SNS**. Cách kết hợp này giúp hệ thống vừa chặn các mẫu tấn công đã biết, vừa có khả năng nhận diện hành vi bất thường mới.
 
-- **Xóa bỏ định kiến xuất phát điểm**: Điểm bắt đầu từ IT Helpdesk cơ bản không phải là rào cản, mà là môi trường rèn luyện kỹ năng xử lý sự cố thực tế tốt nhất để tích lũy tư duy phân tích nguyên nhân gốc rễ (Root Cause Analysis).
-- **Làm chủ lộ trình Modern DevOps**: Xác định rõ bản đồ học tập 8 bước cốt lõi từ Linux/Networking, Git, Đám mây, Đóng gói Container, tự động hóa CI/CD, viết hạ tầng bằng code (IaC), điều phối Kubernetes cho đến trực quan hóa giám sát (Observability).
-- **Hành trình vượt qua phỏng vấn tập đoàn**: Hiểu rõ rằng vũ khí cạnh tranh lớn nhất không nằm ở lý thuyết suông, mà nằm ở kinh nghiệm thực chiến bước ra từ các dự án thực tế, cách bóc tách sơ đồ kiến trúc đám mây và kỹ năng xử lý kịch bản thảm họa hệ thống.
+#### 5. Lộ trình từ IT Helpdesk đến Modern DevOps
 
-#### Kiến Trúc Kỹ Thuật và Vận Hành
+**Trần Trung Vinh** chia sẻ quá trình phát triển nghề nghiệp từ IT Helpdesk đến quản trị hệ thống và DevOps. Kinh nghiệm hỗ trợ người dùng, xử lý sự cố và phân tích nguyên nhân gốc rễ là nền tảng quan trọng trước khi tiếp cận hạ tầng on-premises, Linux, VMware, Cloud và tự động hóa.
 
-- **Mô hình kết nối thời gian thực**: Nắm bắt luồng di chuyển dữ liệu trạng thái của giao thức WebSocket, hiểu cách API Gateway điều phối workflows và push dữ liệu real-time tới nhiều ID người chơi đồng thời.
-- **Tư duy đóng gói phân lớp với Docker**: Hiểu cách bóc tách một ứng dụng cồng kềnh thành các container nhẹ nhàng, làm chủ cơ chế quản lý vòng đời ứng dụng và cách tối ưu dung lượng ảnh thông qua Docker layers cache.
-- **Tối ưu hóa pipeline AI nâng cao**: Tiếp cận kiến trúc GraphRAG hiện đại, biết cách phối hợp cơ sở dữ liệu đồ thị tri thức của Amazon Neptune cùng Amazon Bedrock để giải quyết triệt để bài toán mất ngữ cảnh bắc cầu của RAG truyền thống.
-- **Bảo mật và Phân tích thông minh đa tầng**: Nắm vững quy trình thiết lập kiến trúc an ninh đám mây hoàn chỉnh trên AWS, cách tiền xử lý và cân bằng tập dữ liệu lớn phục vụ huấn luyện mô hình học máy real-time phát hiện xâm nhập mạng độc hại.
+Lộ trình được hệ thống thành các nhóm kỹ năng:
 
-### Ứng Dụng Vào Công Việc
+- Linux và Networking;
+- Git và quản lý mã nguồn;
+- Nền tảng Cloud;
+- Docker và container;
+- CI/CD;
+- Infrastructure as Code với Terraform;
+- Điều phối hệ thống;
+- Monitoring và Observability.
 
-- **Ứng dụng WebSocket vào Project**: Nghiên cứu pilot chuyển đổi cơ chế cập nhật dữ liệu từ HTTP Polling truyền thống sang giao thức Serverless WebSocket sử dụng AWS API Gateway cho các module tương tác thời gian thực trong dự án hiện tại.
-- **Container hóa toàn bộ ứng dụng**: Áp dụng Dockerfile tiêu chuẩn để đóng gói mã nguồn project hiện tại, tối ưu hóa các lớp layer để tăng tốc độ quy trình build/deploy hệ thống trong pipeline CI/CD.
-- **Thiết lập hạ tầng bảo mật**: Thực hành pilot cấu hình Web ACLs trên AWS WAF để ngăn chặn các kỹ thuật tấn công tầng ứng dụng (SQLi, XSS, Bot) và cấu hình CloudWatch Alarm theo dõi workflows.
+### Kiến Thức Và Kỹ Năng Tiếp Thu
 
-### Trải Nghiệm Trong Event
+- Hiểu luồng hoạt động của API Gateway WebSocket, Lambda và DynamoDB trong ứng dụng real-time.
+- Nắm được nguyên lý image layer, container layer và build cache của Docker.
+- Phân biệt RAG dựa trên vector với GraphRAG có khả năng biểu diễn quan hệ dữ liệu.
+- Có thêm góc nhìn về kiến trúc bảo mật nhiều lớp kết hợp WAF, luồng dữ liệu và mô hình học máy.
+- Xác định rõ hơn các kỹ năng cần thiết cho lộ trình Cloud và DevOps.
+- Nhận thấy kinh nghiệm xử lý sự cố thực tế có giá trị lớn trong quá trình phát triển nghề nghiệp.
 
-Tham gia sự kiện **First Cloud AI Journey (Event 3)** là một hành trình trải nghiệm công nghệ thực chiến, mang tính bao quát và đào sâu vào những bài toán kỹ thuật hóc búa nhất của doanh nghiệp thời đại số.
+### Khả Năng Áp Dụng
 
-#### Hàm lượng kỹ thuật thực tế và chuyên sâu
-- Khác với các buổi hội thảo lý thuyết suông, sự kiện mang tới các đoạn mã nguồn GDScript, Python, tệp cấu hình Dockerfile cấu trúc phân lớp thực tế, sơ đồ kiến trúc hạ tầng đám mây dạng tảng băng trôi bóc tách từ các hệ thống vận hành thực tế.
-- Được tiếp cận các biểu đồ so sánh mô hình học máy trực quan (Confusion Matrix, biểu đồ giảm chiều dữ liệu PCA), giúp người nghe thấu hiểu rõ lý do kỹ thuật đằng sau việc lựa chọn thuật toán LightGBM cho hệ thống an ninh mạng.
+- Dùng Docker để đóng gói các service và đảm bảo môi trường triển khai nhất quán.
+- Tối ưu Dockerfile bằng cách sắp xếp layer hợp lý và tái sử dụng build cache.
+- Nghiên cứu WebSocket cho các chức năng cần cập nhật trạng thái theo thời gian thực.
+- Tìm hiểu AWS WAF, CloudWatch và SNS để tăng khả năng giám sát và cảnh báo.
+- Tiếp tục rèn luyện Linux, Networking, CI/CD và Infrastructure as Code theo lộ trình DevOps.
 
-#### Tiếp cận sơ đồ trực quan sống động
-- Người tham dự được quan sát trực tiếp giao diện quản lý Graph Explorer của Amazon Neptune, chứng kiến các thực thể dữ liệu văn bản thô được AI bóc tách và chuyển hóa thành mạng lưới các nút kết nối tri thức đồ thị vô cùng sống động.
-- Sơ đồ kiến trúc Cloud-native hoàn chỉnh trên AWS chỉ ra luồng đi mạch lạc của gói tin từ khi hacker tấn công qua lớp lá chắn WAF cho đến khi hệ thống tự động đẩy cảnh báo real-time qua điện thoại của admin.
+### Đánh Giá Sau Sự Kiện
 
-#### Truyền cảm hứng hành động và định hướng nghề nghiệp
-- Phiên chia sẻ cuối cùng mang lại sự gần gũi đầy tính nhân văn, đánh trúng tâm lý hoang mang về định hướng tương lai của sinh viên công nghệ. Câu chuyện bước ra từ vị trí IT Helpdesk cơ bản của diễn giả đã thắp lên ngọn lửa dấn thân mạnh mẽ.
-- Sự kết hợp hoàn hảo giữa các bài toán công nghệ xu hướng (GenAI, DevOps, Security) cùng các lời khuyên định hướng giúp tôi thay đổi hoàn toàn tư duy: không có ranh giới hay giới hạn nào cho sự phát triển, mọi kỹ sư giỏi đều được tôi luyện qua việc tự tay cấu hình và gỡ lỗi tại các phòng lab thực hành.
+Điểm nổi bật của chương trình là sự đa dạng nhưng vẫn có tính liên kết giữa phát triển ứng dụng, AI, bảo mật và vận hành. Các nội dung đều cho thấy một hệ thống tốt không chỉ cần mã nguồn đúng, mà còn phải có kiến trúc phù hợp, quy trình triển khai nhất quán, khả năng quan sát và cơ chế bảo vệ. Câu chuyện nghề nghiệp cuối chương trình cũng khẳng định rằng lộ trình phát triển được tạo nên từ việc học nền tảng và giải quyết các vấn đề thực tế từng bước một.
 
-#### Bài học rút ra
-- Kỹ năng chuyên môn vững chắc và tư duy tự động hóa workflows (Docker, IaC, CI/CD) là yếu tố sống còn để loại bỏ lỗi chủ quan của con người, đảm bảo tính nhất quán của hệ thống đám mây.
-- AI không còn dừng lại ở mức công cụ hỏi đáp đơn giản; việc kết hợp AI cùng cấu trúc dữ liệu đồ thị tri thức (GraphRAG) tạo nên bước nhảy vọt về năng lực xử lý thông tin phức tạp cho doanh nghiệp.
-- Điểm xuất phát của bạn trong ngành công nghệ không quyết định vị trí tương lai; chính tinh thần Builder sẵn sàng dấn thân, liên tục thực hành, gỡ lỗi thực chiến và phá vỡ vùng an toàn mới là chìa khóa mở cánh cửa trở thành một chuyên gia cao cấp.
 ### Một số hình ảnh khi tham gia sự kiện
 ![Event 3](/images/b8.jpg)
 ![Event 3](/images/b9.jpg)
 ![Event 3](/images/b10.jpg)
-> Tổng thể, sự kiện First Cloud AI Journey (Event 3) đã mang lại nguồn năng lượng hành động bùng nổ cùng khối lượng kiến thức thực chiến đỉnh cao. Sự kiện xác lập một triết lý phát triển toàn diện: Hãy làm chủ hạ tầng của chính mình, dũng cảm đối mặt với các thách thức an ninh mạng và liên tục nâng cấp năng lực bản thân qua từng hành động thực tế nhỏ nhất.
+
+> **FCJ Community Day - From Zero to Cloud Hero** giúp kết nối kiến thức về WebSocket, Docker, GraphRAG, an ninh mạng và DevOps thành một định hướng học tập thực tế, có thể áp dụng cho các dự án đám mây hiện đại.
