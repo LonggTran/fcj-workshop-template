@@ -73,8 +73,10 @@ Cách tiếp cận này cho thấy AI chỉ thực sự hữu ích khi được 
 Sự kiện mang lại góc nhìn cân bằng giữa công nghệ và yếu tố con người. Nội dung không chỉ hướng dẫn sử dụng AI hiệu quả hơn mà còn nhấn mạnh yêu cầu về quy trình, trách nhiệm và tư duy nghề nghiệp. Bài học quan trọng nhất là AI có thể tăng năng suất, nhưng không thay thế việc phân tích, kiểm chứng và ra quyết định của con người.
 
 ### Một số hình ảnh khi tham gia sự kiện
-![Event 1](/images/b1.jpg)
-![Event 1](/images/b2.jpg)
-![Event 1](/images/b3.jpg)
+![Event 1](/images/b1-1.jpg)
+
+[//]: # (![Event 1]&#40;/images/b2.jpg&#41;)
+
+[//]: # (![Event 1]&#40;/images/b3.jpg&#41;)
 
 > **FCJ Community Day - AI & Prompt Engineering** giúp mở rộng hiểu biết về Prompt Engineering, kiến trúc AI trên AWS và phương pháp đưa AI vào quy trình phát triển phần mềm một cách có kiểm soát.

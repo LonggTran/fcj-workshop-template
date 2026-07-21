@@ -74,9 +74,12 @@ Systems thinking helps teams identify root causes instead of repeatedly fixing s
 The event connected technical knowledge with self-management skills. The Hackathon and startup stories demonstrated that products are not created by waiting for ideal conditions, but through early action, rapid experimentation, and continuous correction. The strongest message was **Stop Procrastinating, Start Building**: action is the first step toward both competence and confidence.
 
 ### Some event photos
-![Event 2](/images/b4.jpg)
+
+[//]: # (![Event 2]&#40;/images/b4.jpg&#41;)
 ![Event 2](/images/b5.jpg)
-![Event 2](/images/b6.jpg)
-![Event 2](/images/b7.jpg)
+
+[//]: # (![Event 2]&#40;/images/b6.jpg&#41;)
+
+[//]: # (![Event 2]&#40;/images/b7.jpg&#41;)
 
 > **FCJ Community Day - Stop Procrastinating, Start Building** provided practical AWS learning methods, real product-building experience, and an action-oriented mindset for long-term career development.

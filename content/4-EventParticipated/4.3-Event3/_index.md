@@ -83,8 +83,12 @@ The learning roadmap covered:
 The event covered a wide range of topics while maintaining a clear connection between development, AI, security, and operations. Each session showed that a reliable system requires more than correct source code; it also needs suitable architecture, consistent deployment, observability, and protection. The final career story reinforced that professional growth is built by mastering fundamentals and solving practical problems step by step.
 
 ### Some event photos
-![Event 3](/images/b8.jpg)
-![Event 3](/images/b9.jpg)
-![Event 3](/images/b10.jpg)
+![Event 3](/images/b3-1.jpg)
+
+[//]: # (![Event 3]&#40;/images/b8.jpg&#41;)
+
+[//]: # (![Event 3]&#40;/images/b9.jpg&#41;)
+
+[//]: # (![Event 3]&#40;/images/b10.jpg&#41;)
 
 > **FCJ Community Day - From Zero to Cloud Hero** connected WebSocket, Docker, GraphRAG, cybersecurity, and DevOps into a practical learning direction for modern cloud projects.

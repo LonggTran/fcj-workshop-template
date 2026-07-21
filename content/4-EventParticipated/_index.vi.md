@@ -17,14 +17,14 @@ Trong quá trình thực tập, em đã tham gia 3 events, với mỗi event là
 &emsp;**Vai trò trong sự kiện:** Người tham dự 
 
 &emsp;**Mô tả ngắn gọn nội dung:** 
-* Chia sẻ kiến thức nền tảng về AI, Cloud, kỹ nghệ prompt (Prompt Engineering) và Token Economics.
-* Hướng dẫn cách ứng dụng các AI Agent hỗ trợ toàn bộ vòng đời phát triển phần mềm chuẩn Software Engineering (sử dụng mô hình BMAD với các PM, Architect, Scrum, Developer, Review Agents).
-* Giới thiệu các kiến trúc đám mây AWS cốt lõi để triển khai ứng dụng AI như Lambda, Bedrock, DynamoDB, Cognito.
+* Trình bày các kiến thức cơ bản về AI, Cloud, Prompt Engineering và Token Economics.
+* Minh họa cách sử dụng AI Agent trong toàn bộ vòng đời phát triển phần mềm theo Software Engineering, thông qua mô hình BMAD gồm PM, Architect, Scrum, Developer và Review Agents.
+* Giới thiệu những kiến trúc AWS cốt lõi phục vụ triển khai ứng dụng AI với Lambda, Bedrock, DynamoDB và Cognito.
 
 &emsp;**Kết quả/Giá trị đạt được:** 
-* Hiểu cấu trúc viết prompt rõ ràng, có ràng buộc để tối ưu chi phí token và chất lượng đầu ra của AI.
-* Thay đổi tư duy lập trình (tránh viết code theo cảm tính - "vibe code").
-* Nắm vững quy trình phát triển phần mềm chuyên nghiệp khi kết hợp với các công cụ AI hỗ trợ tự động hóa các khâu phân tích, thiết kế, kiểm thử và review code.
+* Biết cách xây dựng prompt rõ ràng, có điều kiện ràng buộc nhằm tối ưu chi phí token và nâng cao chất lượng kết quả AI.
+* Điều chỉnh tư duy lập trình, hạn chế cách viết code theo cảm tính hay còn gọi là "vibe code".
+* Hiểu quy trình phát triển phần mềm chuyên nghiệp khi kết hợp AI để hỗ trợ tự động hóa phân tích, thiết kế, kiểm thử và review code.
 
 ---
 
@@ -38,16 +38,16 @@ Trong quá trình thực tập, em đã tham gia 3 events, với mỗi event là
 &emsp;**Vai trò trong sự kiện:** Người tham dự 
 
 &emsp;**Mô tả ngắn gọn nội dung:** 
-* Định hướng lộ trình tự học điện toán đám mây hiệu quả bằng mô hình trò chơi hóa (AWS Cloud Quest và Floci).
-* Đúc kết kinh nghiệm thực chiến từ cuộc thi LotusHacks 2026 với 2 dự án đám mây *SynthHunter* (xác thực giọng nói AI) và *Vortex* (tối ưu tuyển dụng).
-* Giới thiệu giải pháp dịch chuyển hạ tầng Serverless cho Startup (Tử Vi Đại Việt) và thiết kế hệ thống AI 3 lớp (Knowledge, Brain, Validation/Cache).
-* Phân tích nền tảng DevOps bền vững dựa trên bộ ba Con người - Quy trình - Công nghệ và tư duy hệ thống.
-* Hướng dẫn phương pháp quản trị tâm lý để vượt qua sự trì hoãn và xây dựng sự tự tin.
+* Giới thiệu lộ trình tự học điện toán đám mây theo hình thức trò chơi hóa với AWS Cloud Quest và Floci.
+* Chia sẻ kinh nghiệm thực tế từ LotusHacks 2026 thông qua hai dự án đám mây: *SynthHunter* về xác thực giọng nói AI và *Vortex* về tối ưu tuyển dụng.
+* Trình bày giải pháp chuyển đổi hạ tầng Serverless cho startup Tử Vi Đại Việt cùng mô hình hệ thống AI ba lớp gồm Knowledge, Brain và Validation/Cache.
+* Làm rõ nền tảng DevOps bền vững dựa trên ba yếu tố Con người, Quy trình, Công nghệ kết hợp với tư duy hệ thống.
+* Chia sẻ phương pháp quản lý tâm lý nhằm vượt qua sự trì hoãn và củng cố sự tự tin.
 
 &emsp;**Kết quả/Giá trị đạt được:** 
-* Tiếp cận phương thức tự học dịch vụ đám mây trực quan và săn chứng nhận số (Digital Badges).
-* Học cách thiết kế hệ thống AI có kiểm soát chất lượng đầu ra và tối ưu chi phí token.
-* Thấu hiểu bản chất của sự trì hoãn bắt nguồn từ các nỗi sợ tâm lý và nắm vững các công cụ khoa học (Quy tắc 5 giây, Quy tắc 5 phút) để vượt qua rào cản hành động.
+* Biết thêm cách tự học các dịch vụ đám mây trực quan và tiếp cận chứng nhận số Digital Badges.
+* Hiểu cách thiết kế hệ thống AI có cơ chế kiểm soát chất lượng đầu ra và tối ưu chi phí token.
+* Nhận biết nguyên nhân tâm lý phía sau sự trì hoãn và vận dụng Quy tắc 5 giây, Quy tắc 5 phút để vượt qua rào cản hành động.
 
 ---
 
@@ -61,14 +61,14 @@ Trong quá trình thực tập, em đã tham gia 3 events, với mỗi event là
 &emsp;**Vai trò trong sự kiện:** Người tham dự 
 
 &emsp;**Mô tả ngắn gọn nội dung:** 
-* Giới thiệu kiến trúc truyền dữ liệu thời gian thực Serverless WebSocket (kết nối Godot client với AWS API Gateway/DynamoDB/Lambda).
-* Bản chất đóng gói ứng dụng Docker container, cơ chế cấu trúc phân lớp (Layers) và tối ưu hóa tài nguyên.
-* Giải pháp GraphRAG (kết hợp đồ thị tri thức Amazon Neptune và Amazon Bedrock) khắc phục nhược điểm mất liên kết của RAG truyền thống.
-* Kiến trúc an ninh mạng thông minh đa tầng WAF + ML sử dụng LightGBM và Amazon Kinesis để phát hiện tấn công mạng thời gian thực.
-* Lộ trình dịch chuyển sự nghiệp từ IT Helpdesk lên Senior Sysadmin và Modern DevOps.
+* Trình bày kiến trúc Serverless WebSocket cho truyền dữ liệu thời gian thực, kết nối Godot client với AWS API Gateway, DynamoDB và Lambda.
+* Giải thích cách đóng gói ứng dụng bằng Docker container, cơ chế phân lớp Layers và phương pháp tối ưu tài nguyên.
+* Giới thiệu GraphRAG kết hợp đồ thị tri thức Amazon Neptune với Amazon Bedrock để khắc phục hạn chế mất liên kết của RAG truyền thống.
+* Phân tích kiến trúc an ninh mạng nhiều lớp WAF và Machine Learning, sử dụng LightGBM cùng Amazon Kinesis để phát hiện tấn công theo thời gian thực.
+* Chia sẻ lộ trình chuyển đổi nghề nghiệp từ IT Helpdesk đến Senior Sysadmin và Modern DevOps.
 
 &emsp;**Kết quả/Giá trị đạt được:** 
-* Nắm vững nguyên lý kết nối WebSocket hai chiều và tối ưu hóa tài nguyên qua Docker layers.
-* Tiếp cận xu hướng công nghệ GraphRAG để cải tiến chatbot thông minh.
-* Hiểu cách xây dựng và giám sát hệ thống an ninh mạng thông minh trên đám mây.
-* Định hình bản đồ học tập DevOps thực chiến từ cơ bản đến nâng cao để áp dụng vào công việc thực tế.
+* Hiểu nguyên lý giao tiếp WebSocket hai chiều và cách tối ưu tài nguyên thông qua Docker layers.
+* Tiếp cận công nghệ GraphRAG để hỗ trợ cải tiến các hệ thống chatbot thông minh.
+* Nắm được cách xây dựng và theo dõi hệ thống an ninh mạng thông minh trên nền tảng đám mây.
+* Xác định lộ trình học DevOps thực tế từ kiến thức cơ bản đến nâng cao để áp dụng vào công việc.

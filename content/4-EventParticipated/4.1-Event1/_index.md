@@ -73,8 +73,10 @@ This approach demonstrates that AI provides greater value when it operates insid
 The event provided a balanced view of technology and human responsibility. It did not only show how to use AI more effectively, but also emphasized process discipline, professional behavior, and quality control. The main lesson was that AI can improve productivity, while analysis, verification, and final decision-making must remain under human control.
 
 ### Some event photos
-![Event 1](/images/b1.jpg)
-![Event 1](/images/b2.jpg)
-![Event 1](/images/b3.jpg)
+![Event 1](/images/b1-1.jpg)
+
+[//]: # (![Event 1]&#40;/images/b2.jpg&#41;)
+
+[//]: # (![Event 1]&#40;/images/b3.jpg&#41;)
 
 > **FCJ Community Day - AI & Prompt Engineering** expanded my understanding of Prompt Engineering, AWS-based AI architectures, and the controlled use of AI throughout the software development lifecycle.

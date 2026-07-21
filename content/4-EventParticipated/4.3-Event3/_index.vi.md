@@ -83,8 +83,12 @@ Lộ trình được hệ thống thành các nhóm kỹ năng:
 Điểm nổi bật của chương trình là sự đa dạng nhưng vẫn có tính liên kết giữa phát triển ứng dụng, AI, bảo mật và vận hành. Các nội dung đều cho thấy một hệ thống tốt không chỉ cần mã nguồn đúng, mà còn phải có kiến trúc phù hợp, quy trình triển khai nhất quán, khả năng quan sát và cơ chế bảo vệ. Câu chuyện nghề nghiệp cuối chương trình cũng khẳng định rằng lộ trình phát triển được tạo nên từ việc học nền tảng và giải quyết các vấn đề thực tế từng bước một.
 
 ### Một số hình ảnh khi tham gia sự kiện
-![Event 3](/images/b8.jpg)
-![Event 3](/images/b9.jpg)
-![Event 3](/images/b10.jpg)
+![Event 3](/images/b3-1.jpg)
+
+[//]: # (![Event 3]&#40;/images/b8.jpg&#41;)
+
+[//]: # (![Event 3]&#40;/images/b9.jpg&#41;)
+
+[//]: # (![Event 3]&#40;/images/b10.jpg&#41;)
 
 > **FCJ Community Day - From Zero to Cloud Hero** giúp kết nối kiến thức về WebSocket, Docker, GraphRAG, an ninh mạng và DevOps thành một định hướng học tập thực tế, có thể áp dụng cho các dự án đám mây hiện đại.

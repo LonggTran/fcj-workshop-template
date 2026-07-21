@@ -74,9 +74,12 @@ Tư duy hệ thống giúp tìm nguyên nhân gốc rễ thay vì chỉ xử lý
 Sự kiện tạo được sự kết nối giữa kiến thức kỹ thuật và năng lực tự quản lý. Những câu chuyện từ Hackathon và startup cho thấy sản phẩm không được hình thành từ việc chờ điều kiện hoàn hảo, mà từ quá trình bắt đầu sớm, thử nghiệm nhanh và liên tục sửa sai. Thông điệp nổi bật nhất là **Stop Procrastinating, Start Building**: hành động là bước đầu tiên để tạo ra kỹ năng và sự tự tin.
 
 ### Một số hình ảnh khi tham gia sự kiện
-![Event 2](/images/b4.jpg)
+
+[//]: # (![Event 2]&#40;/images/b4.jpg&#41;)
 ![Event 2](/images/b5.jpg)
-![Event 2](/images/b6.jpg)
-![Event 2](/images/b7.jpg)
+
+[//]: # (![Event 2]&#40;/images/b6.jpg&#41;)
+
+[//]: # (![Event 2]&#40;/images/b7.jpg&#41;)
 
 > **FCJ Community Day - Stop Procrastinating, Start Building** mang lại phương pháp học AWS thực tế, kinh nghiệm xây dựng sản phẩm và tư duy hành động cần thiết cho quá trình phát triển nghề nghiệp.

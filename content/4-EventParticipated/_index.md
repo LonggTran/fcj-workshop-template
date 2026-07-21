@@ -17,14 +17,14 @@ During my internship, I participated in 3 events. Each one was a memorable exper
 &emsp;**Role:** Attendee  
 
 &emsp;**Brief Description:** 
-* Shared foundational knowledge of AI, Cloud, Prompt Engineering, and Token Economics.
-* Guided the application of AI Agents throughout the Software Engineering lifecycle (using the BMAD model with PM, Architect, Scrum, Developer, and Review Agents).
-* Introduced core AWS cloud architectures for deploying AI applications, such as Lambda, Bedrock, DynamoDB, and Cognito.
+* Presented fundamental concepts of AI, Cloud, Prompt Engineering, and Token Economics.
+* Demonstrated how AI Agents can support the full Software Engineering lifecycle through the BMAD model, including PM, Architect, Scrum, Developer, and Review Agents.
+* Introduced core AWS architectures for deploying AI applications with Lambda, Bedrock, DynamoDB, and Cognito.
 
 &emsp;**Outcomes & Value Gained:** 
-* Gained a deep understanding of structured prompting to optimize token cost and output quality.
-* Transformed programming mindset (avoiding coding strictly by feel - "vibe code").
-* Mastered professional software development processes when integrating AI tools to automate analysis, design, testing, and code review.
+* Learned to create clear, constrained prompts that reduce token costs and improve the quality of AI outputs.
+* Adjusted the programming mindset by avoiding code written mainly by intuition, also known as "vibe code."
+* Understood professional software development workflows that use AI to automate analysis, design, testing, and code review.
 
 ---
 
@@ -38,16 +38,16 @@ During my internship, I participated in 3 events. Each one was a memorable exper
 &emsp;**Role:** Attendee  
 
 &emsp;**Brief Description:** 
-* Presented an effective roadmap for self-learning cloud computing using gamification (AWS Cloud Quest and Floci).
-* Compiled practical experiences from the LotusHacks 2026 hackathon, featuring two cloud projects: *SynthHunter* (AI voice verification) and *Vortex* (recruitment optimization).
-* Introduced serverless solutions for startups (Tử Vi Đại Việt) and a 3-layer AI system architecture (Knowledge, Brain, Validation/Cache).
-* Analyzed sustainable DevOps foundations based on the People-Process-Technology triad and systems thinking.
-* Guided psychological management methods to help students overcome procrastination and build self-confidence.
+* Introduced a gamified cloud self-learning roadmap using AWS Cloud Quest and Floci.
+* Shared practical experience from LotusHacks 2026 through two cloud projects: *SynthHunter* for AI voice verification and *Vortex* for recruitment optimization.
+* Presented a serverless infrastructure migration solution for the Tử Vi Đại Việt startup and a three-layer AI system consisting of Knowledge, Brain, and Validation/Cache.
+* Explained sustainable DevOps foundations through the People, Process, and Technology model combined with systems thinking.
+* Shared psychological management methods for overcoming procrastination and developing self-confidence.
 
 &emsp;**Outcomes & Value Gained:** 
-* Accessed intuitive methods for self-studying cloud services and earning Digital Badges.
-* Learned how to design controlled, cached, and optimized AI systems.
-* Understood the root psychological causes of procrastination while mastering scientific tools (5-Second Rule, 5-Minute Rule) to overcome action barriers.
+* Discovered more intuitive ways to self-study cloud services and work toward Digital Badges.
+* Understood how to design AI systems that control output quality while optimizing token costs.
+* Recognized the psychological fears behind procrastination and learned to apply the 5-Second Rule and 5-Minute Rule to overcome barriers to action.
 
 ---
 
@@ -61,14 +61,14 @@ During my internship, I participated in 3 events. Each one was a memorable exper
 &emsp;**Role:** Attendee  
 
 &emsp;**Brief Description:** 
-* Introduced Serverless WebSocket real-time communication architectures (connecting Godot clients with AWS API Gateway/DynamoDB/Lambda).
-* Explained Docker containerization, resource optimization, and the layered file system (Layers) mechanism.
-* Explored GraphRAG solutions (combining Amazon Neptune knowledge graphs and Amazon Bedrock) to resolve the context loss of traditional RAG.
-* Presented machine learning-based NIDS security architectures (LightGBM) integrated with AWS WAF and Amazon Kinesis.
-* Outlined career transition roadmaps from IT Helpdesk to Senior Sysadmin/Modern DevOps.
+* Presented a Serverless WebSocket architecture for real-time data transmission by connecting a Godot client with AWS API Gateway, DynamoDB, and Lambda.
+* Explained Docker container packaging, the layered file system mechanism, and approaches to resource optimization.
+* Introduced GraphRAG, combining Amazon Neptune knowledge graphs with Amazon Bedrock to address the relationship loss found in traditional RAG.
+* Analyzed a multi-layer WAF and Machine Learning security architecture that uses LightGBM with Amazon Kinesis to detect cyberattacks in real time.
+* Shared a career transition roadmap from IT Helpdesk to Senior Sysadmin and Modern DevOps.
 
 &emsp;**Outcomes & Value Gained:** 
-* Mastered the principles of two-way WebSocket connections and resource optimization via Docker layers.
-* Explored GraphRAG trends to build smarter chatbots.
-* Understood how to build and monitor intelligent cloud security systems.
-* Outlined a practical DevOps learning roadmap from basics to advanced levels.
+* Understood two-way WebSocket communication and resource optimization through Docker layers.
+* Explored GraphRAG technology for improving intelligent chatbot systems.
+* Learned how intelligent cloud security systems can be built and monitored.
+* Defined a practical DevOps learning roadmap from foundational to advanced knowledge for real-world work.
