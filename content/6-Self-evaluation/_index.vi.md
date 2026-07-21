@@ -6,52 +6,48 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+Trong 12 tuần tham gia chương trình **First Cloud AI Journey**, từ ngày **17/04/2026 đến ngày 11/07/2026**, tôi đã củng cố kiến thức về điện toán đám mây, lập trình backend và quy trình triển khai ứng dụng trên AWS. Quá trình thực tập giúp tôi hiểu rõ hơn cách kết hợp kiến thức lý thuyết với việc xây dựng, kiểm thử và theo dõi một hệ thống thực tế.
 
-Trong thời gian tham gia chương trình **Workforce Bootcamp – First Cloud AI Journey** tại **Công ty TNHH Amazon Web Services Việt Nam**, từ ngày **12/08/2025 đến ngày 12/11/2025**, tôi đã có cơ hội củng cố kiến thức nền tảng về điện toán đám mây, làm quen với quy trình triển khai hệ thống thực tế và rèn luyện khả năng tự nghiên cứu công nghệ mới.
+Dự án chính được thực hiện là **High-Concurrency Payment Gateway – hệ thống kiểm thử khả năng chịu tải thanh toán cao**. Phần backend được xây dựng bằng Spring Boot theo kiến trúc microservices, gồm API Gateway Service, Account Service, Payment Service và Transaction Service. PostgreSQL được sử dụng để lưu dữ liệu; Redis hỗ trợ cache và rate limiting; Docker được dùng để đóng gói các thành phần của hệ thống.
 
-Nội dung học tập bao gồm các nhóm dịch vụ AWS quan trọng như **IAM, VPC, EC2, S3, RDS, ECS, ECR, Elastic Load Balancing, ElastiCache, CloudWatch và API Gateway**. Bên cạnh phần lý thuyết, tôi đã thực hành cấu hình tài nguyên, phân quyền truy cập, thiết lập mạng, triển khai ứng dụng container và theo dõi hoạt động của hệ thống trên AWS.
+Để hạn chế lỗi khi nhiều request cùng xử lý một tài khoản, dự án áp dụng idempotency key, cập nhật số dư nguyên tử có điều kiện, processing token và lease, Recovery Worker, Retry và Circuit Breaker. Ứng dụng được đóng gói và triển khai thử nghiệm với Amazon ECR, ECS Fargate, Application Load Balancer, RDS PostgreSQL, VPC và CloudWatch. k6 được sử dụng để tạo tải và kiểm tra tính nhất quán của số dư sau khi xử lý giao dịch.
 
-Dự án chính tôi thực hiện là **High Concurrency Payment Gateway – hệ thống kiểm thử khả năng chịu tải thanh toán cao**. Hệ thống được xây dựng theo kiến trúc microservices gồm API Gateway Service, Payment Service, Account Service và Transaction Service. Trong quá trình phát triển, tôi đã áp dụng Spring Boot, PostgreSQL, Redis, Docker, cơ chế idempotency, distributed lock, rate limiting, Retry, Circuit Breaker và Outbox Pattern nhằm hạn chế giao dịch trùng lặp, kiểm soát truy cập đồng thời và nâng cao tính ổn định của hệ thống.
+Kết quả demo cho thấy hệ thống duy trì đúng số dư và hạn chế giao dịch bị xử lý lặp khi chịu tải đồng thời. Tuy nhiên, kết quả kiểm thử cũng phản ánh một số giới hạn: ở lần chạy 10.000 request vẫn còn 22 request không thành công và độ trễ P95 cao hơn ngưỡng kỳ vọng. Vì vậy, dự án hiện phù hợp ở mức **mô hình thử nghiệm và minh họa kỹ thuật**, chưa nên xem là hệ thống thanh toán sẵn sàng vận hành trong môi trường production.
 
-Thông qua dự án, tôi cải thiện được kỹ năng phân tích yêu cầu, thiết kế kiến trúc, lập trình backend, xử lý lỗi, kiểm thử API, kiểm thử tải, đọc log và viết tài liệu kỹ thuật. Tôi cũng học được cách quản lý chi phí AWS, kiểm tra tài nguyên sau khi thực hành và chủ động khắc phục các vấn đề phát sinh trong quá trình tích hợp và triển khai.
+Để phản ánh khách quan quá trình học tập và thực hiện dự án, tôi tự đánh giá bản thân theo các tiêu chí sau:
 
-Để phản ánh khách quan quá trình học tập và thực hiện dự án, tôi tự đánh giá bản thân dựa trên các tiêu chí sau:
-
-| STT | Tiêu chí                            | Mô tả                                                                                                  | Tốt | Khá | Trung bình |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------------ | --- | --- | ---------- |
-| 1   | **Kiến thức và kỹ năng chuyên môn** | Vận dụng kiến thức AWS, Java Spring Boot, PostgreSQL, Redis và Docker vào dự án                        | ✅   | ☐   | ☐          |
-| 2   | **Khả năng học hỏi**                | Chủ động tiếp cận dịch vụ AWS và các kỹ thuật xử lý đồng thời mới                                     | ✅   | ☐   | ☐          |
-| 3   | **Chủ động**                        | Tự nghiên cứu tài liệu, tìm nguyên nhân lỗi và đề xuất hướng xử lý                                    | ✅   | ☐   | ☐          |
-| 4   | **Tinh thần trách nhiệm**           | Hoàn thành các nội dung học tập, worklog, workshop và dự án theo từng giai đoạn                       | ✅   | ☐   | ☐          |
-| 5   | **Kỷ luật**                         | Tuân thủ kế hoạch học tập, quy trình thực hành và nguyên tắc bảo mật thông tin truy cập AWS            | ✅   | ☐   | ☐          |
-| 6   | **Tính cầu tiến**                   | Tiếp nhận góp ý về kiến trúc, mã nguồn và cách trình bày để điều chỉnh sản phẩm                        | ✅   | ☐   | ☐          |
-| 7   | **Giao tiếp**                       | Trình bày tiến độ và vấn đề kỹ thuật tương đối rõ ràng, nhưng cần cải thiện sự ngắn gọn và tự tin       | ☐   | ✅   | ☐          |
-| 8   | **Hợp tác nhóm**                    | Trao đổi với mentor và các thành viên, tiếp thu kinh nghiệm và phối hợp khi cần hỗ trợ                  | ✅   | ☐   | ☐          |
-| 9   | **Ứng xử chuyên nghiệp**            | Giữ thái độ nghiêm túc, tôn trọng người hướng dẫn và có trách nhiệm với tài nguyên được sử dụng         | ✅   | ☐   | ☐          |
-| 10  | **Tư duy giải quyết vấn đề**        | Phân tích lỗi tích hợp, lỗi dữ liệu và các tình huống giao dịch đồng thời để tìm giải pháp phù hợp      | ☐   | ✅   | ☐          |
-| 11  | **Đóng góp vào dự án/tổ chức**      | Hoàn thiện mã nguồn, tài liệu workshop, sơ đồ kiến trúc và kết quả kiểm thử cho dự án                   | ✅   | ☐   | ☐          |
-| 12  | **Tổng thể**                        | Hoàn thành mục tiêu chính của chương trình và xây dựng được sản phẩm có khả năng trình bày, kiểm thử    | ✅   | ☐   | ☐          |
+| STT | Tiêu chí                            | Mô tả                                                                                                           | Tốt | Khá | Trung bình |
+| --- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------- | --- | --- | ---------- |
+| 1   | **Kiến thức và kỹ năng chuyên môn** | Vận dụng được Spring Boot, PostgreSQL, Redis, Docker và các dịch vụ AWS; vẫn cần nâng cao tối ưu hiệu năng       | ☐   | ✅   | ☐          |
+| 2   | **Khả năng học hỏi**                | Chủ động tiếp cận tài liệu mới, thử nghiệm các dịch vụ AWS và kỹ thuật xử lý giao dịch đồng thời                | ✅   | ☐   | ☐          |
+| 3   | **Chủ động**                        | Có khả năng tự tìm nguyên nhân lỗi và đề xuất hướng sửa, nhưng cần lập kế hoạch công việc chặt chẽ hơn           | ☐   | ✅   | ☐          |
+| 4   | **Tinh thần trách nhiệm**           | Hoàn thành các nội dung chính của worklog, workshop, báo cáo, mã nguồn và video demo                            | ✅   | ☐   | ☐          |
+| 5   | **Kỷ luật**                         | Tuân thủ yêu cầu bảo mật và quản lý tài nguyên AWS; cần duy trì việc kiểm tra tiến độ và tài nguyên thường xuyên | ☐   | ✅   | ☐          |
+| 6   | **Tính cầu tiến**                   | Tiếp nhận góp ý về source code, kiến trúc, báo cáo và liên tục điều chỉnh sản phẩm                              | ✅   | ☐   | ☐          |
+| 7   | **Giao tiếp**                       | Trình bày được luồng hệ thống và kết quả kiểm thử, nhưng cần diễn đạt ngắn gọn và tự tin hơn                     | ☐   | ✅   | ☐          |
+| 8   | **Hợp tác nhóm**                    | Có trao đổi, tiếp nhận góp ý và phối hợp với thành viên; kinh nghiệm về review code và quy trình Agile còn hạn chế | ☐ | ✅ | ☐          |
+| 9   | **Ứng xử chuyên nghiệp**            | Giữ thái độ nghiêm túc, tôn trọng người hướng dẫn và có trách nhiệm với tài khoản, dữ liệu và tài nguyên AWS     | ✅   | ☐   | ☐          |
+| 10  | **Tư duy giải quyết vấn đề**        | Phân tích được lỗi dữ liệu, xử lý đồng thời và lỗi triển khai; chưa xử lý triệt để vấn đề latency                | ☐   | ✅   | ☐          |
+| 11  | **Đóng góp vào dự án/tổ chức**      | Hoàn thiện được mã nguồn, tài liệu, sơ đồ kiến trúc và demo; chất lượng vẫn cần được chuẩn hóa thêm              | ☐   | ✅   | ☐          |
+| 12  | **Tổng thể**                        | Hoàn thành mục tiêu chính và xây dựng được sản phẩm có thể trình bày, triển khai thử nghiệm và kiểm thử tải      | ☐   | ✅   | ☐          |
 
 ### Kết quả đạt được
 
-* Hình thành được kiến thức tổng quan về kiến trúc và các nhóm dịch vụ cốt lõi trên AWS.
-* Có khả năng tạo, cấu hình, kết nối và giám sát các tài nguyên AWS phục vụ một ứng dụng microservices.
-* Xây dựng được hệ thống Payment Gateway có các cơ chế kiểm soát giao dịch trùng lặp và xử lý truy cập đồng thời.
-* Biết sử dụng Redis cho cache, distributed lock, idempotency và rate limiting; sử dụng PostgreSQL để quản lý dữ liệu giao dịch.
-* Có kinh nghiệm triển khai container lên Amazon ECS Fargate, lưu image trên Amazon ECR và theo dõi hệ thống bằng CloudWatch.
-* Hoàn thiện worklog, tài liệu workshop, nội dung song ngữ và báo cáo kết quả thực hiện dự án.
+* Xây dựng được các service chính và tích hợp thành luồng tạo tài khoản, thanh toán và ghi nhận lịch sử giao dịch.
+* Áp dụng được idempotency, atomic update, processing token và lease để giảm rủi ro xử lý trùng và sai lệch số dư.
+* Đóng gói ứng dụng bằng Docker, đẩy image lên Amazon ECR và triển khai thử nghiệm trên Amazon ECS Fargate.
+* Kết nối backend với Amazon RDS PostgreSQL, phân phối request qua Application Load Balancer và theo dõi hệ thống bằng CloudWatch.
+* Thực hiện kiểm thử tải bằng k6, đối chiếu số dư kỳ vọng với số dư thực tế và nhận diện được giới hạn về độ trễ, tỷ lệ lỗi.
+* Hoàn thiện worklog, tài liệu workshop, báo cáo song ngữ, sơ đồ kiến trúc và video demo dự án.
 
 ### Cần cải thiện
 
-* Nghiên cứu sâu hơn về phương pháp kiểm thử tải, phân tích percentile, throughput, error rate và xác định điểm nghẽn của hệ thống.
-* Nâng cao kỹ năng thiết kế hệ thống phân tán, xử lý sự cố, bảo mật ứng dụng và tối ưu chi phí khi vận hành trên AWS.
-* Bổ sung kiến thức về Infrastructure as Code, CI/CD và tự động hóa triển khai để giảm thao tác thủ công.
-* Cải thiện khả năng giao tiếp, trình bày kỹ thuật bằng tiếng Anh và diễn đạt vấn đề ngắn gọn, có trọng tâm hơn.
-* Tiếp tục luyện tập quản lý thời gian, chia nhỏ công việc và kiểm tra tiến độ thường xuyên trong các dự án dài hạn.
+* Tối ưu độ trễ P95, connection pool, truy vấn cơ sở dữ liệu và cấu hình ECS để hệ thống đáp ứng tốt hơn khi tải tăng.
+* Bổ sung test tự động cho các tình huống xử lý đồng thời, timeout, retry, service gián đoạn và kiểm tra invariant sau kiểm thử.
+* Chuẩn hóa quy trình triển khai bằng Infrastructure as Code và CI/CD thay vì phụ thuộc nhiều vào thao tác thủ công trên AWS Console.
+* Nâng cao kiến thức về bảo mật production như quản lý secret, TLS, IAM theo nguyên tắc quyền tối thiểu và kết nối private giữa các dịch vụ.
+* Cải thiện kỹ năng giao tiếp kỹ thuật, trình bày bằng tiếng Anh, quản lý thời gian và phối hợp theo quy trình Git/Agile.
 
 ### Định hướng phát triển
 
-Sau khi hoàn thành chương trình, tôi sẽ tiếp tục hoàn thiện dự án, bổ sung các kịch bản kiểm thử nâng cao và chuẩn hóa quy trình triển khai. Đồng thời, tôi định hướng học sâu hơn về AWS, DevOps, kiến trúc microservices và chuẩn bị kiến thức để tham gia các kỳ thi chứng chỉ AWS phù hợp với định hướng nghề nghiệp.
+Sau chương trình, tôi sẽ tiếp tục tối ưu hiệu năng của dự án, hoàn thiện bộ kiểm thử tự động và chuẩn hóa quá trình triển khai. Đồng thời, tôi sẽ học sâu hơn về AWS, DevOps, hệ thống phân tán, observability và Infrastructure as Code để có thể phát triển dự án từ mô hình thử nghiệm thành một hệ thống có khả năng vận hành ổn định hơn.

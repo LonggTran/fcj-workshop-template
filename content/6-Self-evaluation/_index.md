@@ -6,52 +6,48 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+During the 12-week **First Cloud AI Journey** program, from **April 17, 2026 to July 11, 2026**, I strengthened my knowledge of cloud computing, backend development, and application deployment on AWS. The internship helped me better understand how to combine theoretical knowledge with building, testing, and monitoring a practical system.
 
-During my participation in the **Workforce Bootcamp – First Cloud AI Journey** program at **Amazon Web Services Vietnam Company Limited**, from **August 12, 2025 to November 12, 2025**, I had the opportunity to strengthen my cloud computing fundamentals, become familiar with practical system deployment processes, and improve my ability to independently research new technologies.
+My main project was the **High-Concurrency Payment Gateway**, a system designed to test payment processing under high load. The backend was developed with Spring Boot using a microservices architecture consisting of API Gateway Service, Account Service, Payment Service, and Transaction Service. PostgreSQL was used for data storage, Redis supported caching and rate limiting, and Docker was used to package the system components.
 
-The learning content covered important AWS service groups, including **IAM, VPC, EC2, S3, RDS, ECS, ECR, Elastic Load Balancing, ElastiCache, CloudWatch, and API Gateway**. In addition to theoretical knowledge, I practiced configuring resources, managing access permissions, setting up networks, deploying containerized applications, and monitoring system operations on AWS.
+To reduce errors when multiple requests process the same account, the project applied idempotency keys, conditional atomic balance updates, processing tokens and leases, a Recovery Worker, Retry, and Circuit Breaker. The application was packaged and deployed experimentally using Amazon ECR, ECS Fargate, Application Load Balancer, RDS PostgreSQL, VPC, and CloudWatch. k6 was used to generate load and verify balance consistency after transaction processing.
 
-My main project was the **High Concurrency Payment Gateway**, a system designed to test payment processing under high load. The system followed a microservices architecture consisting of API Gateway Service, Payment Service, Account Service, and Transaction Service. During development, I applied Spring Boot, PostgreSQL, Redis, Docker, idempotency, distributed locking, rate limiting, Retry, Circuit Breaker, and the Outbox Pattern to reduce duplicate transactions, control concurrent access, and improve system reliability.
-
-Through this project, I improved my skills in requirement analysis, architecture design, backend development, troubleshooting, API testing, load testing, log analysis, and technical documentation. I also learned how to manage AWS costs, review resources after practice sessions, and proactively resolve issues arising during integration and deployment.
+The demo results showed that the system maintained the correct balance and reduced duplicate transaction processing under concurrent load. However, the tests also revealed limitations: during the 10,000-request run, 22 requests were unsuccessful, and P95 latency exceeded the expected threshold. Therefore, the current project should be considered a **technical prototype and demonstration system**, rather than a production-ready payment platform.
 
 To objectively reflect on my learning process and project implementation, I evaluate myself according to the following criteria:
 
-| No. | Criteria                            | Description                                                                                                  | Good | Fair | Average |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Applied AWS, Java Spring Boot, PostgreSQL, Redis, and Docker knowledge to the project                        | ✅    | ☐    | ☐       |
-| 2   | **Ability to learn**                | Proactively learned AWS services and new concurrency-handling techniques                                    | ✅    | ☐    | ☐       |
-| 3   | **Proactiveness**                   | Independently researched documentation, investigated errors, and proposed solutions                         | ✅    | ☐    | ☐       |
-| 4   | **Sense of responsibility**         | Completed learning tasks, worklogs, workshop content, and project milestones                                | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Followed the learning plan, practice procedures, and AWS credential security principles                     | ✅    | ☐    | ☐       |
-| 6   | **Progressive mindset**             | Accepted feedback on architecture, source code, and presentation, then improved the deliverables            | ✅    | ☐    | ☐       |
-| 7   | **Communication**                   | Reported progress and technical issues clearly, but still needs to become more concise and confident        | ☐    | ✅    | ☐       |
-| 8   | **Teamwork**                        | Communicated with mentors and members, learned from their experience, and collaborated when support was needed | ✅  | ☐    | ☐       |
-| 9   | **Professional conduct**            | Maintained a serious attitude, respected mentors, and used assigned resources responsibly                   | ✅    | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Analyzed integration, data, and concurrent transaction issues to identify appropriate solutions             | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Completed source code, workshop documentation, architecture diagrams, and test results                      | ✅    | ☐    | ☐       |
-| 12  | **Overall**                         | Achieved the main program objectives and produced a project that could be demonstrated and tested           | ✅    | ☐    | ☐       |
+| No. | Criteria                            | Description                                                                                                             | Good | Fair | Average |
+| --- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---- | ---- | ------- |
+| 1   | **Professional knowledge & skills** | Applied Spring Boot, PostgreSQL, Redis, Docker, and AWS services; performance optimization still requires improvement   | ☐    | ✅    | ☐       |
+| 2   | **Ability to learn**                | Proactively studied new documentation, AWS services, and concurrent transaction-handling techniques                    | ✅    | ☐    | ☐       |
+| 3   | **Proactiveness**                   | Independently investigated errors and proposed fixes, but needs more structured work planning                           | ☐    | ✅    | ☐       |
+| 4   | **Sense of responsibility**         | Completed the main worklog, workshop, report, source code, and project demonstration deliverables                       | ✅    | ☐    | ☐       |
+| 5   | **Discipline**                      | Followed security and AWS resource-management requirements; progress and resource checks should be more consistent      | ☐    | ✅    | ☐       |
+| 6   | **Drive for improvement**           | Accepted feedback on source code, architecture, and reporting, then continuously revised the deliverables               | ✅    | ☐    | ☐       |
+| 7   | **Communication**                   | Explained the system flow and test results, but needs to communicate more concisely and confidently                     | ☐    | ✅    | ☐       |
+| 8   | **Teamwork**                        | Communicated and coordinated with team members; experience with code review and Agile workflows remains limited         | ☐    | ✅    | ☐       |
+| 9   | **Professional conduct**            | Maintained a serious attitude, respected mentors, and handled AWS accounts, data, and resources responsibly             | ✅    | ☐    | ☐       |
+| 10  | **Problem-solving skills**          | Analyzed data, concurrency, and deployment issues; the latency problem has not yet been fully resolved                  | ☐    | ✅    | ☐       |
+| 11  | **Contribution to project/team**    | Completed the source code, documentation, architecture diagram, and demo, although further standardization is needed    | ☐    | ✅    | ☐       |
+| 12  | **Overall assessment**              | Achieved the main objectives and produced a system that can be demonstrated, experimentally deployed, and load tested   | ☐    | ✅    | ☐       |
 
 ### Achievements
 
-* Developed an overall understanding of AWS architecture and its core service groups.
-* Gained the ability to create, configure, connect, and monitor AWS resources for a microservices application.
-* Built a Payment Gateway system with mechanisms for duplicate transaction prevention and concurrent access control.
-* Used Redis for caching, distributed locking, idempotency, and rate limiting, while using PostgreSQL for transaction data management.
-* Gained experience deploying containers to Amazon ECS Fargate, storing images in Amazon ECR, and monitoring the system with CloudWatch.
-* Completed worklogs, workshop documentation, bilingual content, and the final project implementation report.
+* Built the main services and integrated the account creation, payment processing, and transaction history flows.
+* Applied idempotency, atomic updates, processing tokens, and leases to reduce duplicate processing and balance inconsistencies.
+* Packaged the application with Docker, pushed images to Amazon ECR, and experimentally deployed it on Amazon ECS Fargate.
+* Connected the backend to Amazon RDS PostgreSQL, distributed requests through an Application Load Balancer, and monitored the system with CloudWatch.
+* Performed load testing with k6, compared expected and actual balances, and identified latency and error-rate limitations.
+* Completed worklogs, workshop documentation, bilingual reports, the architecture diagram, and the project demonstration video.
 
 ### Areas for Improvement
 
-* Study load-testing methodologies more deeply, including percentile analysis, throughput, error rate, and bottleneck identification.
-* Improve knowledge of distributed system design, incident handling, application security, and AWS cost optimization.
-* Learn more about Infrastructure as Code, CI/CD, and deployment automation to reduce manual operations.
-* Improve communication and technical presentation skills in English, with clearer and more focused explanations.
-* Continue improving time management, task breakdown, and regular progress tracking for long-term projects.
+* Optimize P95 latency, database connection pools, queries, and ECS configuration so the system performs better as load increases.
+* Add automated tests for concurrency, timeouts, retries, service interruptions, and invariant verification after load tests.
+* Standardize deployment with Infrastructure as Code and CI/CD instead of relying heavily on manual AWS Console operations.
+* Improve production security knowledge, including secret management, TLS, least-privilege IAM, and private service connectivity.
+* Improve technical communication, English presentation, time management, and collaboration through Git and Agile workflows.
 
 ### Development Direction
 
-After completing the program, I plan to continue improving the project, add advanced test scenarios, and standardize the deployment process. I will also deepen my knowledge of AWS, DevOps, and microservices architecture while preparing for AWS certifications that align with my career direction.
+After the program, I will continue optimizing the project, completing its automated test suite, and standardizing the deployment process. I will also deepen my knowledge of AWS, DevOps, distributed systems, observability, and Infrastructure as Code so that the project can evolve from a technical prototype into a more stable and maintainable system.
