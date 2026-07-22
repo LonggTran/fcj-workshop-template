@@ -76,9 +76,9 @@ The event connected technical knowledge with self-management skills. The Hackath
 ### Some event photos
 
 [//]: # (![Event 2]&#40;/images/b4.jpg&#41;)
-![Event 2](/images/b5.jpg)
+[//]: # (![Event 2]&#40;/images/b5.jpg&#41;)
 
-[//]: # (![Event 2]&#40;/images/b6.jpg&#41;)
+![Event 2](/images/b6.jpg)
 
 [//]: # (![Event 2]&#40;/images/b7.jpg&#41;)
 
