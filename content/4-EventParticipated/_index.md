@@ -10,7 +10,7 @@ During my internship, I participated in 3 events. Each one was a memorable exper
 ### [Event 1](4.1-Event1/)  
 &emsp;**Event Name:** FCJ Community Day - AI & Prompt Engineering  
 
-&emsp;**Date & Time:** 09:00, May 04, 2026  
+&emsp;**Date & Time:** Saturday, May 09, 2026, 09:00 - 12:00  
 
 &emsp;**Location:** 26th Floor, Bitexco Financial Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, Ho Chi Minh City  
 
@@ -31,7 +31,7 @@ During my internship, I participated in 3 events. Each one was a memorable exper
 ### [Event 2](4.2-Event2/)  
 &emsp;**Event Name:** FCJ Community Day - Stop Procrastinating, Start Building  
 
-&emsp;**Date & Time:** 09:00, May 30, 2026  
+&emsp;**Date & Time:** Saturday, May 30, 2026 , 09:00 - 12:00 
 
 &emsp;**Location:** 26th Floor, Bitexco Financial Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, Ho Chi Minh City  
 
@@ -54,7 +54,7 @@ During my internship, I participated in 3 events. Each one was a memorable exper
 ### [Event 3](4.3-Event3/)  
 &emsp;**Event Name:** FCJ Community Day - From Zero to Cloud Hero  
 
-&emsp;**Date & Time:** 09:00, June 06, 2026  
+&emsp;**Date & Time:** Saturday, June 06, 2026, 09:00 - 12:00  
 
 &emsp;**Location:** 26th Floor, Bitexco Financial Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, Ho Chi Minh City  
 

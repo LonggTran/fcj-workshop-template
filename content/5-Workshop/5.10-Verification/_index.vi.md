@@ -78,3 +78,10 @@ Sau khi thực hiện bài kiểm tra giả lập tải cường độ cao bằn
 ![Trạng thái CloudWatch Alarms](/images/h89.png)
 
 **Kết luận:** Hệ thống High-Concurrency Payment Gateway đã hoàn toàn sẵn sàng cho môi trường Production, đáp ứng xuất sắc các tiêu chuẩn khắt khe nhất về độ tin cậy (Reliability), khả năng mở rộng (Scalability) và tính nhất quán dữ liệu (Consistency).
+
+## Video demo
+**Demo Video:** [Watch the demo video](https://drive.google.com/file/d/1oNYPaeILVUyJaDqz2qYWPu9UwtY6KnCG/view)
+
+## Kết quả dự án
+1. **Mã nguồn dự án - Github:** [Github](https://github.com/LonggTran/high-concurrency-payment-gateway)
+2. **Website:** [http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/](http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/))

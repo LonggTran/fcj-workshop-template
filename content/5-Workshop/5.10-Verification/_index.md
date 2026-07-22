@@ -78,3 +78,10 @@ After executing a high-concurrency load test using `k6`, we will review the achi
 ![CloudWatch Alarms Status](/images/h89.png)
 
 **Conclusion:** The High-Concurrency Payment Gateway system is now completely production-ready, successfully meeting the strictest standards for Reliability, Scalability, and Data Consistency.
+
+## Video Demo
+**Video Demo:** [Watch the demo video](https://drive.google.com/file/d/1BgfRI-ktjfj1OPcaztaZMGXm4wwd9P_r/view)
+
+## Project Results
+1. **Project Source Code - GitHub:** [Github](https://github.com/LonggTran/high-concurrency-payment-gateway)
+2. **Website:** [http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/](http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/)

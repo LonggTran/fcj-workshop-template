@@ -10,7 +10,7 @@ Trong quá trình thực tập, em đã tham gia 3 events, với mỗi event là
 ### [Event 1](4.1-Event1/)
 &emsp;**Tên sự kiện:** FCJ Community Day - AI & Prompt Engineering
 
-&emsp;**Thời gian:** 09:00 ngày 04/05/2026
+&emsp;**Thời gian:** Thứ 7, ngày 09/05/2026, 09:00 - 12:00
 
 &emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
 
@@ -31,7 +31,7 @@ Trong quá trình thực tập, em đã tham gia 3 events, với mỗi event là
 ### [Event 2](4.2-Event2/)
 &emsp;**Tên sự kiện:** FCJ Community Day - Stop Procrastinating, Start Building
 
-&emsp;**Thời gian:** 09:00 ngày 30/05/2026
+&emsp;**Thời gian:** Thứ 7, ngày 30/05/2026, 09:00 - 12:00
 
 &emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
 
@@ -54,7 +54,7 @@ Trong quá trình thực tập, em đã tham gia 3 events, với mỗi event là
 ### [Event 3](4.3-Event3/)
 &emsp;**Tên sự kiện:** FCJ Community Day - From Zero to Cloud Hero
 
-&emsp;**Thời gian:** 09:00 ngày 06/06/2026
+&emsp;**Thời gian:** Thứ 7, ngày 06/06/2026, 09:00 - 12:00
 
 &emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
 
