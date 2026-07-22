@@ -84,4 +84,3 @@ After executing a high-concurrency load test using `k6`, we will review the achi
 
 ## Project Results
 1. **Project Source Code - GitHub:** [Github](https://github.com/LonggTran/high-concurrency-payment-gateway)
-2. **Website:** [http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/](http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/)

@@ -84,4 +84,3 @@ Sau khi thực hiện bài kiểm tra giả lập tải cường độ cao bằn
 
 ## Kết quả dự án
 1. **Mã nguồn dự án - Github:** [Github](https://github.com/LonggTran/high-concurrency-payment-gateway)
-2. **Website:** [http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/](http://alb-internet-facing-1015453304.ap-southeast-1.elb.amazonaws.com/))
