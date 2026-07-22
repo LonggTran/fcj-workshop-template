@@ -8,6 +8,8 @@ pre : " <b> 5.10. </b> "
 
 Sau khi đã triển khai toàn bộ các thành phần hạ tầng (VPC, RDS, ALB, ECS Fargate, CloudWatch Alarm, S3 Backup), đây là bước cuối cùng để kiểm thử và nghiệm thu tính đúng đắn của toàn bộ hệ thống.
 
+> **Video Demo:** Để xem trực quan toàn bộ quá trình tương tác giao diện và chạy giả lập kiểm thử k6 trên hạ tầng AWS, vui lòng truy cập [Video Demo & Kiểm thử hệ thống](https://drive.google.com/file/d/1J2bgKGyZWc86H7bJlQ3_K-vSoPuC1VAp/view?usp=sharing).
+
 ---
 
 ### Bước 10.1: Kiểm tra trạng thái Target Groups của ALB
@@ -78,9 +80,3 @@ Sau khi thực hiện bài kiểm tra giả lập tải cường độ cao bằn
 ![Trạng thái CloudWatch Alarms](/images/h89.png)
 
 **Kết luận:** Hệ thống High-Concurrency Payment Gateway đã hoàn toàn sẵn sàng cho môi trường Production, đáp ứng xuất sắc các tiêu chuẩn khắt khe nhất về độ tin cậy (Reliability), khả năng mở rộng (Scalability) và tính nhất quán dữ liệu (Consistency).
-
-## Video demo
-**Demo Video:** [Watch the demo video](https://drive.google.com/file/d/1oNYPaeILVUyJaDqz2qYWPu9UwtY6KnCG/view)
-
-## Kết quả dự án
-1. **Mã nguồn dự án - Github:** [Github](https://github.com/LonggTran/high-concurrency-payment-gateway)

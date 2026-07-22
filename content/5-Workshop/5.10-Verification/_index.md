@@ -8,6 +8,8 @@ pre : " <b> 5.10. </b> "
 
 After deploying all infrastructure components (VPC, RDS, ALB, ECS Fargate, CloudWatch Alarm, S3 Backup), this is the final step to test and verify the entire system's correctness and performance.
 
+> **Demo Video:** To visually inspect the entire web interface interaction and simulated k6 load testing execution on AWS, please refer to the [System Demo & Load Testing Video](https://drive.google.com/file/d/1J2bgKGyZWc86H7bJlQ3_K-vSoPuC1VAp/view?usp=sharing).
+
 ---
 
 ### Step 10.1: Verify Target Group Health Status
@@ -78,9 +80,3 @@ After executing a high-concurrency load test using `k6`, we will review the achi
 ![CloudWatch Alarms Status](/images/h89.png)
 
 **Conclusion:** The High-Concurrency Payment Gateway system is now completely production-ready, successfully meeting the strictest standards for Reliability, Scalability, and Data Consistency.
-
-## Video Demo
-**Video Demo:** [Watch the demo video](https://drive.google.com/file/d/1BgfRI-ktjfj1OPcaztaZMGXm4wwd9P_r/view)
-
-## Project Results
-1. **Project Source Code - GitHub:** [Github](https://github.com/LonggTran/high-concurrency-payment-gateway)
