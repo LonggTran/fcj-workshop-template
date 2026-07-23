@@ -28,7 +28,7 @@ To objectively reflect on my learning process and project implementation, I eval
 | 8   | **Teamwork**                        | Communicated and coordinated with team members; experience with code review and Agile workflows remains limited         | ☐    | ✅    | ☐       |
 | 9   | **Professional conduct**            | Maintained a serious attitude, respected mentors, and handled AWS accounts, data, and resources responsibly             | ✅    | ☐    | ☐       |
 | 10  | **Problem-solving skills**          | Analyzed data, concurrency, and deployment issues; the latency problem has not yet been fully resolved                  | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Completed the source code, documentation, architecture diagram, and demo, although further standardization is needed    | ☐    | ✅    | ☐       |
+| 11  | **Contribution to project/team**    | Completed the source code, documentation, architecture diagram, and demo, although further standardization is needed    | ☐    | ☐    | ✅       |
 | 12  | **Overall assessment**              | Achieved the main objectives and produced a system that can be demonstrated, experimentally deployed, and load tested   | ☐    | ✅    | ☐       |
 
 ### Achievements
